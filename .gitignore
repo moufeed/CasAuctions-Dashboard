@@ -328,3 +328,23 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+
+
+
+
+
+
+
+
+
+
+.vscode/
+UploadFolder/
+
+
+# Logs files
+Logs/
+
+# Health Check Status
+healthchecksdb
