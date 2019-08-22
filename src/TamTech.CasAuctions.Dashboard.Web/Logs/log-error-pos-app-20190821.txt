@@ -1,0 +1,283 @@
+2019-08-21T09:50:22.6711917+03:00  [ERR] GetHealthReport threw an exception when trying to get report from https://casauctions-dev-identity.azurewebsites.net/api/health configured with name POS - Web Application. (c3b1adab)
+System.InvalidOperationException: Response is null or message can't be deserialized as HealthChecks.UI.Client.UIHealthReport.
+   at System.Net.Http.HttpResponseMessageExtensions.As[TContent](HttpResponseMessage response)
+   at HealthChecks.UI.Core.HostedService.HealthCheckReportCollector.GetHealthReport(HealthCheckConfiguration configuration)
+2019-08-21T11:34:03.8950037+03:00  [ERR] GetHealthReport threw an exception when trying to get report from https://casauctions-dev-identity.azurewebsites.net/api/health configured with name POS - Web Application. (c3b1adab)
+System.InvalidOperationException: Response is null or message can't be deserialized as HealthChecks.UI.Client.UIHealthReport.
+   at System.Net.Http.HttpResponseMessageExtensions.As[TContent](HttpResponseMessage response)
+   at HealthChecks.UI.Core.HostedService.HealthCheckReportCollector.GetHealthReport(HealthCheckConfiguration configuration)
+2019-08-21T11:34:04.0012844+03:00  [WRN] The LINQ expression '"where [lf].HealthCheckName.Equals(__livenessName_0, InvariantCultureIgnoreCase)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T11:34:04.0128314+03:00  [WRN] The LINQ expression '"Take(__p_1)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T11:34:04.0162997+03:00  [WRN] The LINQ expression '"SingleOrDefault()"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T11:35:52.1857804+03:00 0HLP6293SU8RD:00000008 [ERR] params (3518c7d8)
+System.Exception: Http Request Provider Exception -  ---> System.Net.Http.HttpRequestException: No connection could be made because the target machine actively refused it ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 108
+   --- End of inner exception stack trace ---
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 124
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, PassParamsBy paramsBy, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 66
+   at TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Menus.MenusServices.GetAllAsync(String lang) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Services\APIsConsumptionServices\ContentService\Menus\MenusServices.cs:line 59
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.MenusController.Index() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\MenusController.cs:line 114
+2019-08-21T11:36:56.4223248+03:00 0HLP6293SU8RD:00000009 [ERR] params (3518c7d8)
+System.Exception: Http Request Provider Exception -  ---> System.Net.Http.HttpRequestException: No connection could be made because the target machine actively refused it ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 108
+   --- End of inner exception stack trace ---
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 124
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, PassParamsBy paramsBy, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 66
+   at TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Menus.MenusServices.GetAllAsync(String lang) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Services\APIsConsumptionServices\ContentService\Menus\MenusServices.cs:line 59
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.MenusController.Index() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\MenusController.cs:line 114
+2019-08-21T11:38:38.0455847+03:00 0HLP6293SU8RG:00000003 [ERR] params (3518c7d8)
+System.Exception: Http Request Provider Exception -  ---> System.Net.Http.HttpRequestException: No connection could be made because the target machine actively refused it ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 108
+   --- End of inner exception stack trace ---
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 124
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, PassParamsBy paramsBy, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 66
+   at TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Menus.MenusServices.GetAllAsync(String lang) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Services\APIsConsumptionServices\ContentService\Menus\MenusServices.cs:line 59
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.MenusController.Index() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\MenusController.cs:line 114
+2019-08-21T11:40:24.4661186+03:00 0HLP6293SU8RH:00000004 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.InvalidOperationException: Unable to resolve service for type 'TamTech.CasAuctions.Dashboard.SDK.Services.Upload.IUploadManagerService' while attempting to activate 'TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.PagesController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at TamTech.CasAuctions.Dashboard.Web.StartUP.XSSProtectionConfigurations.<>c.<<UseXSSProtection>b__0_0>d.MoveNext() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\StartUP\XSSProtectionConfigurations.cs:line 32
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-08-21T11:40:40.1542506+03:00 0HLP6293SU8RH:00000005 [ERR] params (3518c7d8)
+System.Exception: Http Request Provider Exception -  ---> System.Net.Http.HttpRequestException: No connection could be made because the target machine actively refused it ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 108
+   --- End of inner exception stack trace ---
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 124
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, PassParamsBy paramsBy, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 66
+   at TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Menus.MenusServices.GetAllAsync(String lang) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Services\APIsConsumptionServices\ContentService\Menus\MenusServices.cs:line 59
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.MenusController.Index() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\MenusController.cs:line 114
+2019-08-21T11:40:58.6782852+03:00 0HLP6293SU8RH:00000006 [ERR] params (3518c7d8)
+System.Net.Http.HttpRequestException: No connection could be made because the target machine actively refused it ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult](String uri, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 45
+   at TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.IdentityService.RolesService.GetAllAsync() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Services\APIsConsumptionServices\IdentityService\RolesService.cs:line 31
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.UsersController.GetRolesList() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\UsersController.cs:line 54
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.UsersController.Index(Filter model) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\UsersController.cs:line 88
+2019-08-21T11:40:59.8886209+03:00 0HLP6293SU8RH:00000006 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at TamTech.CasAuctions.Dashboard.SDK.Core.TagHelpers.Pagination.AppendTotal(StringBuilder Str) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\TagHelpers\Pagination.cs:line 120
+   at TamTech.CasAuctions.Dashboard.SDK.Core.TagHelpers.Pagination.PrintPagination() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\TagHelpers\Pagination.cs:line 163
+   at TamTech.CasAuctions.Dashboard.SDK.Core.TagHelpers.Pagination.ProcessAsync(TagHelperContext context, TagHelperOutput output) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\TagHelpers\Pagination.cs:line 239
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.RunAsync(TagHelperExecutionContext executionContext)
+   at AspNetCore.Areas_Admin_Views_Users_Index.ExecuteAsync() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Views\Users\Index.cshtml:line 126
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at TamTech.CasAuctions.Dashboard.Web.StartUP.XSSProtectionConfigurations.<>c.<<UseXSSProtection>b__0_0>d.MoveNext() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\StartUP\XSSProtectionConfigurations.cs:line 32
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-08-21T11:41:26.2896547+03:00 0HLP6293SU8RH:00000007 [ERR] params (3518c7d8)
+System.Net.Http.HttpRequestException: No connection could be made because the target machine actively refused it ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult](String uri, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 45
+   at TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.IdentityService.RolesService.GetAllAsync() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Services\APIsConsumptionServices\IdentityService\RolesService.cs:line 31
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.UsersController.GetRolesList() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\UsersController.cs:line 54
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.UsersController.Index(Filter model) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\UsersController.cs:line 88
+2019-08-21T11:41:26.6479702+03:00 0HLP6293SU8RH:00000007 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at TamTech.CasAuctions.Dashboard.SDK.Core.TagHelpers.Pagination.AppendTotal(StringBuilder Str) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\TagHelpers\Pagination.cs:line 120
+   at TamTech.CasAuctions.Dashboard.SDK.Core.TagHelpers.Pagination.PrintPagination() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\TagHelpers\Pagination.cs:line 163
+   at TamTech.CasAuctions.Dashboard.SDK.Core.TagHelpers.Pagination.ProcessAsync(TagHelperContext context, TagHelperOutput output) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\TagHelpers\Pagination.cs:line 239
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.RunAsync(TagHelperExecutionContext executionContext)
+   at AspNetCore.Areas_Admin_Views_Users_Index.ExecuteAsync() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Views\Users\Index.cshtml:line 126
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.ResponseCompression.ResponseCompressionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at TamTech.CasAuctions.Dashboard.Web.StartUP.XSSProtectionConfigurations.<>c.<<UseXSSProtection>b__0_0>d.MoveNext() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\StartUP\XSSProtectionConfigurations.cs:line 32
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2019-08-21T12:17:53.2143724+03:00  [ERR] GetHealthReport threw an exception when trying to get report from https://casauctions-dev-identity.azurewebsites.net/api/health configured with name POS - Web Application. (c3b1adab)
+System.InvalidOperationException: Response is null or message can't be deserialized as HealthChecks.UI.Client.UIHealthReport.
+   at System.Net.Http.HttpResponseMessageExtensions.As[TContent](HttpResponseMessage response)
+   at HealthChecks.UI.Core.HostedService.HealthCheckReportCollector.GetHealthReport(HealthCheckConfiguration configuration)
+2019-08-21T12:17:53.3114721+03:00  [WRN] The LINQ expression '"where [lf].HealthCheckName.Equals(__livenessName_0, InvariantCultureIgnoreCase)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T12:17:53.3215777+03:00  [WRN] The LINQ expression '"Take(__p_1)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T12:17:53.3246973+03:00  [WRN] The LINQ expression '"SingleOrDefault()"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:38:32.3673247+03:00  [ERR] GetHealthReport threw an exception when trying to get report from https://casauctions-dev-identity.azurewebsites.net/api/health configured with name POS - Web Application. (c3b1adab)
+System.InvalidOperationException: Response is null or message can't be deserialized as HealthChecks.UI.Client.UIHealthReport.
+   at System.Net.Http.HttpResponseMessageExtensions.As[TContent](HttpResponseMessage response)
+   at HealthChecks.UI.Core.HostedService.HealthCheckReportCollector.GetHealthReport(HealthCheckConfiguration configuration)
+2019-08-21T13:38:32.4753702+03:00  [WRN] The LINQ expression '"where [lf].HealthCheckName.Equals(__livenessName_0, InvariantCultureIgnoreCase)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:38:32.4835556+03:00  [WRN] The LINQ expression '"Take(__p_1)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:38:32.4841883+03:00  [WRN] The LINQ expression '"SingleOrDefault()"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:38:59.8123911+03:00 0HLP64ER0T31F:00000004 [ERR] params (3518c7d8)
+System.Exception: Http Request Provider Exception -  ---> System.Net.Http.HttpRequestException: No connection could be made because the target machine actively refused it ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 108
+   --- End of inner exception stack trace ---
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 124
+   at TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.RequestProvider.GetAsync[TResult,TRequest](String uri, TRequest data, PassParamsBy paramsBy, Boolean hasJsonContent) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Core\Providers\Requests\RequestProvider.cs:line 66
+   at TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Menus.MenusServices.GetAllAsync(String lang) in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Core\Services\APIsConsumptionServices\ContentService\Menus\MenusServices.cs:line 59
+   at TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers.MenusController.Index() in D:\GIT\CASAuctions\Dashboard\src\TamTech.CasAuctions.Dashboard.Web\Areas\Admin\Controllers\MenusController.cs:line 114
+2019-08-21T13:56:44.9182354+03:00  [ERR] GetHealthReport threw an exception when trying to get report from https://casauctions-dev-Dashboard.azurewebsites.net/api/health configured with name POS - Web Application. (a2cc2214)
+System.Net.Http.HttpRequestException: No such host is known ---> System.Net.Sockets.SocketException: No such host is known
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at HealthChecks.UI.Core.HostedService.HealthCheckReportCollector.GetHealthReport(HealthCheckConfiguration configuration)
+2019-08-21T13:56:45.0571233+03:00  [WRN] The LINQ expression '"where [lf].HealthCheckName.Equals(__livenessName_0, InvariantCultureIgnoreCase)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:56:45.0668357+03:00  [WRN] The LINQ expression '"Take(__p_1)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:56:45.0696815+03:00  [WRN] The LINQ expression '"SingleOrDefault()"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:59:40.9104495+03:00  [ERR] GetHealthReport threw an exception when trying to get report from https://casauctions-dev-Dashboard.azurewebsites.net/api/health configured with name POS - Web Application. (a2cc2214)
+System.Net.Http.HttpRequestException: No such host is known ---> System.Net.Sockets.SocketException: No such host is known
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.ConnectHelper.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.CreateConnectionAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.WaitForCreatedConnectionAsync(ValueTask`1 creationTask)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at HealthChecks.UI.Core.HostedService.HealthCheckReportCollector.GetHealthReport(HealthCheckConfiguration configuration)
+2019-08-21T13:59:41.0363358+03:00  [WRN] The LINQ expression '"where [lf].HealthCheckName.Equals(__livenessName_0, InvariantCultureIgnoreCase)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:59:41.0454674+03:00  [WRN] The LINQ expression '"Take(__p_1)"' could not be translated and will be evaluated locally. (011792c6)
+2019-08-21T13:59:41.0485381+03:00  [WRN] The LINQ expression '"SingleOrDefault()"' could not be translated and will be evaluated locally. (011792c6)

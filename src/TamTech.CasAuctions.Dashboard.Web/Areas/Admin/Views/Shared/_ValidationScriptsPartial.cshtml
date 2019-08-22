@@ -1,0 +1,16 @@
+@{
+    var Lang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<script src="~/Admin/js/validation.min.js" asp-append-version="true"></script>
+<script>
+    $.extend($.validator.messages, {
+        slug:  "@Localizer["slug_msg"]" ,
+        regex: "@Localizer["regex_msg"]",
+        greaterThan: $.validator.format("@Localizer["greaterThan_msg"]" + "{1}"),
+        lessThan: $.validator.format("@Localizer["lessThan_msg"]" + "{1}"),
+        json: "@Localizer["json_msg"]",
+        schemaType: "@Localizer["schemaType_msg"]",
+        filesize : $.validator.format("@Localizer["filesize_msg"]" + "{0} kb"),
+    });
+</script>

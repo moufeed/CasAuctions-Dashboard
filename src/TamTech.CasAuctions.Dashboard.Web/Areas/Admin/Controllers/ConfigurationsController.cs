@@ -1,0 +1,115 @@
+﻿using System;     
+using System.Threading.Tasks;    
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
+using TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers;
+using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Settings;
+using TamTech.CasAuctions.Dashboard.SDK.Core.Telemetry;
+using TamTech.CasAuctions.Dashboard.SDK.Core.Constants;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+
+namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
+{
+   
+   [Authorize(Policy = PolicyConstants.ConfigurationsAdmin)]
+
+    public class ConfigurationsController : AdminBaseController
+    {
+
+        private readonly ISettingService _settingsServices;
+        private readonly IStringLocalizer<BaseController> _localizer;
+        public ConfigurationsController(ITelemetryService telemetryClientService,
+              ILogger<ConfigurationsController> logger,
+            IStringLocalizer<BaseController> localizer,
+            ISettingService settingsServices
+            ) : base(telemetryClientService, logger, localizer)
+        {
+            _settingsServices = settingsServices;
+            _localizer = localizer;
+        }
+
+
+
+        [HttpGet("{Culture}/[Area]/[Controller]")]
+        public virtual async Task<IActionResult> Index()
+        {
+            try
+            {
+                var settings = await _settingsServices.GetByGroupIdAsync((int)SettingGroupEnum.General);
+                return View(VerifySucceed(settings) ? settings.Data  : null);
+            }
+            catch (Exception ex)
+            {
+                TrackException(ex);
+            }
+            return View();
+        }
+
+        [HttpPost("{Culture}/[Area]/[Controller]/[Action]/{id}")]
+        public virtual async Task<JsonResult> Post(string id)
+        {
+            ViewBag.Post = $"Posted successfully{id}";
+            return Json(new { result = $"Posted successfully{id}" });
+        }
+
+
+        //[HttpGet("{Culture}/[Area]/[Controller]/[Action]")]
+        //public virtual async Task<IActionResult> Biography()
+        //{
+        //    SiteInformationVm model = new SiteInformationVm();
+        //    model.SocailMedia = BiographyMapper.DefulatSocailMedia();
+        //    try
+        //    {
+        //        var settings = await _settingsServices.GetByGroupIdAsync((int)BiogrphyGroupEnum.Biography, GetCurrentDataLang());
+
+        //        return View(settings != null ? settings.MapTOSiteInformationVm() : model);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TrackException(ex);
+        //    }
+        //    return View(model);
+        //}
+
+        //[HttpPost("{Culture}/[Area]/[Controller]/[Action]")]
+        //public virtual async Task<IActionResult> Biography(SiteInformationVm model, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            UpdateBiographyModel data = new UpdateBiographyModel
+        //            {
+        //                GroupId = (int)BiogrphyGroupEnum.Biography,
+        //                Lang = GetCurrentDataLang(),
+        //                Biographies = BiographyMapper.MapModelVmToListBiographyModel(model, (int)BiogrphyGroupEnum.Biography)
+        //            };
+
+        //            var request = await _settingsServices.EditAsync(data);
+
+
+        //            if (request.Success)
+        //            {
+        //                TempData["UpdateDone"] = true;
+        //                await _biographiesManager.ReloadInfoAsync();
+        //                return View(model);
+        //            }
+        //            else
+        //            {
+        //                if (request.Messages != null)
+        //                {
+        //                    AddModelStateError(request.Messages);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TrackException(ex);
+        //    }
+        //    return View(model);
+        //}
+
+    }
+}

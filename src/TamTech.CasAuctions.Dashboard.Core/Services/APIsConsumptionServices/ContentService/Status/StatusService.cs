@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests;
+using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Status.Settings;
+using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Status;
+using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Status.Models;
+
+namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Status
+{
+    public class StatusService : BaseAPIService, IStatusService , IContactUsStatusService, IPosStatusService, IVendorStatusService
+    {
+        #region Props               
+        private readonly IStatusApiSettings _apiSettings;
+
+        public StatusService(IRequestProvider requestProvider , IStatusApiSettings apiSettings) : base(requestProvider)
+        {     
+            _apiSettings = apiSettings;
+        }
+
+        public async Task<IRequestProviderResult<List<StatusDto>>> GetAllAsync(string lang)
+        {
+            return await ReqProvider.GetAsync<List<StatusDto>, List<object>>(_apiSettings.GetAllEndpoint, new List<object> { lang }, PassParamsBy.Route);
+        }
+
+        public async Task<IRequestProviderResult<List<SelectListItemModel>>> GetAllSelectListAsync(string lang)
+        {
+            return await ReqProvider.GetAsync<List<SelectListItemModel>, List<object>>(_apiSettings.GetAllSelectListEndpoint, new List<object> { lang }, PassParamsBy.Route);
+        }
+        #endregion
+
+    }
+}

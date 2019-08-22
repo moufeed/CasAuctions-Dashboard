@@ -1,0 +1,21 @@
+{
+  "name": "Adminpanel",
+  "description": "Admin web panel",
+  "main": "index.js",
+  "authors": [
+    "Tamtech <info@tamtech.solutions> (tamtech)"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "select2": "^4.0.5",
+    "sweetalert2": "^7.21.0"
+  }
+}
