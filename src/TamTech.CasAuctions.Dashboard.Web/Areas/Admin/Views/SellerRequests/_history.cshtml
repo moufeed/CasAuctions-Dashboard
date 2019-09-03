@@ -1,0 +1,30 @@
+﻿@model List<SellerRequestHistory>
+
+<div class="table-responsive">
+    <table class="table table-middle table-striped posts-table" id="historytable">
+        <thead>
+            <tr>
+                <th width="200">@Localizer["l_date"]</th>
+                <th>@Localizer["previous_status"]</th>
+                <th>@Localizer["action_name"]</th>
+                <th>@Localizer["current_status_name"]</th>
+                <th>@Localizer["l_notes"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SellerRequestHistory item in Model)
+            {
+                <tr>
+                    <td dir="ltr" class="text-center">@item.ProcessDate.ToString("yyyy/MM/dd -  hh:mm tt") </td>
+                    <td><span> @item.PreviousStatusName </span> </td>
+                    <td><span>@item.ActionName</span> </td>
+                    <td><span>@item.CurrentStatusName</span></td>
+                    <td><span>@item.Notes</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+  

@@ -1,0 +1,136 @@
+﻿@model SellerRequest
+
+@{
+    ViewData["Title"] = "View";
+}
+
+
+
+<if include-if="Model != null">
+    <div class="clearfix">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    @Localizer["request_details"]
+                    <small></small>
+                </h3>
+            </div>
+            <div class="title_right">
+                <a asp-action="Index"
+                   class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @{
+                ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { { "id", Model.Id } };
+            }
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+            <div class="x_panel">
+                <div class="x_content p-y-5 ">
+                    <div class="clearfix request-detials">
+                        <p><strong>@Localizer["l_full_name"] </strong> <span>@Model.FullName</span></p>
+                        <p><strong>@Localizer["t_username"] </strong> <span>@Model.UserName</span></p>
+                        <p><strong>@Localizer["l_status"]</strong> <span class="badge badge-@Model.StatusOptions" id="request_status">@Model.StatusName</span></p>
+                        <p><strong>@Localizer["created_date"]</strong> <span>@Model.CreatedDate.ToString("yyyy/MM/dd")</span></p>
+                        <p><strong>@Localizer["l_notes"]</strong> <span>@Model.Notes</span></p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pos-actions p-t5">
+                    <h4 class="m-b3">@Localizer["t_actions"]</h4>
+                    <ul class="nav nav-tabs sub-tabs" role="tablist">
+                        <if include-if="ViewBag.Actions != null">
+                            <li role="presentation" class="active"><a href="#form" aria-controls="form" role="tab" data-toggle="tab">@Localizer["new_action"]</a></li>
+                        </if>
+                        <if include-if="Model.Histories != null">
+                            <li role="presentation" class="@(ViewBag.Actions == null ?  "active" :"")"><a href="#history" aria-controls="profile" role="tab" data-toggle="tab">@Localizer["History"]</a></li>
+                        </if>
+
+                    </ul>
+
+
+                    <div class="tab-content">
+
+                        <if include-if="ViewBag.Actions != null ">
+                            <div role="tabpanel" class="tab-pane fade in active" id="form">
+                                @{
+                                    List<ProcessActionModel> Actions = (List<ProcessActionModel>)ViewBag.Actions;
+                                }
+                                <div class="pos-actions ">
+                                    <form asp-action="setAction" method="post" class="form m-y-5" id="takenAction">
+                                        <input type="hidden" name="ReqId" value="@Model.Id" />
+                                        <div class="form-group clearfix">
+                                            <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["l_status"] </label>
+                                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+                                                @foreach (ProcessActionModel act in Actions)
+                                                {
+                                                    <span class="m-x-3">
+                                                        <label for="Action-@act.ActionId">
+                                                            <input type="radio" name="ActionId" id="Action-@act.ActionId" value="@act.ActionId" class="check" data-note='@(act.NoteMandatory ? "true" : "false" )' required @(Model.StatusName)>
+                                                            <span class="check-txt">@act.Name</span>
+                                                        </label>
+                                                    </span>
+                                                }
+                                                <div class="actionId-errors"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group clearfix">
+                                            <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["l_notes"] </label>
+                                            <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+                                                <textarea rows="5" class="form-control action_note" name="Notes"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-md-offset-2 col-sm-offset-3 col-sm-6 col-xs-12 ">
+                                                <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@Localizer["send"]">
+
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </if>
+
+
+                        <if include-if="Model.Histories != null">
+                            @{
+                                List<SellerRequestHistory> history = Model.Histories;
+                            }
+                            <div role="tabpanel" class="tab-pane fade @(ViewBag.Actions == null  ? "in active" :"")" id="history">
+                                <partial name="~/Areas/Admin/Views/SellerRequests/_history.cshtml" model="@history" />
+                            </div>
+                        </if>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</if>
+
+
+
+<if exclude-if="Model != null">
+    <partial name="~/Areas/Admin/Views/Shared/_empty.cshtml" />
+</if>
+
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/Admin/js/sellerrequests.min.js"></script>
+} 

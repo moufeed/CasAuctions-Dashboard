@@ -1,0 +1,25 @@
+.request-detials{
+    p{
+        strong{
+            display: inline-block;
+            min-width: 150px;
+        }
+    }
+}
+.check {
+    &.invalid_field{
+            + .check-txt{
+                &:before{
+                    border-color: red;
+                }
+            }
+    }
+}
+ 
+
+.badge {
+    &.badge-Pending{ background-color:$orange;  }
+    &.badge-Approved{background-color:$green  ;} 
+    &.badge-Rejected{background-color: $red ;}
+    &.badge-Revoked{background-color: $dark-red;} 
+}   

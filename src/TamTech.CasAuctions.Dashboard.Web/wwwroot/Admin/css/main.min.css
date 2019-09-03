@@ -1,0 +1,6 @@
+/*!
+* tamtech_cms - v 0.0.2 
+*  
+* Author :
+*/
+@font-face{font-family:"rw-regular";src:url("../fonts/Raleway/Raleway-Regular.ttf") format("truetype")}body{padding:0;margin:0;min-height:100vh;font-family:"rw-regular", "tl-regular", "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;background:#fff url("/admin/img/ptn-2.png");background:url("/admin/img/ptn-2.png"),linear-gradient(to bottom, #fff 0%, #f0f0f0 100%);background-repeat:no-repeat, repeat;background-position-x:right, center;color:#333;font-size:16px}a{font-family:"rw-regular", "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif}.main-page{width:100vw;min-height:100vh}.main-page.flex-center{display:flex;justify-content:center;align-items:center}.wrapper{text-align:center;background:#fff;padding:35px 25px;box-shadow:0 0.15rem 1.75rem 0 rgba(82,82,90,0.1)}.wrapper .logo-img{display:block;margin:auto;margin-bottom:50px}.wrapper .title{margin-top:5px;margin-bottom:50px;color:#0045cc;text-transform:capitalize}.wrapper .login-link{display:inline-block;min-width:200px;text-align:center;padding:15px 45px;background:#ef4f23;background:linear-gradient(to right, #ef4f23 1%, #f79b4f 100%);color:#ffffff;font-weight:bolder;text-decoration:none;text-transform:uppercase}

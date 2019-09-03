@@ -8,9 +8,9 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Cultures
 
         public static readonly CultureModel DefaultCulture = new CultureModel
         {
-            Name = "العربية",
-            Culture = "ar",
-            Lang = "ar"
+            Name = "english",
+            Culture = "en",
+            Lang = "en"
         };
 
         public static readonly List<CultureModel> CulturesList = new List<CultureModel>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net; 
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models
@@ -21,6 +22,10 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models
 
         void AddError(string key, string errorMessage); 
     }
+
+
+
+ 
 
 
 

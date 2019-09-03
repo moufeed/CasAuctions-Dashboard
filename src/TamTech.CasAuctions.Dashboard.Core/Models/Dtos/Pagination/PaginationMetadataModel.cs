@@ -7,22 +7,22 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Pagination
 {
     public class PaginationMetadataModel
     {
-        [JsonProperty("totalcount")]
+        [JsonProperty("totalCount")]
         public int TotalCount { get; set; }
 
-        [JsonProperty("pagesize")]
+        [JsonProperty("pageSize")]
         public int PageSize { get; set; }
 
-        [JsonProperty("pagenumber")]
+        [JsonProperty("pageNumber")]
         public string PageNumber { get; set; }
 
-        [JsonProperty("totalpages")]
+        [JsonProperty("totalPages")]
         public int TotalPages { get; set; }
 
-        [JsonProperty("previouspage")]
+        [JsonProperty("previousPage")]
         public bool PreviousPage { get; set; } = false;
 
-        [JsonProperty("nextpage")]
+        [JsonProperty("nextPage")]
         public bool NextPage { get; set; } = false;
 
          

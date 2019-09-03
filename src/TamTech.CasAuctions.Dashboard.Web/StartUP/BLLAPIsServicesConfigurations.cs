@@ -9,6 +9,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Contact
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Directory;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Directory.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.IdentityService;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.IdentityService.SellerRequests;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Menus;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Pages;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Pos;
@@ -46,6 +47,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Types;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Values;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Vendors;
 using TamTech.CasAuctions.Dashboard.SDK.Services.Identity;
+using TamTech.CasAuctions.Dashboard.SDK.Services.IdentityService.SellerRequests;
 using TamTech.CasAuctions.Dashboard.SDK.Services.POSs;
 using TamTech.CasAuctions.Dashboard.SDK.Services.POSs.Directory;
 
@@ -59,6 +61,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUsersManagerService, UsersManagerService>();
             services.AddTransient<IRolesService, RolesService>();
+            services.AddTransient<ISellerRequests, SellerRequests>();
             #endregion
 
             services.AddTransient<IPosTypeService>((serviceExtension) =>

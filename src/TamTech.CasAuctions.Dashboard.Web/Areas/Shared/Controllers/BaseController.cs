@@ -317,7 +317,11 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers
             }
             if (!string.IsNullOrEmpty(model.FullName))
             {
-                searchParams.Add("FullName", model.FullName);
+                searchParams.Add("full_name", model.FullName);
+            }
+            if (!string.IsNullOrEmpty(model.UserName))
+            {
+                searchParams.Add("username", model.UserName);
             }
             if (!string.IsNullOrEmpty(model.Section))
             {
@@ -358,7 +362,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers
             }
             if (model.StatusId != null)
             {
-                searchParams.Add("StatusId", model.StatusId);
+                searchParams.Add("status_id", model.StatusId);
             }
             if (model.Visibility != null)
             {

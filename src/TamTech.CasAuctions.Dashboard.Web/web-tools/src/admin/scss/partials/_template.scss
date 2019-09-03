@@ -409,20 +409,20 @@ a {
   display: block;
   height: 57px;
   margin: 0;
-  padding-#{$left}: 10px;
+  //padding-#{$left}: 10px;
   background: $dark-leftCol ;
    img{
      height: 90%;
    }
 }
-.mCS_img_loaded{
+/* .mCS_img_loaded{
   margin-#{$left}: 2px;
-}
+} */ 
 
-.site_title:hover,
+.site_title:hover, 
 .site_title:focus {
   text-decoration: none
-}
+} 
 
 
 .nav.top_menu>li>a {
