@@ -62,14 +62,20 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         }
         #endregion
 
-        [AllowAnonymous]
-        [HttpGet("{Culture}/[Area]/main")]
-        public async Task<IActionResult> main()
+        [AllowAnonymous]       
+        public async Task<IActionResult> Index()
         {
-
+          if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Dashboard");
+            }
             return View();
         }
-        public virtual async Task<IActionResult> Index()
+        public IActionResult Logout()
+        {
+            return SignOut("Cookies", "oidc");
+        }
+        public virtual async Task<IActionResult> Dashboard ()
         {           
             Dictionary<string, object> searchParams = new Dictionary<string, object>();
             searchParams.Add("StatusId", 1);
