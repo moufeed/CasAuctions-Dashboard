@@ -51,10 +51,10 @@ $('#takenAction').validate({
                     $('#takenAction').trigger("reset");
 
                     $notification.success("",window.localization.processed_successfully, 2000, "fa fa-check");
-                     $('#request_status').text(_data.statusName);
+                     $('#request_status').text(_data.status_name);
                      $('#request_status').removeClass().addClass(`badge badge-${_data.status_options}`);
                       if(_data.histories){
-                        $( "#history" ).html(  CreateTables(_data.histories)  )
+                        $( "#historytable tbody" ).html(  CreateTables(_data.histories)  )
                      }
                     setTimeout(()=>{
                         $('a[href="#history"]').click();
