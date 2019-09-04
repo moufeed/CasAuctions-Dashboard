@@ -1,5 +1,15 @@
 ﻿@{
-    Layout = "_Layout";
-    ViewData["Title"] = Localizer["home_page"];
+    ViewBag.Title = "CasAuction - Welcom to Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
- 
+
+  
+    <div class="main-page flex-center">
+        <div class="wrapper">
+            <img src="~/Admin/img/cas-logo.png" alt="" width="150" class="logo-img" />
+            <span>Welcome To</span> 
+            <h3 class="title">casauction dashboard</h3>
+            <p class="paragraph">let's get started</p>
+            <a asp-action="dashboard" asp-controller="home" class="login-link">login</a>
+        </div>
+    </div>
