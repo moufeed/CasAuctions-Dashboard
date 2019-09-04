@@ -55,7 +55,7 @@
 
   <ItemGroup>
     <Reference Include="TamTech.CasAuctions.UploadService">
-      <HintPath>..\..\..\AuctionsService\src\TamTech.CasAuctions.UploudService\bin\Debug\netcoreapp2.2\TamTech.CasAuctions.UploadService.dll</HintPath>
+      <HintPath>..\..\dlls\TamTech.CasAuctions.UploadService.dll</HintPath>
     </Reference>
   </ItemGroup>
 
