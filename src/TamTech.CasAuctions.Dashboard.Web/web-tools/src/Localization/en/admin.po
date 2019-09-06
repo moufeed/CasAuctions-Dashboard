@@ -1706,5 +1706,11 @@ msgstr "new action"
 msgid "processed_successfully"
 msgstr "Your request has been processed successfully"
 
+msgid "	current_status_name"
+msgstr "Current status"
+
+msgid "action_name"
+msgstr "action name"
+
 msgid ""
 msgstr ""
