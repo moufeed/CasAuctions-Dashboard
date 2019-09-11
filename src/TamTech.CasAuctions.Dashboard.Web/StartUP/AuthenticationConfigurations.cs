@@ -1,8 +1,9 @@
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;   
-
+using Microsoft.Extensions.DependencyInjection;
+using TamTech.CasAuctions.Dashboard.SDK.Core.Constants;
+using TamTech.CasAuctions.Dashboard.SDK.Services.Identity.Models;
 
 namespace TamTech.CasAuctions.Dashboard.Web.StartUP
 {
@@ -11,16 +12,12 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
         public static void AddAuthenticationConfigurations(this IServiceCollection services, IConfiguration Configuration)
         {
 
+          
 
-            //IdentityServiceSettings identityServiceSettings = Configuration
-            //                                                          .GetSection(AppSettings.MicroServicesSettings)
-            //                                                          .GetSection(AppSettings.MicroServices_IdentityService)
-            //                                                          .Get<IdentityServiceSettings>();
-           
+            string appUrl = Configuration.GetSection(AppSettings.WebApplicationSettings)
+                                                           .GetSection(AppSettings.App_Url).Get<string>();
 
-
-
-              services.AddAuthentication(options =>
+            services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
                 options.DefaultChallengeScheme = "oidc";
@@ -32,7 +29,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
             .AddOpenIdConnect("oidc", options =>
             {
                 options.SignInScheme = "Cookies";
-                options.Authority = "https://casauctions-dev-identity.azurewebsites.net";
+                options.Authority = appUrl;
                 options.RequireHttpsMetadata = false;
                 options.ClientId = "WEB";
                 options.ClientSecret = "h8yI4DydzI5ZsKCMGTs9hfTdI1vRS3qfTo9Go92q3aM=";
