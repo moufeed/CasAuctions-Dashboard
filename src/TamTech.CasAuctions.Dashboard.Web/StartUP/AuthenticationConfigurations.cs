@@ -14,8 +14,8 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
 
           
 
-            string appUrl = Configuration.GetSection(AppSettings.WebApplicationSettings)
-                                                           .GetSection(AppSettings.App_Url).Get<string>();
+            string authority = Configuration.GetSection(AppSettings.BackendAPIsSettings)
+                                                           .GetSection(AppSettings.IdentityApiUrl).Get<string>();
 
             services.AddAuthentication(options =>
             {
@@ -29,7 +29,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
             .AddOpenIdConnect("oidc", options =>
             {
                 options.SignInScheme = "Cookies";
-                options.Authority = appUrl;
+                options.Authority = authority;
                 options.RequireHttpsMetadata = false;
                 options.ClientId = "WEB";
                 options.ClientSecret = "h8yI4DydzI5ZsKCMGTs9hfTdI1vRS3qfTo9Go92q3aM=";

@@ -20,18 +20,19 @@
     <PackageReference Include="FluentValidation" Version="8.4.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.4.0" />
     <PackageReference Include="IdentityServer4" Version="2.5.2" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.6" /> 
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0-preview9-19453-02" />
-    <PackageReference Include="OrchardCore.Localization.Core" Version="1.0.0-beta3-72340" /> 
-    <PackageReference Include="Selenium.WebDriver" Version="4.0.0-alpha02" /> 
-    <PackageReference Include="SimpleMvcSitemap" Version="3.1.0" /> 
-    <PackageReference Include="System.Drawing.Common" Version="4.6.0-preview9.19421.4" /> 
-    <PackageReference Include="System.ServiceModel.Duplex" Version="4.6.0-preview9.final" /> 
-    <PackageReference Include="System.ServiceModel.Http" Version="4.6.0-preview9.final" /> 
-    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.6.0-preview9.final" /> 
-    <PackageReference Include="System.ServiceModel.Security" Version="4.6.0-preview9.final" />
-    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0-dev-00032" />
-    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="2.2.34" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="OrchardCore.Localization.Core" Version="1.0.0-beta3-68792" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="SimpleMvcSitemap" Version="3.1.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.*" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.4.*" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.*" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.*" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="2.2.33" />
+
   </ItemGroup>
 
   <ItemGroup>
@@ -60,14 +61,6 @@
     <Reference Include="TamTech.CasAuctions.UploadService">
       <HintPath>..\..\dlls\TamTech.CasAuctions.UploadService.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -225,13 +218,6 @@
     <Content Update="Areas\Admin\Views\_ViewStart.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1Development_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
