@@ -56,13 +56,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TamTech.CasAuctions.Dashboard.Core\TamTech.CasAuctions.Dashboard.SDK.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="TamTech.CasAuctions.UploadService">
-      <HintPath>..\..\dlls\TamTech.CasAuctions.UploadService.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
+ 
   <ItemGroup>
     <Content Update="Areas\Admin\Views\Configurations\Biography.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
