@@ -17,13 +17,13 @@
             </li>
 
 
-        
 
 
 
-          
-             
-            
+
+
+
+
             <if include-if="@AdminModules.UsersModule">
                 <li class="@( activeController == " Users" && activeAction=="Index" ? "current-page" :"" )">
                     <a href="@Url.AdminUrl("index","users")"><i class="fa fa-users"></i>@Localizer["Users"]</a>
@@ -31,15 +31,19 @@
 
 
             </if>
-     
-             
+
+
             <if include-if="@AdminModules.SellerRequests">
                 <li>
                     <a asp-area="Admin" asp-controller="SellerRequests" asp-action="Index"><i class="fa fa-id-card-o"></i>@Localizer["seller_requests"]</a>
                 </li>
             </if>
-        
-        
+
+            <if include-if="@AdminModules.Auctions">
+                <li>
+                    <a asp-area="Admin" asp-controller="Auctions" asp-action="Index"><i class="fa fa-gavel"></i>@Localizer["auctions"]</a>
+                </li>
+            </if>
 
             <if include-if="@AdminModules.ContactUs">
 
@@ -57,7 +61,7 @@
                 </li>
 
             </if>
-       
+
 
 
             <if include-if="@AdminModules.Settings">
@@ -66,13 +70,13 @@
                         <i class="fa fa-sliders"></i> @Localizer["settings"] <span class="fa fa-chevron-down"></span>
                     </a>
                     <ul class="nav child_menu">
-                       @*
-                         <li class="@( activeController == " Settings" && activeAction=="Index" ? "current-page" :"" )">
-                            <a href="@Url.AdminUrl("Index","Settings")">
-                                <i class="fa fa-newspaper-o"></i>@Localizer["homepage_content"]
-                            </a>
-                        </li>    
-                       *@
+                        @*
+                     <li class="@( activeController == " Settings" && activeAction=="Index" ? "current-page" :"" )">
+                        <a href="@Url.AdminUrl("Index","Settings")">
+                            <i class="fa fa-newspaper-o"></i>@Localizer["homepage_content"]
+                        </a>
+                    </li>
+                        *@
                         <li class="@( activeController == " Settings" && activeAction=="information" ? "current-page" :"" )">
                             <a href="@Url.AdminUrl("information","Settings")">
                                 <i class="fa fa-cogs"></i>@Localizer["website_information"]
@@ -84,7 +88,7 @@
 
                             </a>
                         </li>
-                       
+
                     </ul>
                 </li>
             </if>

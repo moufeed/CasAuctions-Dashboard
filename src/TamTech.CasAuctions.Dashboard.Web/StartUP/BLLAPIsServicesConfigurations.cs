@@ -6,6 +6,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Biograp
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Biography.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Contact;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Contact.Settings;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Directory;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Directory.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.IdentityService;
@@ -32,6 +33,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Values.
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Vendor;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Vendor.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Attributes;
+using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Biographies;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContactUs;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContentCommonUtilities;
@@ -219,9 +221,9 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
             services.AddTransient<ISliderServices, SliderService>();
 
 
-           
+            services.AddTransient<IAuctionsService, AcutionsService>();
 
-          
+
         }
     }
 }

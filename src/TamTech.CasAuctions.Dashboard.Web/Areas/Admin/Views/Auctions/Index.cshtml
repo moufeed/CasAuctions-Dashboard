@@ -1,0 +1,81 @@
+﻿
+@model AuctionsList
+
+@{
+    ViewData["Title"] = Localizer["auctions"];
+    ViewData["UnitTestPageClass"] = "ut-auctions";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+}
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["auctions"] <small></small></h3>
+        </div>
+        <div class="title_right">
+
+        </div>
+    </div>
+</div>
+
+<if include-if="Model != null">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+            <div class="x_panel p-x-0">
+                <div class="x_content">
+                    <partial name="_Filters.cshtml" model="ViewBag.FilterModel" />
+                    <div class="table-responsive datatable">
+                        <table class="table table-middle table-striped" id="pagesTable">
+                            <thead>
+                                <tr>
+                                    name
+                                    description
+                                    Starting date
+                                    End date
+                                    Username
+                                    Number of participants
+                                    Number of outbids
+                                    Auction status
+                                    <th>@Localizer["t_name"]</th>
+                                    <th>@Localizer["t_username"]</th>
+                                    <th width="200">@Localizer["t_create_date"]</th>
+
+                                    <th>@Localizer["t_status"]</th>
+                                    <th width="75" class="text-center">@Localizer["t_actions"]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <if include-if="Model.Data != null && Model.Data.Count > 0">
+                                    @foreach (var item in Model.Data)
+                                    {
+
+                                        
+                                    }
+                                </if>
+                                <if exclude-if="Model.Data != null && Model.Data.Count > 0">
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <p class="empty_row">
+                                                <i class='fa fa fa-exclamation-circle'></i>
+                                                @Localizer["no_data_table"]
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </if>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr class="m-y-2" />
+                    <pagination controller-name="SellerRequests" filter-model="ViewBag.FilterModel" pagniation-model="Model.Pagination" total="true"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</if>
+
+
+<if exclude-if="Model != null">
+    <partial name="~/Areas/Admin/Views/Shared/_empty.cshtml" />
+</if>

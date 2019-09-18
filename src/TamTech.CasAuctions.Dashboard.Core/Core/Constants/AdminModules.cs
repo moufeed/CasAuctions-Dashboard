@@ -22,5 +22,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Constants
         public const bool Settings = false;
 
         public const bool  SellerRequests = true;
+
+        public const bool  Auctions = true;
     }
 }

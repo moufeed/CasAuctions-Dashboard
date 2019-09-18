@@ -1,26 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28218.60
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{83F9BC64-F998-4383-8D37-B7913B95EDCF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TamTech.CasAuctions.Dashboard.SDK", "src\TamTech.CasAuctions.Dashboard.Core\TamTech.CasAuctions.Dashboard.SDK.csproj", "{EF6DC64A-BE1D-4F32-8458-D8D740D23FDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TamTech.CasAuctions.Dashboard.Web", "src\TamTech.CasAuctions.Dashboard.Web\TamTech.CasAuctions.Dashboard.Web.csproj", "{E72B18F4-1C53-4F23-9420-CD7E80B66FDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TamTech.CasAuctions.Dashboard.Web", "src\TamTech.CasAuctions.Dashboard.Web\TamTech.CasAuctions.Dashboard.Web.csproj", "{E72B18F4-1C53-4F23-9420-CD7E80B66FDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		local|Any CPU = local|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EF6DC64A-BE1D-4F32-8458-D8D740D23FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF6DC64A-BE1D-4F32-8458-D8D740D23FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF6DC64A-BE1D-4F32-8458-D8D740D23FDB}.local|Any CPU.ActiveCfg = local|Any CPU
+		{EF6DC64A-BE1D-4F32-8458-D8D740D23FDB}.local|Any CPU.Build.0 = local|Any CPU
 		{EF6DC64A-BE1D-4F32-8458-D8D740D23FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF6DC64A-BE1D-4F32-8458-D8D740D23FDB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E72B18F4-1C53-4F23-9420-CD7E80B66FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E72B18F4-1C53-4F23-9420-CD7E80B66FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E72B18F4-1C53-4F23-9420-CD7E80B66FDC}.local|Any CPU.ActiveCfg = Release|Any CPU
+		{E72B18F4-1C53-4F23-9420-CD7E80B66FDC}.local|Any CPU.Build.0 = Release|Any CPU
 		{E72B18F4-1C53-4F23-9420-CD7E80B66FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E72B18F4-1C53-4F23-9420-CD7E80B66FDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

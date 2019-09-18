@@ -7,12 +7,17 @@
     <UserSecretsId>1a3c3056-0c25-46da-9dbb-18390a18c855</UserSecretsId>
     <Version>0.0.0.6</Version>
      <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
     <Compile Remove="wwwroot\Shop\**" />
+    <Content Remove="Services\**" />
     <Content Remove="wwwroot\Shop\**" />
+    <EmbeddedResource Remove="Services\**" />
     <EmbeddedResource Remove="wwwroot\Shop\**" />
+    <None Remove="Services\**" />
     <None Remove="wwwroot\Shop\**" />
   </ItemGroup>
 
@@ -46,8 +51,7 @@
   </ItemGroup>
 
   <ItemGroup> 
-    <Folder Include="Logs\" /> 
-    <Folder Include="Services\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
   <ItemGroup>
