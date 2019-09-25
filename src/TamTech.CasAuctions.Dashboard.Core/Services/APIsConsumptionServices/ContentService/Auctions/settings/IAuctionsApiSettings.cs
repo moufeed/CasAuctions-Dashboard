@@ -9,5 +9,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Con
         string GetALlAuctionsEndpoint { get; }
         string GetAuctionByIdEndpoint { get; }
         string GetStatusListEndpoint { get; }
+        string GetCategoriesListEndpoint { get; }
+        string GetTypesListEndpoint { get; }
     }
 }

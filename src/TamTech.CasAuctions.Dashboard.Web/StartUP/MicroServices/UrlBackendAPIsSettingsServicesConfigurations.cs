@@ -6,6 +6,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Attributes.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Biography.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Contact.Settings;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Directory.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.IdentityService.SellerRequests.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Menus.Settings;
@@ -42,7 +43,13 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP.MicroServices
                 return new RequestApiEndpoints(settings);
             });
 
-             
+            services.AddScoped<IAuctionsApiSettings, AuctionApiSettings>((serviceExtension) =>
+            {
+                BackendAPIsSettings settings = serviceExtension.GetRequiredService<BackendAPIsSettings>();
+                return new AuctionApiSettings(settings);
+            });
+
+
             services.AddScoped<IContactUsTypeApiSettings, TypeApiSettings>((serviceExtension) =>
             {
                 BackendAPIsSettings settings = serviceExtension.GetRequiredService<BackendAPIsSettings>();

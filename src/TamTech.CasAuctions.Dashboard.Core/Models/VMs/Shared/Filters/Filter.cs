@@ -96,7 +96,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Models.VMs.Shared.Filters
         [JsonProperty("values")]
         public List<value> Values { get; set; }
 
- 
+        public int CategoryId { get; set; }
+
 
 
 
@@ -113,6 +114,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Models.VMs.Shared.Filters
                    Type == filters.Type &&
                    Rating == filters.Rating &&
                    TypeId == filters.TypeId &&
+                   CategoryId == filters.CategoryId &&
                    Moblie == filters.Moblie &&
                    AttId == filters.AttId &&
                    EqualityComparer<Guid?>.Default.Equals(SectionId, filters.SectionId) &&

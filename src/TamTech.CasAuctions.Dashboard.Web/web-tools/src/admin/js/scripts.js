@@ -52,6 +52,8 @@
 
  $(document).ready(function () {
 
+    
+
     $(".preloader").fadeOut();
     
     if(localStorage.getItem("menu-type") === null){
@@ -631,3 +633,23 @@ async function async_fetch(url, body, headers) {
 }
 
 const refreshHistory =  url => $.get(url, data  => $( "#history" ).html( data ) );  
+
+
+$(document).ready(function(){
+    var mx = 0;
+
+$(".drag").on({
+  mousemove: function(e) {
+    var mx2 = e.pageX - this.offsetLeft;
+    if(mx) this.scrollLeft = this.sx + mx - mx2;
+  },
+  mousedown: function(e) {
+    this.sx = this.scrollLeft;
+    mx = e.pageX - this.offsetLeft;
+  }
+});
+
+$(document).on("mouseup", function(){
+  mx = 0;
+});
+})

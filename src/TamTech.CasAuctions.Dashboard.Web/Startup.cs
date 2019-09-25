@@ -75,7 +75,7 @@ namespace TamTech.CasAuctions.Dashboard.Web
             app.UseLogsConfigurations(_configuration, loggerFactory);    
             app.UseHealthChecksConfigurations(_configuration);    
             string cachePeriod;
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.EnvironmentName.Equals("local"))
             {
                 // app.UseBrowserLink(); from web admin panel
                 app.UseDeveloperExceptionPage();

@@ -5,16 +5,21 @@ using TamTech.CasAuctions.Dashboard.SDK.Models.Shared;
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions.settings
 {
-    public class AuctionApiSettings : BaseAPISettings, IAuctionsApiSettings
+    public class AuctionApiSettings : IAuctionsApiSettings
     {
-        public AuctionApiSettings(BackendAPIsSettings settings, string controller) : base(settings, controller)
+        private string _AuctionUrl;
+
+        public AuctionApiSettings(BackendAPIsSettings settings) 
         {
+            _AuctionUrl = settings.AuctionApiUrl;
         }
 
-        public string GetALlAuctionsEndpoint => $"{_AdminPath}/";
+        public string GetALlAuctionsEndpoint => $"{_AuctionUrl}/api/Admin/Auction";
 
-        public string GetAuctionByIdEndpoint => $"{_AdminPath}/";
+        public string GetAuctionByIdEndpoint => $"{_AuctionUrl}/api/Admin/Auction/Detailed";
 
-        public string GetStatusListEndpoint => $"{_AdminPath}/";
+        public string GetStatusListEndpoint => $"{_AuctionUrl}/api/Admin/Auction/Status";
+        public string GetCategoriesListEndpoint => $"{_AuctionUrl}/api/Admin/Auction/Categories";
+        public string GetTypesListEndpoint => $"{_AuctionUrl}/api/Admin/Auction/Types";
     }
 }

@@ -66,6 +66,8 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
             services.AddTransient<ISellerRequests, SellerRequests>();
             #endregion
 
+            services.AddTransient<IAuctionsService, AcutionsService>();
+
             services.AddTransient<IPosTypeService>((serviceExtension) =>
             {
                 var provider = serviceExtension.GetService<IRequestProvider>();
@@ -221,7 +223,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
             services.AddTransient<ISliderServices, SliderService>();
 
 
-            services.AddTransient<IAuctionsService, AcutionsService>();
+            
 
 
         }

@@ -5,10 +5,10 @@ using System.Text;
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Core.Helpers.Converters
 {
-    public class StringConverters : IStringConverters
+    public   class StringConverters : IStringConverters
     {
 
-        public List<string> ToListString(string words , char separator )
+        public   List<string> ToListString(string words , char separator )
         {
             if (!string.IsNullOrEmpty(words) && words.Length > 0)
 
@@ -17,7 +17,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Helpers.Converters
             return new List<string>();
         }
 
-
        
+
     }
 }

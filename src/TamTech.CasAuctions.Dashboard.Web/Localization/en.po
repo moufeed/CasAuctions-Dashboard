@@ -520,6 +520,9 @@ msgstr "Rating"
 msgid "t_message"
 msgstr "Message"
 
+msgid "t_category"
+msgstr "Category"
+
 #labels
 
 msgid "l_full_name"
@@ -1724,8 +1727,35 @@ msgstr "Current status"
 msgid "action_name"
 msgstr "action name"
 
+msgid "starting_date"
+msgstr "Starting date"
+
+msgid "end_date"
+msgstr "End date"
+
+msgid "ActualEndDate"
+msgstr "Actual End Date"
+
+msgid "SellerName"
+msgstr "Seller name"
+
+  
+msgid "Outbids"
+msgstr "Outbids"
+
+msgid "Participants"
+msgstr "Participants"
+
+msgid "LimitPrice"
+msgstr "Limit price"
+
+
 msgid ""
 msgstr ""
+
+msgid ""
+msgstr ""
+
 
 # adminbar
 msgid "Dashboard"

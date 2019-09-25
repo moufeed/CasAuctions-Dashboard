@@ -15,6 +15,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Ide
         string TakeActionEndpoint { get; }
 
         string StatusListEndpoint { get; }
+       
 
     
 

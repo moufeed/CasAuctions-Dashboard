@@ -392,6 +392,10 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers
             {
                 searchParams.Add("AttId", model.AttId);
             }
+            if (model.CategoryId != 0)
+            {
+                searchParams.Add("CategoryId", model.CategoryId);
+            }
 
             return searchParams;
         }

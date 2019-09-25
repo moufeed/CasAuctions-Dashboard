@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Models;
@@ -31,6 +32,21 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Con
         public async Task<IRequestProviderResult<Auction>> GetAuctionDetailsAsync(Guid id)
         {
             return await ReqProvider.GetAsync<Auction, List<object>>(_apiSettings.GetAuctionByIdEndpoint, new List<object> { id.ToString() }, PassParamsBy.Route);
+        }
+
+        public async  Task<IRequestProviderResult<List<SelectListItemModel>>> GetCatgoriesListAsync()
+        {
+            return await ReqProvider.GetAsync<List<SelectListItemModel>>(_apiSettings.GetCategoriesListEndpoint);
+        }
+
+        public async Task<IRequestProviderResult<List<SelectListItemModel>>> GetStatusListAsync()
+        {
+            return await ReqProvider.GetAsync<List<SelectListItemModel>>(_apiSettings.GetStatusListEndpoint);
+        }
+
+        public async Task<IRequestProviderResult<List<SelectListItemModel>>> GetTypesListAsync()
+        {
+            return await ReqProvider.GetAsync<List<SelectListItemModel>>(_apiSettings.GetTypesListEndpoint);
         }
     }
 }
