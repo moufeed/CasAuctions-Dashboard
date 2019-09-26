@@ -29,9 +29,9 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Con
             return await ReqProvider.GetAsync<AuctionsList, DTFilter>(_apiSettings.GetALlAuctionsEndpoint, model, PassParamsBy.Body);
         }
 
-        public async Task<IRequestProviderResult<Auction>> GetAuctionDetailsAsync(Guid id)
+        public async Task<IRequestProviderResult<AuctionDetails>> GetAuctionDetailsAsync(Guid id)
         {
-            return await ReqProvider.GetAsync<Auction, List<object>>(_apiSettings.GetAuctionByIdEndpoint, new List<object> { id.ToString() }, PassParamsBy.Route);
+            return await ReqProvider.GetAsync<AuctionDetails, List<object>>(_apiSettings.GetAuctionByIdEndpoint, new List<object> { id.ToString() }, PassParamsBy.Route);
         }
 
         public async  Task<IRequestProviderResult<List<SelectListItemModel>>> GetCatgoriesListAsync()

@@ -14,7 +14,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions
 
         Task<IRequestProviderResult<AuctionsList>> GetAllAuctionsListAsync(DTFilter model);
         
-        Task<IRequestProviderResult<Auction>> GetAuctionDetailsAsync(Guid id);
+        Task<IRequestProviderResult<AuctionDetails>> GetAuctionDetailsAsync(Guid id);
          
         Task<IRequestProviderResult<List<SelectListItemModel>>> GetStatusListAsync();
         Task<IRequestProviderResult<List<SelectListItemModel>>> GetCatgoriesListAsync();

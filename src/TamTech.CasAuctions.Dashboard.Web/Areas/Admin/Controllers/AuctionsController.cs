@@ -34,7 +34,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         {
             List<SelectListItem> SortItems = new List<SelectListItem>()
             {
- new SelectListItem {
+        new SelectListItem {
           Text = _localizer["Title"],
           Value =  "Title"  ,
           Selected = model.SortBy == "Title"
