@@ -9,6 +9,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Models;
+using TamTech.CasAuctions.Dashboard.SDK.Services.IdentityService.SellerRequests.Models;
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions
 {
@@ -47,6 +48,11 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Con
         public async Task<IRequestProviderResult<List<SelectListItemModel>>> GetTypesListAsync()
         {
             return await ReqProvider.GetAsync<List<SelectListItemModel>>(_apiSettings.GetTypesListEndpoint);
+        }
+
+        public  async Task<IRequestProviderResult<CasAuctionResponsModel<AuctionDetails>>> TakeActionAsync(TakeActionModel model)
+        {
+            return await ReqProvider.PostAsync<CasAuctionResponsModel<AuctionDetails>, TakeActionModel>(_apiSettings.TakeActionEndpoint, model);
         }
     }
 }

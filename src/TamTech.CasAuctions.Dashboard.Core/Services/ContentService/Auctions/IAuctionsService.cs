@@ -6,6 +6,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Models;
+using TamTech.CasAuctions.Dashboard.SDK.Services.IdentityService.SellerRequests.Models;
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions
 {
@@ -19,5 +20,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions
         Task<IRequestProviderResult<List<SelectListItemModel>>> GetStatusListAsync();
         Task<IRequestProviderResult<List<SelectListItemModel>>> GetCatgoriesListAsync();
         Task<IRequestProviderResult<List<SelectListItemModel>>> GetTypesListAsync();
+
+        Task<IRequestProviderResult<CasAuctionResponsModel<AuctionDetails>>> TakeActionAsync(TakeActionModel model);
     }
 }

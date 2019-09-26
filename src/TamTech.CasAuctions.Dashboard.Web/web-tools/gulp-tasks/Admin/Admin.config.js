@@ -65,13 +65,20 @@ let ListFiles = [{
     inputs: [
         `${admin_src}/js/sellerrequests.js`
     ]
-}, {
+}, 
+{
     output: "tagify.js",
     es6: false,
     inputs: [
         `./node_modules/@yaireo/tagify/dist/tagify.js`
     ]
-}
+} ,{
+    output: "auctions.js",
+    es6: true,
+    inputs: [
+        `${admin_src}/js/auctions.js`
+    ]
+}, 
 ];
  
 //---------------------------------------- DEFAULT OPTIONS

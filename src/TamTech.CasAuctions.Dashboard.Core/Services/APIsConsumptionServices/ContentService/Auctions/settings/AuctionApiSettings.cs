@@ -21,5 +21,6 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Con
         public string GetStatusListEndpoint => $"{_AuctionUrl}/api/Admin/Auction/Status";
         public string GetCategoriesListEndpoint => $"{_AuctionUrl}/api/Admin/Auction/Categories";
         public string GetTypesListEndpoint => $"{_AuctionUrl}/api/Admin/Auction/Types";
+        public string TakeActionEndpoint => $"{_AuctionUrl}/api/Admin/Auction/TakeAction";
     }
 }

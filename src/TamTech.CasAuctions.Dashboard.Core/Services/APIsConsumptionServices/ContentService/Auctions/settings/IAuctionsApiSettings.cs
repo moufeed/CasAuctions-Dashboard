@@ -11,5 +11,6 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Con
         string GetStatusListEndpoint { get; }
         string GetCategoriesListEndpoint { get; }
         string GetTypesListEndpoint { get; }
+        string TakeActionEndpoint { get; }
     }
 }

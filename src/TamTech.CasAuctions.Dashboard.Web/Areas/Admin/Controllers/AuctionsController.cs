@@ -12,6 +12,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Sort;
 using TamTech.CasAuctions.Dashboard.SDK.Models.VMs.Shared.Filters;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions;
+using TamTech.CasAuctions.Dashboard.SDK.Services.IdentityService.SellerRequests.Models;
 using TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers;
 
 namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
@@ -140,5 +141,29 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             return View();
         }
 
+
+
+        [HttpPost("{Culture}/[Area]/[Controller]/Action")]
+        public virtual async Task<JsonResult> setAction(TakeActionModel model)
+        {
+            try
+            {
+                var result = await _acutionsservice.TakeActionAsync(model);
+                if (result.Success)
+                {
+                    return ReturnJsonResult(result, model);
+                }
+                else
+                {
+                    return ReturnJsonResult(result, model);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TrackException(ex, model);
+                return ReturnJsonErrorResult(ex.Message, model);
+            }
+        }
     }
 }
