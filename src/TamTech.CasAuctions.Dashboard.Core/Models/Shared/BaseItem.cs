@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Helpers;
 
-namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Models
+namespace TamTech.CasAuctions.Dashboard.SDK.Models.Shared
 {
    
 

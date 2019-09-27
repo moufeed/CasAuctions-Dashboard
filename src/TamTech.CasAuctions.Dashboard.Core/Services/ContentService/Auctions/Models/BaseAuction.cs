@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Helpers;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Shared;
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Models
 {

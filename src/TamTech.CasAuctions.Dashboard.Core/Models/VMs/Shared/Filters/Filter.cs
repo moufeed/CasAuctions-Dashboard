@@ -98,9 +98,9 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Models.VMs.Shared.Filters
 
         public int CategoryId { get; set; }
 
+        public string SellerName { get; set; }
 
-
-
+        public Guid SellerId { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -127,6 +127,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Models.VMs.Shared.Filters
                    string.IsNullOrWhiteSpace(FullName) == string.IsNullOrWhiteSpace(filters.FullName) &&
                    string.IsNullOrWhiteSpace(Search) == string.IsNullOrWhiteSpace(filters.Search) &&
                    string.IsNullOrWhiteSpace(SectorSlug) == string.IsNullOrWhiteSpace(filters.SectorSlug) &&
+                   string.IsNullOrWhiteSpace(SellerName) == string.IsNullOrWhiteSpace(filters.SellerName) &&
                    string.IsNullOrWhiteSpace(Name) == string.IsNullOrWhiteSpace(filters.Name);
         }
         public static bool operator ==(Filter filters1, Filter filters2)

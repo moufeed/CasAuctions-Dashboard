@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Shared;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Models;
-using TamTech.CasAuctions.Dashboard.SDK.Services.IdentityService.SellerRequests.Models;
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions
 {

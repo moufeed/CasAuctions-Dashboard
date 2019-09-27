@@ -44,6 +44,12 @@
                     <a asp-area="Admin" asp-controller="Auctions" asp-action="Index"><i class="fa fa-gavel"></i>@Localizer["auctions"]</a>
                 </li>
             </if>
+            
+            <if include-if="@AdminModules.DirectSell">
+                <li>
+                    <a asp-area="Admin" asp-controller="DirectSell" asp-action="Index"><i class="fa fa-cube"></i>@Localizer["Direct Sell"]</a>
+                </li>
+            </if>
 
             <if include-if="@AdminModules.ContactUs">
 

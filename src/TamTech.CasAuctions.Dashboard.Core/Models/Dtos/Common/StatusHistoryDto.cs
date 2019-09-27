@@ -33,5 +33,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Common
 
         [JsonProperty("previousstatusname")]
         public string PreviousStatusName { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
     }
 }

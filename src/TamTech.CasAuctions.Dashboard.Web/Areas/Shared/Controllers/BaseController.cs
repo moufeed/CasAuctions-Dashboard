@@ -350,6 +350,11 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers
             if (!string.IsNullOrEmpty(model.TypeIds))
             {
                 searchParams.Add("TypeIds", model.TypeIds);
+            }  
+            
+            if (!string.IsNullOrEmpty(model.SellerName))
+            {
+                searchParams.Add("SellerName", model.SellerName);
             }
 
             if (model.SectionId != null)
@@ -362,7 +367,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers
             }
             if (model.StatusId != null)
             {
-                searchParams.Add("status_id", model.StatusId);
+                searchParams.Add("statusId", model.StatusId);
             }
             if (model.Visibility != null)
             {

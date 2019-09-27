@@ -6,6 +6,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Shared;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Models;
@@ -54,5 +55,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Con
         {
             return await ReqProvider.PostAsync<CasAuctionResponsModel<AuctionDetails>, TakeActionModel>(_apiSettings.TakeActionEndpoint, model);
         }
+
+       
     }
 }
