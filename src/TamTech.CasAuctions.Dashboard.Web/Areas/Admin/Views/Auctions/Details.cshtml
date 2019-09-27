@@ -34,49 +34,242 @@
                         padding: 7px 5px;
                     }
                 </style>
-                <div class="x_panel">
-                    <div class="x_content p-y-5 ">
+               
+            </div>
+            <if include-if="Model.SellerProfile != null">
+                @{
+                    var Seller = Model.SellerProfile;
+                }
+                <div class="col-md-3 col-sm-3 col-xs-3" id="@Seller.Id">
+                    <div class="title_left">
+                        <h4>
+                            <small>
+                                @Localizer["Seller Profile"]
+                            </small>
+                        </h4>
+                    </div>
+                    <div class="x_panel">
                         <div class="clearfix auction-detials">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <dl class="dl-horizontal detials">
-                                        <dt>
-                                            @Localizer["Title"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.ItemTitle)
-                                        </dd>
+                                <div class="gi-card" style="margin:0">
+                                    <a href="@Seller.Photo" class="gi-image" data-lightbox="images" data-title="@Seller.FullName">
+                                        <img src="@Seller.Photo">
+                                    </a>
+                                    <div class="gi-info">
 
-                                        <dt>
-                                            @Localizer["Category"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.CategoryName)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["Type"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.TypeName)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["Status"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.StatusName)
-                                        </dd>
+                                        <header class="gi-header">
+                                            <h3>@Seller.FullName</h3>
+                                        </header>
 
-                                        <dt>
-                                            @Localizer["Description"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.ItemDescription)
-                                        </dd>
 
-                                        <dt>
-                                            @Localizer["display Buyer"]
-                                        </dt>
-                                        <dd>
+                                        <div class="gi-suumary">
+                                            @Html.Raw(Seller.FullName)
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </if>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="title_left">
+                    <h4>
+                        <small>
+                            @Localizer["Main Info"]
+                        </small>
+                    </h4>
+                </div>
+                <div class="x_panel">
+                    <div class="clearfix auction-detials">
+                        <div class="row">
+                            <dl class="dl-horizontal detials">
+                                <dt>
+                                    @Localizer["Title"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ItemTitle)
+                                </dd>
+                                <dt>
+                                    @Localizer["Status"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.StatusName)
+                                </dd>
+                                <dt>
+                                    @Localizer["Category"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.CategoryName)
+                                </dd>
+                                <dt>
+                                    @Localizer["Type"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.TypeName)
+                                </dd>
+                                <dt>
+                                    @Localizer["IncrementType"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.IncrementTypeName)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="title_left">
+                    <h4>
+                        <small>
+                            @Localizer["Dates & Times Info"]
+                        </small>
+                    </h4>
+                </div>
+                <div class="x_panel">
+                    <div class="clearfix auction-detials">
+                        <div class="row">
+                            <dl class="dl-horizontal detials">
+                                <dt>
+                                    @Localizer["CreatedDate"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.CreatedDate)
+                                </dd>
+                                <dt>
+                                    @Localizer["ModifiedDate"]
+                                </dt>
+                                <dd>
+                                    @Model.ModifiedDate
+                                </dd>
+                                <dt>
+                                    @Localizer["StartDate"]
+                                </dt>
+                                <dd>
+                                    @Model.StartDate
+                                </dd>
+                                <dt>
+                                    @Localizer["EndDate"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.EndDate)
+                                </dd>
+                                <dt>
+                                    @Localizer["ActualEndDate"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ActualEndDate)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="">
+                    <h4>
+                        <small>
+                            @Localizer["Prices Info"]
+                        </small>
+                    </h4>
+                </div>
+                <div class="x_panel">
+                    <div class="clearfix auction-detials">
+                        <div class="row">
+                            <dl class="dl-horizontal detials">
+                                <dt>
+                                    @Localizer["StartPrice"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.StartPrice)
+                                </dd>
+                                <dt>
+                                    @Localizer["LimitPrice"]
+                                </dt>
+                                <dd>
+                                    @if (Model.LimitPrice != null)
+                                    {
+                                        @Html.DisplayFor(model => model.LimitPrice)
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times"></i>
+                                    }
+                                </dd>
+                                <dt>
+                                    @Localizer["PurchasePrice"]
+                                </dt>
+                                <dd>
+                                    @if (Model.PurchasePrice > 0)
+                                    {
+                                        @Html.DisplayFor(model => model.PurchasePrice)
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times"></i>
+                                    }
+                                </dd>
+                                <dt>
+                                    @Localizer["Maximum Participants"]
+                                </dt>
+                                <dd>
+                                    @if (Model.MaximumParticipants != null)
+                                    {
+                                        @Html.DisplayFor(model => model.MaximumParticipants)
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times"></i>
+                                    }
+
+                                </dd>
+                                <dt>
+                                    @Localizer["ExtendedTime"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ExtendedTime)
+                                </dd>
+
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <if include-if="Model.BuyerProfile != null">
+                @{
+                    var Buyer = Model.BuyerProfile;
+                }
+                <div class="col-md-3 col-sm-3 col-xs-3" id="@Buyer.Id">
+                    <div class="">
+                        <h4>
+                            <small>
+                                @Localizer["Buyer Profile"]
+                            </small>
+                        </h4>
+                    </div>
+                    <div class="x_panel">
+                        <div class="clearfix auction-detials">
+                            <div class="row">
+                                <div class="gi-card" style="margin:0">
+                                    <a href="@Buyer.Photo" class="gi-image" data-lightbox="images" data-title="@Buyer.FullName">
+                                        <img src="@Buyer.Photo">
+                                    </a>
+                                    <div class="gi-info">
+
+                                        <header class="gi-header">
+                                            <h3>@Buyer.FullName</h3>
+                                        </header>
+
+
+                                        <div class="gi-suumary">
+                                            @Html.Raw(Buyer.FullName)
+                                        </div>
+                                        <header class="gi-header">
+                                            <h4> @Localizer["display Buyer"]</h4>
                                             @if (Model.DisplayBuyer)
                                             {
                                                 <i class="fa fa-check"></i>
@@ -85,139 +278,136 @@
                                             {
                                                 <i class="fa fa-times"></i>
                                             }
-                                        </dd>
-                                        <if include-if="Model.CurrencyGrade != null ">
-                                            <dt>
-                                                @Localizer["Currency Grade"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyGrade)
-                                            </dd>
-                                        </if>
-
-                                        <if include-if="Model.CurrencyDenomination != null">
-                                            <dt>
-                                                @Localizer["Currency Denomination"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyDenomination)
-                                            </dd>
-                                        </if>
-
-                                        <if include-if="Model.CurrencyCountry != null">
-                                            <dt>
-                                                @Localizer["Currency Country"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyCountry)
-                                            </dd>
-                                        </if>
-
-                                        <if include-if="Model.CurrencyYear != null ">
-
-                                            <dt>
-                                                @Localizer["Currency Year"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyYear)
-                                            </dd>
-
-                                        </if>
+                                        </header>
 
 
-                                        <if include-if="Model.CurrencyPickNumber != null">
-                                            <dt>
-                                                @Localizer["Currency PickNumber"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyPickNumber)
-                                            </dd>
-                                        </if>
-                                    </dl>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <dl class="dl-horizontal detials">
-                                        <dt>
-                                            @Localizer["CreatedDate"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.CreatedDate)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["ModifiedDate"]
-                                        </dt>
-                                        <dd>
-                                            @Model.ModifiedDate
-                                        </dd>
-                                        <dt>
-                                            @Localizer["StartDate"]
-                                        </dt>
-                                        <dd>
-                                            @Model.StartDate
-                                        </dd>
-                                        <dt>
-                                            @Localizer["EndDate"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.EndDate)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["ActualEndDate"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.ActualEndDate)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["ExtendedTime"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.ExtendedTime)
-                                        </dd>
-
-
-
-                                        <dt>
-                                            @Localizer["Maximum Participants"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.MaximumParticipants)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["OutbidsCount"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.OutbidsCount)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["LimitPrice"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.LimitPrice)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["StartPrice"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.StartPrice)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["PurchasePrice"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.PurchasePrice)
-                                        </dd>
-                                    </dl>
-                                </div>
-
-
-
 
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </if>
+            <if include-if="Model.CurrencyGrade != null || Model.CurrencyPickNumber != null || Model.CurrencyDenomination != null || Model.CurrencyCountry != null || Model.CurrencyYear != null  ">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <div class="">
+                        <h4>
+                            <small>
+                                @Localizer["Currency Info"]
+                            </small>
+                        </h4>
+                    </div>
+                    <div class="x_panel">
+                        <div class="clearfix auction-detials">
+                            <div class="row">
+                                <dl class="dl-horizontal detials">
+                                   
+                                    <dt>
+                                        @Localizer["Currency Grade"]
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CurrencyGrade)
+                                    </dd>
 
+                                    <dt>
+                                        @Localizer["Currency Denomination"]
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CurrencyDenomination)
+                                    </dd>
+
+                                    <dt>
+                                        @Localizer["Currency Country"]
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CurrencyCountry)
+                                    </dd>
+
+
+                                    <dt>
+                                        @Localizer["Currency Year"]
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CurrencyYear)
+                                    </dd>
+
+
+                                    <dt>
+                                        @Localizer["Currency PickNumber"]
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.CurrencyPickNumber)
+                                    </dd>
+
+
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </if>
+
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="">
+                    <h4>
+                        <small>
+                            @Localizer["Other Info"]
+                        </small>
+                    </h4>
+                </div>
+                <div class="x_panel">
+                    <div class="clearfix auction-detials">
+                        <div class="row">
+                            <dl class="dl-horizontal detials">
+                                <dt>
+                                    @Localizer["ParticipantsCount"]
+                                </dt>
+                                <dd>
+                                    @if (Model.ParticipantsCount > 0)
+                                    {
+                                        @Html.DisplayFor(model => model.ParticipantsCount)
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times"></i>
+                                    }
+
+                                </dd>
+                                <dt>
+                                    @Localizer["OutbidsCount"]
+                                </dt>
+                                <dd>
+                                    @if (Model.OutbidsCount > 0)
+                                    {
+                                        @Html.DisplayFor(model => model.OutbidsCount)
+                                    }
+                                    else
+                                    {
+                                        <i class="fa fa-times"></i>
+                                    }
+
+                                </dd>
+                                <dt>
+                                    @Localizer["Description"]
+                                </dt>
+                                <dd>
+                                    @Html.DisplayFor(model => model.ItemDescription)
+                                </dd>
+                                <dt>
+                                </dt>
+                                <dd>
+                                </dd>
+                                <dt>
+                                </dt>
+                                <dd>
+                                </dd>
+                            </dl>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
 
@@ -384,43 +574,7 @@
 
 
             </div>
-        </div>
-
-
-
-
-        <if include-if="Model.SellerProfile != null">
-            @{
-                var Seller = Model.SellerProfile;
-            }
-            <div class="x_panel">
-                <div class="x_content p-y-5 ">
-
-                    <div class="col-md-12 col-sm-12 " id="@Seller.Id">
-                        <div class="gi-card">
-                            <a href="@Seller.Photo" class="gi-image" data-lightbox="images" data-title="@Seller.FullName">
-                                <img src="@Seller.Photo">
-                            </a>
-                            <div class="gi-info">
-
-                                <header class="gi-header">
-                                    <h3>@Seller.FullName</h3>
-                                </header>
-
-
-                                <div class="gi-suumary">
-                                    @Html.Raw(Seller.FullName)
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-        </if>
+        </div> 
 
         <if include-if="Model.ProcessActions != null && Model.ProcessActions.Count > 0">
             <div class="x_panel">

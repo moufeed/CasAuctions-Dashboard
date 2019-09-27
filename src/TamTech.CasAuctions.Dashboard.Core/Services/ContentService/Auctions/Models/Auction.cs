@@ -9,6 +9,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Mod
         public string CategoryName { get; set; }
 
         public string TypeName { get; set; }
+                                             
+        public string IncrementTypeName { get; set; }
 
         public string StatusName { get; set; }
     }

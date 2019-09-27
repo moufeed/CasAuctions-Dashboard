@@ -44,17 +44,18 @@
                                     <tr>
 
                                         <th width="250">@Localizer["t_title"] </th>
-                                        <th width="300">@Localizer["t_description"]</th>
+                                        <th width="200">@Localizer["t_status"]</th> 
+                                        <th width="200">@Localizer["SellerName"]</th>
                                         <th width="150">@Localizer["t_category"]</th>
+                                        <th width="100">@Localizer["t_type"]</th>
+                                        <th width="100">@Localizer["Outbids"]</th>
+                                        <th width="100">@Localizer["Participants"]</th>
                                         <th width="175">@Localizer["starting_date"]</th>
                                         <th width="175">@Localizer["end_date"]</th>
                                         <th width="175">@Localizer["ActualEndDate"]</th>
-                                        <th width="200">@Localizer["t_status"]</th>
-                                        <th width="100">@Localizer["t_type"]</th>
-                                        <th width="200">@Localizer["SellerName"]</th>
-                                        @*<th width="100">@Localizer["Outbids"]</th>
-                                            <th width="100">@Localizer["Participants"]</th>*@
-                                         
+                                        <th width="300">@Localizer["t_description"]</th>
+
+
                                         <th width="75" class="text-center">@Localizer["t_actions"]</th>
                                     </tr>
                                 </thead>
@@ -62,47 +63,45 @@
                                     <if include-if="Model.Data != null && Model.Data.Count > 0">
                                         @foreach (Auction item in Model.Data)
                                         {
-                                            <tr>
-                                                <td>
-                                                    <a data-toggle="tooltip"
-                                                       data-placement="top"
-                                                       title="@Localizer["t_details"]"
-                                                       href="@Url.AdminUrl("Details" , "Auctions",new { id = item.Id })">
-                                                        @item.ItemTitle
-                                                    </a>
+                                        <tr>
+                                            <td>
+                                                <a data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="@Localizer["t_details"]"
+                                                   href="@Url.AdminUrl("Details" , "Auctions",new { id = item.Id })">
+                                                    @item.ItemTitle
+                                                </a>
 
-                                                </td>
-                                                <td>
-
-                                                    <a tabindex="0"
-                                                       class="link"
-                                                       role="button" data-toggle="popover"
-                                                       data-trigger="focus"
-                                                       title="Dismissible popover"
-                                                       data-content="@item.ItemDescription">
-                                                        @TruncateAtWord(item.ItemDescription, 40)
-                                                    </a>
-                                                </td>
-                                                <td>@item.CategoryName</td>
-                                                <td>@item.StartDate</td>
-                                                <td>@item.EndDate</td>
-                                                <td>@item.ActualEndDate</td>
-                                                <td>@item.StatusName</td>
-                                                <td>@item.TypeName</td>
-                                                <td>@item.SellerProfile.FullName</td>
-                                                @*<td>@item.OutbidsCount</td>
-                                                    <td>@item.MaximumParticipants</td>*@
-                                                 
-                                                <td>
-                                                    <a data-toggle="tooltip"
-                                                       data-placement="top"
-                                                       title="@Localizer["t_details"]"
-                                                       href="@Url.AdminUrl("Details" , "Auctions",new { id = item.Id })"
-                                                       class="btn btn-view btn-round ">
-                                                        <i class="fa fa-bolt" aria-hidden="true"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            </td>
+                                            <td>@item.StatusName</td>
+                                            <td>@item.SellerProfile.FullName</td>
+                                            <td>@item.CategoryName</td>
+                                            <td>@item.TypeName</td>
+                                            <td>@item.OutbidsCount</td>
+                                            <td>@item.ParticipantsCount</td>
+                                            <td>@item.StartDate</td>
+                                            <td>@item.EndDate</td>
+                                            <td>@item.ActualEndDate</td>
+                                            <td> 
+                                                <a tabindex="0"
+                                                   class="link"
+                                                   role="button" data-toggle="popover"
+                                                   data-trigger="focus"
+                                                   title="Dismissible popover"
+                                                   data-content="@item.ItemDescription">
+                                                    @TruncateAtWord(item.ItemDescription, 40)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="@Localizer["t_details"]"
+                                                   href="@Url.AdminUrl("Details" , "Auctions",new { id = item.Id })"
+                                                   class="btn btn-view btn-round ">
+                                                    <i class="fa fa-bolt" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
 
                                         }
                                     </if>

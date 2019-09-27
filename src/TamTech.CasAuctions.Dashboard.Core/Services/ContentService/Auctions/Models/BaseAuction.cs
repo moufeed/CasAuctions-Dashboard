@@ -12,6 +12,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Mod
 
         public int OutbidsCount { get; set; }
 
+        public int ParticipantsCount { get; set; }
+
         #endregion
 
         public Guid? BuyerOutbidId { get; set; }
