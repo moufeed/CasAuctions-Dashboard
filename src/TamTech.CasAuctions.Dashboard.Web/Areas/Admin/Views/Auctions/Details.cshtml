@@ -11,7 +11,7 @@
             <div class="page-title">
                 <div class="title_left">
                     <h3>
-                        @Localizer["auction_details"]
+                        @Localizer["auction details"]
                         <small></small>
                     </h3>
                 </div>
@@ -312,14 +312,18 @@
                                  
                                 <table class="table table-striped table-bordered">
                                     <tr>
-                                        <th>@Localizer["Participant name"]</th>  
+                                        <th width="75">@Localizer["Image"]</th>
+                                        <th width="250">@Localizer["Participant name"]</th>  
                                         <th>@Localizer["Price"]</th>
-                                        <th width="200">@Localizer["Date"]</th>
+                                        <th width="250">@Localizer["Date"]</th>
                                     </tr>
                                     @foreach (var outbid in Model.Outbids)
                                     {
                                         <tr>
-                                            <td></td>
+                                            <td>@if (!string.IsNullOrEmpty(outbid.Profile.Photo)) {
+                                            <img  src="@outbid.Profile.Photo" class="img-responsive"/>
+                                            }</td>
+                                            <td>@outbid.Profile.FullName</td>
                                             <td>@outbid.Price</td>
                                             <td>@outbid.CreatedDate</td>
                                         </tr>

@@ -13,6 +13,9 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Mod
         [JsonProperty("pid")]
         public Guid ParticipantId { get; set; }
 
+        [JsonProperty("profile")]
+        public UserProfileDto Profile { get; set; }
+
         [JsonProperty("pr")]
         public double Price { get; set; }
 
