@@ -11,7 +11,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions.Mod
 
         public List<AuctionOutbid> Outbids { get; set; }
 
-        public List<StatusHistory> StepsHistory { get; set; }
+        public List<StatusHistoryDto> StepsHistory { get; set; }
 
 
         public List<ProcessActionModel> ProcessActions { get; set; }
