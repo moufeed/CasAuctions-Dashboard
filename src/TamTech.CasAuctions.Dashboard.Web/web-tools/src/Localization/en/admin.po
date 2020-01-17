@@ -1737,9 +1737,13 @@ msgstr "Participants"
 msgid "LimitPrice"
 msgstr "Limit price"
 
+ 
 
-msgid ""
-msgstr ""
+msgid "Buyers"
+msgstr "Buyers"
 
-msgid ""
-msgstr ""
+msgid "Sellers"
+msgstr "Sellers"
+
+msgid "Auctioneers"
+msgstr "Auctioneers"

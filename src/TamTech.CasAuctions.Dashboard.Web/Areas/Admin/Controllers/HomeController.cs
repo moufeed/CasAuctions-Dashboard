@@ -76,14 +76,21 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             return SignOut("Cookies", "oidc");
         }
         public virtual async Task<IActionResult> Dashboard ()
-        {           
+        {
+          
             Dictionary<string, object> searchParams = new Dictionary<string, object>();
             searchParams.Add("StatusId", 1);
             try
             {
-                var _lang = GetCurrentDataLang();
 
- 
+                var _lang = GetCurrentDataLang();
+                var users = await _statisticsService.GetUsersStatistics(_lang);
+
+                if (users.Success)
+                {
+                    ViewBag.Users = users.Data;
+                }
+
             }
             catch (Exception ex)
             {

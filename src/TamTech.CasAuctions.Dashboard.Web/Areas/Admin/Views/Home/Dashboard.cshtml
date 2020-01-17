@@ -2,4 +2,37 @@
     Layout = "_Layout";
     ViewData["Title"] = Localizer["home_page"];
 }
- 
+
+
+<section class="m-t5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="x_panel tile">
+                    <div class="x_title clearfix ">
+                        <h4>@Localizer["Users"]</h4>
+                    </div>
+                    <div class="x_content p-3">
+                        <canvas id="cahrt" class="chart-widget"
+                                data-values="[11,22 ,12]"
+                                data-chart-type="doughnut"
+                                data-labels="Buyers (11), Sellers (22),Auctioneers (12)"
+                                data-backgrounds="#7AC8A9-#A9E5F7-#F2CB00"
+                                data-border-colors="#69ad92-#78bfd4-#c1a304"
+                                data-legend-position ="right"
+                                data-legend-display ="true"
+                                data-legend-padding="15"
+                                data-legend-align ="start"
+                                data-center-display="true"
+                                data-center-text="123"
+                                > </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/Admin/js/cahrt.min.js"></script>
+}

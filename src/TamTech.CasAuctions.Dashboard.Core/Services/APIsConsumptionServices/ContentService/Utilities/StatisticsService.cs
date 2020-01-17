@@ -93,5 +93,11 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Uti
             var result = await ReqProvider.GetAsync<IEnumerable<NumericalStatisticsItemDto>, List<object>>(_apiSettings.GetVendorNumericalStatisticsByStatusEndpoint, new List<object> { lang }, PassParamsBy.Route);
             return MapToStatisticsDto(result);
         }
+
+        public async Task<IRequestProviderResult<StatisticsDto>> GetUsersStatistics(string lang)
+        {
+            var result = await ReqProvider.GetAsync<IEnumerable<NumericalStatisticsItemDto>, List<object>>(_apiSettings.GetUsersStatisticsEndpoint, new List<object> { lang }, PassParamsBy.Route);
+            return MapToStatisticsDto(result);
+        }
     }
 }

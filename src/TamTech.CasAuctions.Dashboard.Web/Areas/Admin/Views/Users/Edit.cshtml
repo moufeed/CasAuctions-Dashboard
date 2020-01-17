@@ -1,8 +1,8 @@
-﻿ 
+﻿
 
+@using AdminPanelWeb.Models;
+@model CreateUserVM;
 @{
-    @using AdminPanelWeb.Models;
-    @model CreateUserVM;
     ViewData["Title"] = Localizer["user_edit"];
 }
 
@@ -32,7 +32,7 @@
                       class="form-horizontal forn-new form-label-left m-t5"
                       id="EditUserForm">
 
-                    
+
 
                     @if (!ViewData.ModelState.IsValid)
                     {
@@ -58,7 +58,7 @@
                             <div class="form-group clearfix ">
 
                                 <label asp-for="Name" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_name"]<i class="fa fa-asterisk c-red fz-10 "></i></label>
-                                <div class="col-md-7 col-sm-8 col-xs-12">                           
+                                <div class="col-md-7 col-sm-8 col-xs-12">
                                     <input asp-for="Name" class="form-control" required />
                                     <span asp-validation-for="Name" class="text-danger invalid_field"></span>
                                 </div>
@@ -125,7 +125,7 @@
 
                                 <label asp-for="Roles" class="control-label col-md-3 col-sm-4 col-xs-12">@Localizer["f_role"] <i class="fa fa-asterisk c-red fz-10 "></i></label>
                                 <div class="col-md-7 col-sm-8 col-xs-12">
- 
+
                                     @Html.DropDownList("Roles",
                                    new SelectList(ViewBag.Roles,"Name", "Name"),
                                        "Select Role",

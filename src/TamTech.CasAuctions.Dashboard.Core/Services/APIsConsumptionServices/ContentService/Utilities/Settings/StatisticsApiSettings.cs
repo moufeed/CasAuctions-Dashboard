@@ -19,5 +19,6 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Uti
         public string GetContactUsNumericalStatisticsByStatusEndpoint => $"{_AdminPath}/GetContactUsNumericalStatisticsByStatusAsync";
 
         public string GetContactUsNumericalStatisticsByTypeEndpoint => $"{_AdminPath}/GetContactUsNumericalStatisticsByTypeAsync";
+        public string GetUsersStatisticsEndpoint => $"{_AdminPath}/GetUsersStatisticsEndpoint";
     }
 }
