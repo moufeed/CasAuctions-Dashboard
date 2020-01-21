@@ -64,7 +64,9 @@
                             @Localizer["Status"]
                         </dt>
                         <dd>
-                            @Html.DisplayFor(model => model.StatusName)
+                            <span class="badge badge-light">
+                                 @Html.DisplayFor(model => model.StatusName)
+                            </span> 
                         </dd>
                         <dt>
                             @Localizer["Category"]
@@ -79,7 +81,7 @@
                             @Html.DisplayFor(model => model.TypeName)
                         </dd>
                         <dt>
-                            @Localizer["IncrementType"]
+                            @Localizer["Increment Type"]
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.IncrementTypeName)
@@ -95,7 +97,7 @@
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="x_panel">
                 <div class="x_title clearfix">
-                    <h2>@Localizer["Dates & Times Info"]</h2>
+                    <h2>@Localizer["Date & Time Info"]</h2>
                     <ul class="nav navbar-right panel_toolbox">
 
                         <li class="dropdown">
@@ -118,14 +120,14 @@
                 <div class="x_content">
                     <dl class="dl-horizontal detials">
                         <dt>
-                            @Localizer["CreatedDate"]
+                            @Localizer["Created Date"]
                         </dt>
                         <dd>
                             <span class="utc"> @Html.DisplayFor(model => model.CreatedDate) <small class="label label-info">UTC</small></span>
                             <span class="local hidden">@Model.CreatedDate.ToLocalTime()</span>
                         </dd>
                         <dt>
-                            @Localizer["ModifiedDate"]
+                            @Localizer["Modified Date"]
                         </dt>
                         <dd>
 
@@ -133,7 +135,7 @@
                             <span class="local hidden"> @Model.ModifiedDate.ToLocalTime()</span>
                         </dd>
                         <dt>
-                            @Localizer["StartDate"]
+                            @Localizer["Start Date"]
                         </dt>
                         <dd>
 
@@ -141,7 +143,7 @@
                             <span class="local hidden">@Model.StartDate.ToLocalTime()</span>
                         </dd>
                         <dt>
-                            @Localizer["EndDate"]
+                            @Localizer["End Date"]
                         </dt>
                         <dd>
 
@@ -150,7 +152,7 @@
                             <span class="local hidden">@Model.EndDate.ToLocalTime()</span>
                         </dd>
                         <dt>
-                            @Localizer["ActualEndDate"]
+                            @Localizer["Actual End Date"]
                         </dt>
                         <dd>
 
@@ -169,13 +171,13 @@
                 <div class="x_content">
                     <dl class="dl-horizontal detials">
                         <dt>
-                            @Localizer["StartPrice"]
+                            @Localizer["Start Price"]
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.StartPrice)
                         </dd>
                         <dt>
-                            @Localizer["LimitPrice"]
+                            @Localizer["Limit Price"]
                         </dt>
                         <dd>
                             @if (Model.LimitPrice != null)
@@ -188,7 +190,7 @@
                             }
                         </dd>
                         <dt>
-                            @Localizer["PurchasePrice"]
+                            @Localizer["Purchase Price"]
                         </dt>
                         <dd>
                             @if (Model.PurchasePrice > 0)
@@ -289,7 +291,7 @@
                 <div class="x_content">
                     <dl class="dl-horizontal detials">
                         <dt>
-                            @Localizer["ParticipantsCount"]
+                            @Localizer["Participants Count"]
                         </dt>
                         <dd>
                             @if (Model.ParticipantsCount > 0)
@@ -303,7 +305,7 @@
 
                         </dd>
                         <dt>
-                            @Localizer["OutbidsCount"]
+                            @Localizer["Outbids Count"]
                         </dt>
                         <dd>
                             @if (Model.OutbidsCount > 0)
@@ -399,6 +401,9 @@
 
     <if include-if="Model.ItemImages != null && Model.ItemImages.Count > 0">
         <div class="x_panel">
+            <div class="x_title clearfix">
+                <h2>@Localizer["Photos List"]</h2>
+            </div>
             <div class="x_content p-y-5 ">
 
                 <div class="row">
@@ -424,7 +429,7 @@
         <div class="x_content">
 
             <div class=" ">
-                <h4 class="m-b3">@Localizer["auction details"]</h4>
+                <h4 class="m-b3">@Localizer["More Details"]</h4>
                 <ul class="nav nav-tabs sub-tabs" role="tablist">
                     <if include-if="Model.Participants != null">
                         <li role="presentation" class="">
@@ -567,6 +572,9 @@
 
     <if include-if="Model.ProcessActions != null && Model.ProcessActions.Count > 0">
         <div class="x_panel">
+            <div class="x_title clearfix">
+                <h4>@Localizer["Process"]</h4>
+            </div>
             <div class="x_content p-y-5 ">
                 <div class="" id="form">
                     @{
@@ -576,7 +584,7 @@
                         <form asp-action="setAction" method="post" class="form m-y-5" id="takenAction">
                             <input type="hidden" name="ReqId" value="@Model.Id" />
                             <div class="form-group clearfix">
-                                <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["l_status"] </label>
+                                <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["Actions"] </label>
                                 <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
                                     @foreach (ProcessActionModel act in Actions)
                                     {
