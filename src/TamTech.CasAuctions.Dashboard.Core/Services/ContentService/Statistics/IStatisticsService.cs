@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Statistics.Models;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos;      
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Statistics
 {
@@ -19,10 +19,6 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Statistics
 
         Task<IRequestProviderResult<StatisticsDto>> GetContactUsNumericalStatisticsByStatusAsync(string lang); 
 
-        Task<IRequestProviderResult<StatisticsDto>> GetContactUsNumericalStatisticsByTypeAsync(string lang);
-
-        Task<IRequestProviderResult<StatisticsDto>> GetUsersStatistics(string lang);
-        Task<IRequestProviderResult<StatisticsDto>> GetAuctionsStatistics(DateTime fromDate, DateTime toDate , int? TimeZone);
-
+        Task<IRequestProviderResult<StatisticsDto>> GetContactUsNumericalStatisticsByTypeAsync(string lang);   
     }
 }

@@ -11,7 +11,7 @@ using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Shared;
 using TamTech.CasAuctions.Dashboard.SDK.Models.VMs.Shared.Filters;
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions;
+using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.Auctions;
 using TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers;
 
 namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
