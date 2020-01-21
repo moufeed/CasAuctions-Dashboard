@@ -309,6 +309,10 @@ $('input[name="startDate"]').on("change", function() {
   if ($this.val() !== previousValue) {
     previousValue = $this.val();
     switch ($this.val()) {
+      case "h":
+        var d = new Date(new Date().getTime() - 1 * 60 * 1000).toISOString();
+        loadChart(d, now, true);
+        break;
       case "w":
         loadChart(collectDate(7), now, true);
         break;
