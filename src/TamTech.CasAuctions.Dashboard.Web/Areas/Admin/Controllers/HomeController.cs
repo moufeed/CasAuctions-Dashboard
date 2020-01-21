@@ -32,7 +32,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
     [Authorize(Policy = PolicyConstants.DashboardAdmin)]
     public class HomeController : AdminBaseController
     {
-
+        
         #region Props  
         private readonly ISettingsManager _settingsHelpers;
         private readonly IUsersManagerService _identityService; 
@@ -51,7 +51,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
              IStringLocalizer<BaseController> localizer,
              ICCUServices contentServices,
              IContactService contactService,
-             IStatisticsService statisticsService)
+             IStatisticsService statisticsService )
             : base(telemetryClientService, logger, localizer)
         {
             _settingsHelpers = settingsHelpers;
@@ -59,8 +59,13 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             _contentServices = contentServices;
             _contactService = contactService;
             _statisticsService = statisticsService;
+          
         }
         #endregion
+
+
+     
+
 
         [AllowAnonymous]       
         public async Task<IActionResult> Index()
@@ -77,9 +82,9 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         }
         public virtual async Task<IActionResult> Dashboard ()
         {
-          
-            Dictionary<string, object> searchParams = new Dictionary<string, object>();
-            searchParams.Add("StatusId", 1);
+            ViewBag.UsersChart = null;
+
+           
             try
             {
 
@@ -88,8 +93,12 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 
                 if (users.Success)
                 {
-                    ViewBag.Users = users.Data;
+                    ViewBag.UsersChart = users.Data;
                 }
+
+
+
+               
 
             }
             catch (Exception ex)
@@ -102,8 +111,28 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             return View();
         }
 
-       
-          
+
+        
+        [HttpGet("{Culture}/[Area]/[Controller]/AuctionsStatistics")]
+        public async Task<JsonResult> AuctionsStatistics(DateTime fromdate , DateTime todate , int TimeZone)
+        {
+
+            try
+            {
+                var auctions_statistics = await _statisticsService.GetAuctionsStatistics(fromdate, todate, TimeZone);
+                return Json(auctions_statistics);
+            }
+            catch (Exception ex)
+            {
+
+                return ReturnJsonErrorResult(ex.Message, fromdate);
+
+            }
+             
+
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public virtual IActionResult Error()
         {

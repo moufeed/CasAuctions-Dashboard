@@ -22,6 +22,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Statistics
         Task<IRequestProviderResult<StatisticsDto>> GetContactUsNumericalStatisticsByTypeAsync(string lang);
 
         Task<IRequestProviderResult<StatisticsDto>> GetUsersStatistics(string lang);
+        Task<IRequestProviderResult<StatisticsDto>> GetAuctionsStatistics(DateTime fromDate, DateTime toDate , int? TimeZone);
 
     }
 }

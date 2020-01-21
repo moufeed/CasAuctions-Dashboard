@@ -1,0 +1,48 @@
+.chart-options {
+  span {
+    display: inline-block;
+    margin: 0 5px;
+  }
+}
+
+.widget-flex {
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+}
+.chart-container {
+  min-height: 410px;
+  width: 100%;
+}
+.chart-options {
+  margin-bottom: 15px;
+}
+.chart-loading {
+  height: 360px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.flex-display {
+  display: flex;
+}
+.svg-no-data {
+  display: none;
+  text-align: center;
+}
+
+svg {
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
+  image-rendering: optimizeQuality;
+  fill-rule: evenodd;
+  clip-rule:evenodd ;
+  .fil0 {
+    fill: #bac4ce;
+  }
+
+  .fil1 {
+    fill: #e06500;
+    fill-rule: nonzero;
+  }
+}

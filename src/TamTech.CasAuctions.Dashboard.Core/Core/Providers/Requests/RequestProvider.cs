@@ -32,16 +32,32 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests
             _currentLang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
         }
 
+
+
+        private void AddHeaderParameters(HttpClient httpClient, Dictionary<string, string> headerContent)
+        {
+            foreach (var item in headerContent)
+            {
+                httpClient.DefaultRequestHeaders.Add(item.Key, item.Value);
+            }
+        }
+
         public async Task DeleteAsync(string uri)
         {
             HttpClient httpClient = CreateHttpClient();
             await httpClient.DeleteAsync(uri);
         }
 
-        public async Task<IRequestProviderResult<TResult>> GetAsync<TResult>(string uri ,bool hasJsonContent = false)
+       
+
+        public async Task<IRequestProviderResult<TResult>> GetAsync<TResult>(string uri ,bool hasJsonContent = false ,Dictionary<string, string> headerContent = null)
         {
             IRequestProviderResult<TResult> result = new RequestProviderResult<TResult>();
             HttpClient httpClient = CreateHttpClient();
+            if (headerContent != null)
+            {
+                AddHeaderParameters(httpClient, headerContent);
+            }
             HttpResponseMessage response = await httpClient.GetAsync(uri);
             await HandleResponse<TResult>(response, result);
 

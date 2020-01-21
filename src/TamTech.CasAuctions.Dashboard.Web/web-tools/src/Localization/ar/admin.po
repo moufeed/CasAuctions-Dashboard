@@ -13,7 +13,7 @@ msgstr "زيارة الموقع العام"
 
 msgid "SEO"
 msgstr "تحسين نتائج محرّك البحث (SEO)"
- 
+
 msgid "Add"
 msgstr "إضافة"
 
@@ -79,10 +79,10 @@ msgstr "حفظ و متابعة"
 
 msgid "back_to_list"
 msgstr "العودة إلى القائمة"
- 
+
 msgid "add_Item"
 msgstr "إضافة عنصر"
- 
+
 msgid "title"
 msgstr "العنوان"
 
@@ -179,7 +179,7 @@ msgstr "محارف"
 
 msgid "none"
 msgstr "لا يوجد"
- 
+
 msgid "more"
 msgstr "المزيد"
 
@@ -191,7 +191,7 @@ msgstr "عدد العناصر :"
 
 msgid "showing_of"
 msgstr "عرض {0} إلى {1} من {2}"
- 
+
 msgid "all"
 msgstr "الكل"
 
@@ -229,10 +229,10 @@ msgstr "معرف الفيديو :"
 
 msgid  "choose_file"
 msgstr "اِختيار ملف."
- 
+
 msgid  "f_summary"
 msgstr "الملخّص :"
- 
+
 msgid  "f_description"
 msgstr "الوصف :"
 
@@ -320,7 +320,7 @@ msgstr "تاريخ الأنشاء"
 msgid "f_post_date"
 msgstr "تاريخ المقالة"
 
-#seo form 
+#seo form
 msgid "f_headline"
 msgstr "العنوان الرّئيسي :"
 
@@ -451,10 +451,10 @@ msgstr "ملخّص"
 
 msgid  "t_display_order"
 msgstr "ترتيب العرض"
- 
+
 msgid  "t_sku"
 msgstr "SKU"
- 
+
 msgid  "t_slug"
 msgstr "الأسم اللطيف"
 
@@ -533,7 +533,7 @@ msgstr "قراءة الرسالة"
 
 msgid "t_regoin"
 msgstr "المنطقة"
- 
+
 msgid "t_sender"
 msgstr "المرسل"
 
@@ -612,8 +612,8 @@ msgstr "الحالة"
 msgid "l_notes"
 msgstr "ملاحظات"
 
-# global alerts 
- 
+# global alerts
+
 msgid "success"
 msgstr "نجاح"
 
@@ -634,10 +634,10 @@ msgstr "نُشر بنجاح"
 
 msgid  "was_successfully_unpublished"
 msgstr "أُلغيَ النّشر بنجاح"
- 
+
 msgid  "no_data_table"
 msgstr "لا توجد بيانات متوفرة"
- 
+
 msgid  "upload_failed"
 msgstr "<strong>عفواً! </strong>&nbsp;&nbsp;فشِل الرّفع."
 
@@ -665,7 +665,7 @@ msgstr "هناك خطأ ما"
 
 msgid  "description_is_only_used_in_mobile_view"
 msgstr "ملاحظة : </strong>هذا الوصف يُستخدم فقط في واجهة الهاتف المحمول."
- 
+
 msgid  "image_uploading_error"
 msgstr "حدث خطأ أثناء رفع الصّورة!"
 
@@ -677,7 +677,7 @@ msgstr "تمّ إنشاء سلايدر بنجاح."
 
 msgid "slider_updating_successfully"
 msgstr "تمّ تحديث السّلايدر بنجاح."
- 
+
 msgid "gallery_item_creation_successfully"
 msgstr "تم إنشاء العنصر بنجاح"
 
@@ -973,7 +973,7 @@ msgid "c_id"
 msgstr "معرّف"
 
 msgid "parameter_required"
-msgstr "المعامل {0} مطلوب!" 
+msgstr "المعامل {0} مطلوب!"
 
 msgid "html_page_creation_successfully"
 msgstr "تمّ إنشاء صفحة HTML بنجاح."
@@ -986,7 +986,7 @@ msgstr "تمّ إنشاء صفحة Sections بنجاح."
 
 msgid "section_page_updating_successfully"
 msgstr "تمّ تحديث صفحة الـ Sections بنجاح."
-  
+
 #: pages Index.cshtml
 msgid "new_html_page"
 msgstr "صفحة HTML جديدة"
@@ -997,7 +997,7 @@ msgstr "صفحة Sections جديدة"
 #: HtmlPageDetails.cshtml
 msgid "page_details"
 msgstr "تفاصيل الصّفحة
- 
+
 #:menus controller
 msgid "menu_creation_successfully"
 msgstr "تمّ إنشاء قائمة بنجاح."
@@ -1167,27 +1167,27 @@ msgstr "سلايدر جديد"
 #: EditSliderItemForm.cshtml
 msgid "edit_slider_item"
 msgstr "تحرير صورة في السّلايدر"
- 
+
 msgid "f_slider_title"
 msgstr "عنوان السّلايدر :"
 
 #:EditSliderForm.cshtml
 msgid "edit_slider"
 msgstr "تحرير سلايدر"
- 
+
 msgid "unpublish/publish"
 msgstr "نشر/إلغاء النّشر"
- 
+
 msgid "slider"
 msgstr "سلايدر"
 
 #: _sliderItems.cshtml
 msgid "slider_items"
 msgstr "صور السّلايدر"
- 
+
 msgid "upload_single_image"
 msgstr "رفع صورة واحدة"
- 
+
 msgid "add_video"
 msgstr "إضافة فيديو"
 
@@ -1198,7 +1198,7 @@ msgstr "تفاصيل السّلايدر"
 #:CreateSliderItemForm.cshtml
 msgid "create_slider_item"
 msgstr "إنشاء صورة في السّلايدر"
- 
+
 msgid "back_to_slider"
 msgstr "العودة إلى السّلايدر"
 
@@ -1229,13 +1229,13 @@ msgstr "إضافة فيديو"
 msgid "edit_video_item"
 msgstr "تعديل الفيديو"
 
-#:FormGallery.cshtml 
+#:FormGallery.cshtml
 msgid "create_gallery"
 msgstr "إنشاء معرض صور"
 
 msgid "update_gallery"
 msgstr "تحديث معرض صور"
- 
+
 msgid "upload_multiple_images"
 msgstr "رفع عدّة صور"
 
@@ -1262,9 +1262,9 @@ msgstr "إلغاء النّشر"
 
 msgid "publish_all_images"
 msgstr "نشر كلّ الصّور"
-  
- 
- 
+
+
+
 msgid "attributes"
 msgstr "الميزات"
 
@@ -1287,7 +1287,7 @@ msgid "add_combination"
 msgstr "إضافة خصائص"
 
 #: categories controller
-  
+
 
 #: home _welcome-panel.cshtml
 msgid "welcome_to_tamcms"
@@ -1298,7 +1298,7 @@ msgstr "لقد قمنا بجمع بعض الرّوابط من أجل أن تبد
 
 msgid "create_page"
 msgstr "إنشاء صفحة"
- 
+
 msgid "next_steps"
 msgstr "خطوات تالية"
 
@@ -1310,13 +1310,13 @@ msgstr "المزيد"
 
 msgid "upload_first_gallery"
 msgstr "اِرفع أوّل معرض صور"
- 
+
 msgid "managing_services"
 msgstr "اِبدأ بإدارة خدماتك"
- 
+
 msgid "view_site"
 msgstr "اِستعرض موقعك"
- 
+
 msgid "check_home_slider"
 msgstr "تحقّق من سلايدر صفحتك الرّئيسيّة"
 
@@ -1438,7 +1438,7 @@ msgstr "تفاصيل التصنيف"
 msgid "section_parent"
 msgstr "التصنيف الأب"
 
-# : request index.cshtml 
+# : request index.cshtml
 
 msgid "customer_name"
 msgstr "الأسم"
@@ -1453,7 +1453,7 @@ msgstr "ترتيب بحسب"
 
 msgid "request_details"
 msgstr "تفاصيل الطلب"
- 
+
 msgid "request_status"
 msgstr "حالة الطلب"
 
@@ -1483,7 +1483,7 @@ msgstr "المعلومات"
 
 msgid "history"
 msgstr "ارشيف"
- 
+
 msgid "greaterThan_msg"
 msgstr "يجب ان تكون القيمة أكبر من  "
 
@@ -1511,7 +1511,7 @@ msgstr "حجم الملف يجب ان يكون اصغر من"
 # :controller adminbaseController.cs // filters
 
 msgid "title_a_to_z"
-msgstr "الأسم : ا الى ي" 
+msgstr "الأسم : ا الى ي"
 
 msgid "title_z_to_a"
 msgstr "الأسم : ي الى ا"
@@ -1520,8 +1520,8 @@ msgid "newst_first"
 msgstr "الأحدث أولاً"
 
 msgid "oldest_first"
-msgstr "الأقدام أولاً" 
- 
+msgstr "الأقدام أولاً"
+
 
 
 #:home page
@@ -1709,10 +1709,10 @@ msgstr "إنشاء نوع"
 
 msgid "new_type"
 msgstr "نوع جديد"
- 
+
 msgid "reply"
 msgstr "رد"
- 
+
 msgid "respond_to_the"
 msgstr "الرد على [{0}]"
 
@@ -1757,16 +1757,16 @@ msgstr "الموردين"
 
 msgid "new_vendor"
 msgstr "مورد جديد"
- 
+
 msgid "register_status"
 msgstr "حالة الطلب"
- 
+
 msgid "vendor_details"
 msgstr "تفاصيل المورد"
- 
+
 msgid "activation_status"
 msgstr "حالة التفعيل"
- 
+
 msgid "new_attribute"
 msgstr "سمة جديدة"
 
@@ -1890,25 +1890,25 @@ msgstr "الاجراء المتخذ"
 
 msgid "current_status_name"
 msgstr "الحالة الحالية"
- 
+
 
 msgid "region_name"
 msgstr "اسم المنطقة"
 
 msgid "regions"
 msgstr "المناطق"
- 
+
 
 msgid "new_region"
 msgstr "منطقة جديدة"
 
 msgid "region_creation_successfully"
 msgstr "تم إنشاء المنطقة بنجاح"
- 
+
 
 msgid "regions_update_successfully"
 msgstr "تم تحديث معلومات المنطقة بنجاح"
- 
+
 msgid "region_create"
 msgstr "إنشاء المنطقة"
 
@@ -2039,7 +2039,7 @@ msgstr "Actual End Date"
 msgid "SellerName"
 msgstr "Seller name"
 
-  
+
 msgid "Outbids"
 msgstr "Outbids"
 
@@ -2058,6 +2058,28 @@ msgstr "Sellers"
 
 msgid "Auctioneers"
 msgstr "Auctioneers"
+
+msgid "last_day"
+msgstr "Last day"
+
+msgid "last_week"
+msgstr "Last week"
+
+msgid "last_month"
+msgstr "Last month"
+
+msgid "custom"
+msgstr "custom"
+
+msgid "from_date"
+msgstr "start Date"
+
+msgid "to_date"
+msgstr "End Date"
+
+msgid "Auctions"
+msgstr "Auctions"
+
 
 msgid ""
 msgstr ""

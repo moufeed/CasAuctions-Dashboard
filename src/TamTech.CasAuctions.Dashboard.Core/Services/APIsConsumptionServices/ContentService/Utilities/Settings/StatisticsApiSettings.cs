@@ -4,8 +4,13 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Uti
 {
     public class StatisticsApiSettings : BaseAPISettings, IStatisticsApiSettings
     {
+
+ 
+
+         
         public StatisticsApiSettings(BackendAPIsSettings settings, string controller) : base(settings, controller)
         {
+           
         }
 
         public string GetPOSNumericalStatisticsByStatusEndpoint => $"{_AdminPath}/GetPOSNumericalStatisticsByStatusAsync";
@@ -19,6 +24,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Uti
         public string GetContactUsNumericalStatisticsByStatusEndpoint => $"{_AdminPath}/GetContactUsNumericalStatisticsByStatusAsync";
 
         public string GetContactUsNumericalStatisticsByTypeEndpoint => $"{_AdminPath}/GetContactUsNumericalStatisticsByTypeAsync";
-        public string GetUsersStatisticsEndpoint => $"{_AdminPath}/GetUsersStatisticsEndpoint";
+        public string GetUsersStatisticsEndpoint => $"{_IdentityPath}/Admin/Statistics/User/Numerical/ByStatus";
+
+        public string GetAuctionsStatisticsByDate => $"{_AuctionUrl}/api/Admin/Auction/Statistics/Numerical/ByStatus";
     }
 }

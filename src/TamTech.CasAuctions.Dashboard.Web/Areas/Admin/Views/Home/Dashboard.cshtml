@@ -1,6 +1,16 @@
-﻿@{
+﻿
+@using System.Linq;
+@{
     Layout = "_Layout";
     ViewData["Title"] = Localizer["home_page"];
+}
+
+@section Scripts{
+    <partial name="~/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml" />
+    <script>
+    var ChartUrl = "@Url.AdminUrl("AuctionsStatistics" ,"Home")";
+    </script>
+    <script src="~/Admin/js/cahrt.min.js"></script>
 }
 
 
@@ -10,29 +20,112 @@
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="x_panel tile">
                     <div class="x_title clearfix ">
-                        <h4>@Localizer["Users"]</h4>
+                        <h4>@Localizer["Auctions"]</h4>
+
                     </div>
-                    <div class="x_content p-3">
-                        <canvas id="cahrt" class="chart-widget"
-                                data-values="[11,22 ,12]"
-                                data-chart-type="doughnut"
-                                data-labels="Buyers (11), Sellers (22),Auctioneers (12)"
-                                data-backgrounds="#7AC8A9-#A9E5F7-#F2CB00"
-                                data-border-colors="#69ad92-#78bfd4-#c1a304"
-                                data-legend-position ="right"
-                                data-legend-display ="true"
-                                data-legend-padding="15"
-                                data-legend-align ="start"
-                                data-center-display="true"
-                                data-center-text="123"
-                                > </canvas>
+                    <div class="x_content p-3 widget-flex">
+                        <div class="chart-container">
+                            <div class="chart-options">
+                                <div class="radio">
+                                    <label class="">
+                                        <input type="radio" value="d" name="startDate" checked>
+                                        <span>  @Localizer["last_day"]</span>
+                                    </label>
+                                    <label class="">
+                                        <input type="radio" value="w" name="startDate">
+                                        <span>@Localizer["last_week"]</span>
+                                    </label>
+                                    <label class="">
+                                        <input type="radio" value="m" name="startDate">
+                                        <span> @Localizer["last_month"]</span>
+                                    </label>
+                                    <label class="">
+                                        <input type="radio" value="c" name="customDate">
+                                        <span> @Localizer["custom"] </span>
+                                    </label>
+                                </div>
+                                <form class="row" id="customDateForm" style="display:none">
+                                    <div class="from-group col-md-5">
+                                        <label for="">@Localizer["from_date"]</label>
+                                        <input type="datetime-local" name="fromdate" class="form-control" required/>
+                                    </div>
+                                    <div class="from-group col-md-5">
+                                        <label for="">@Localizer["to_date"]</label>
+                                        <input type="datetime-local" name="todate" class="form-control"  required/>
+                                    </div>
+                                    <div class="from-group col-md-2">
+
+                                      <button class="btn btn-success m-t5"> @Localizer["send"]</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="chart-area">
+                                <div class="chart-loading">
+                                    <div class="lds-ripple">
+                                        <div class="lds-pos"></div>
+                                        <div class="lds-pos"></div>
+                                    </div>
+                                </div>
+                                <canvas id="auctionsCahrt" style="display:none"></canvas>
+
+                                <div class="svg-no-data">
+                                    <svg height="300px" viewBox="0 0 10500 8400">
+                                        <g id="_973955920">
+                                            <rect class="fil0" transform="matrix(2.12995E-014 -8.35041 0.804223 2.21157E-013 1506.24 6714.9)" width="661" height="172" />
+                                            <path class="fil1" d="M3655 4395l0 -1028 -202 0 0 646 -440 -646 -207 0 0 1028 202 0 0 -671 452 671 195 0zm687 18c287,0 496,-222 496,-532 0,-309 -209,-531 -496,-531 -286,0 -495,222 -495,531 0,310 209,532 495,532zm0 -194c-175,0 -287,-146 -287,-338 0,-192 112,-337 287,-337 175,0 288,145 288,337 0,192 -113,338 -288,338zm1426 176c297,0 504,-204 504,-514 0,-309 -207,-514 -504,-514l-374 0 0 1028 374 0zm0 -193l-172 0 0 -643 172 0c195,0 297,141 297,322 0,175 -109,321 -297,321zm1533 193l-365 -1028 -253 0 -367 1028 230 0 60 -174 407 0 58 174 230 0zm-344 -367l-295 0 148 -443 147 443zm814 367l0 -836 276 0 0 -192 -756 0 0 192 277 0 0 836 203 0zm1249 0l-366 -1028 -253 0 -366 1028 230 0 60 -174 406 0 59 174 230 0zm-344 -367l-296 0 148 -443 148 443z" />
+                                            <rect class="fil0" x="1645" y="6577" width="7743" height="138" />
+                                            <rect class="fil0" x="1113" y="6577" width="532" height="138" />
+                                            <rect class="fil0" transform="matrix(2.12995E-014 -0.804224 0.804223 2.12995E-014 9249.07 7108.56)" width="661" height="172" />
+                                            <rect class="fil0" x="1113" y="4782" width="532" height="138" />
+                                            <rect class="fil0" x="1113" y="2986" width="532" height="138" />
+                                            <rect class="fil0" transform="matrix(2.12995E-014 -0.804224 0.804223 2.12995E-014 6668.13 7108.56)" width="661" height="172" />
+                                            <rect class="fil0" transform="matrix(2.12995E-014 -0.804224 0.804223 2.12995E-014 4087.18 7108.56)" width="661" height="172" />
+                                            <rect class="fil0" x="1115" y="1191" width="532" height="138" />
+                                            <rect class="fil0" transform="matrix(2.12995E-014 -0.804224 0.804223 2.12995E-014 1506.24 7108.56)" width="661" height="172" />
+                                        </g>
+                                    </svg>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="x_panel tile">
+                    <div class="x_title clearfix ">
+                        <h4>@Localizer["Users"]</h4>
+                    </div>
+                    <div class="x_content p-3  widget-flex">
+                        @if (ViewBag.UsersChart != null)
+                        {
+
+                            int total = (ViewBag.UsersChart.Data as List<int>).Sum();
+
+                            <canvas id="cahrt" class="chart-widget"
+                                    data-values="[@(string.Join(",", ViewBag.UsersChart.Data))]"
+                                    data-chart-type="doughnut"
+                                    data-labels="@(string.Join(",", ViewBag.UsersChart.Labels))"
+                                    data-backgrounds="#7AC8A9-#A9E5F7-#F2CB00"
+                                    data-hover-colors="#5dbc97-#93e2fa-#e9c400"
+                                    data-border-colors="#69ad92-#78bfd4-#c1a304"
+                                    data-legend-position="right"
+                                    data-legend-display="true"
+                                    data-legend-padding="15"
+                                    data-legend-align="start"
+                                    data-center-display="true"
+                                    data-center-text="@total"> </canvas>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </section>
-
-@section Scripts{
-    <script src="~/Admin/js/cahrt.min.js"></script>
-}

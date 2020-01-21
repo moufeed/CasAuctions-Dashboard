@@ -7,13 +7,16 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices
         private const string admin = "Admin";   
         public readonly string _PortlPath;
         public readonly string _AdminPath;
-
-
+        public readonly string _IdentityPath;
+        public readonly string _AuctionUrl;
         public BaseAPISettings(BackendAPIsSettings settings, string controller)
         {
              string apiRoot =  $"{settings.IdentityApiUrl.TrimEnd('/')}/api";
+            _IdentityPath = $"{settings.IdentityApiUrl.TrimEnd('/')}/api";
+
             _PortlPath = $"{apiRoot}/{controller}";
             _AdminPath = $"{apiRoot}/{admin}/{controller}";
+            _AuctionUrl = settings.AuctionApiUrl;
         }
 
 

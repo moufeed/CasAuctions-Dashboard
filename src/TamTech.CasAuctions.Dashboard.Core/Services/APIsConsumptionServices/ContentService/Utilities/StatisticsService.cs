@@ -42,9 +42,10 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Uti
                 Data = Data
             };
         }
+
         public IRequestProviderResult<StatisticsDto> MapToStatisticsDto(IRequestProviderResult<IEnumerable<NumericalStatisticsItemDto>> result)
         {
-           return new RequestProviderResult<StatisticsDto>
+            return new RequestProviderResult<StatisticsDto>
             {
                 Data = MapToStatisticsDto(result.Data),
                 Header = result.Header,
@@ -54,6 +55,48 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Uti
                 Success = result.Success,
             };
         }
+
+
+        public IRequestProviderResult<StatisticsDto> MapToChartsDTo(IRequestProviderResult<IEnumerable<ChartsStatistics>> data)
+        {
+
+            var result = new RequestProviderResult<StatisticsDto>();
+            if (data == null || data.Data == null)
+            {
+                result.Success = false;
+                return result;
+            }
+            result.Success = true;
+            result.Data = new StatisticsDto
+            {
+                Labels = data.Data?.Select(m => m.key).ToList(),
+                Data = data.Data?.Select(m => m.Count).ToList()
+            };
+            return result;
+
+        }
+         
+
+     
+
+
+
+
+        public async Task<IRequestProviderResult<StatisticsDto>> GetUsersStatistics(string lang)
+        {
+            var result = await ReqProvider.GetAsync<IEnumerable<ChartsStatistics>>(_apiSettings.GetUsersStatisticsEndpoint);
+            return MapToChartsDTo(result);
+        }
+
+
+        public async Task<IRequestProviderResult<StatisticsDto>> GetAuctionsStatistics(DateTime fromDate, DateTime toDate , int? TimeZone)
+        {
+            var prms = $"fromDate={fromDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}&toDate={toDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}";
+            var url = $"{_apiSettings.GetAuctionsStatisticsByDate}?{prms}";
+            var result = await ReqProvider.GetAsync<IEnumerable<ChartsStatistics>>(url,false, TimeZone != null ? new Dictionary<string, string>() { { "device_time_zone", TimeZone.ToString() } } : null);
+            return MapToChartsDTo(result);
+        }
+
 
 
         public async Task<IRequestProviderResult<StatisticsDto>> GetContactUsNumericalStatisticsByStatusAsync(string lang)
@@ -94,10 +137,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Uti
             return MapToStatisticsDto(result);
         }
 
-        public async Task<IRequestProviderResult<StatisticsDto>> GetUsersStatistics(string lang)
-        {
-            var result = await ReqProvider.GetAsync<IEnumerable<NumericalStatisticsItemDto>, List<object>>(_apiSettings.GetUsersStatisticsEndpoint, new List<object> { lang }, PassParamsBy.Route);
-            return MapToStatisticsDto(result);
-        }
+       
+
+         
     }
 }

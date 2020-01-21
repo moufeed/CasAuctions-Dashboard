@@ -14,7 +14,7 @@ msgstr "Visit public site"
 
 msgid "SEO"
 msgstr "SEO"
- 
+
 msgid "Add"
 msgstr "Add"
 
@@ -77,10 +77,10 @@ msgstr "Save and continue"
 
 msgid "back_to_list"
 msgstr "Back to List"
- 
+
 msgid "add_Item"
 msgstr "Add Item"
- 
+
 msgid "title"
 msgstr "Title"
 
@@ -116,7 +116,7 @@ msgstr "Total"
 
 msgid "locked_by_system"
 msgstr "Locked by system"
-  
+
 msgid "meta_keywords"
 msgstr "Meta keywords"
 
@@ -176,7 +176,7 @@ msgstr "Characters"
 
 msgid "none"
 msgstr "None"
- 
+
 msgid "more"
 msgstr "More"
 
@@ -188,7 +188,7 @@ msgstr "Total items :"
 
 msgid "showing_of"
 msgstr "Showing {0} to {1} of {2}"
- 
+
 msgid "all"
 msgstr "All"
 
@@ -223,13 +223,13 @@ msgstr "Video url :"
 
 msgid "f_video_id"
 msgstr "Video Id "
- 
+
 msgid  "choose_file"
 msgstr "Choose file."
- 
+
 msgid  "f_summary"
 msgstr "Summary :"
- 
+
 msgid  "f_description"
 msgstr "Description :"
 
@@ -317,7 +317,7 @@ msgstr "Create date"
 msgid "f_post_date"
 msgstr "Post Date"
 
-#seo form 
+#seo form
 msgid "f_headline"
 msgstr "HeadLine :"
 
@@ -448,10 +448,10 @@ msgstr "Summary"
 
 msgid  "t_display_order"
 msgstr "Display Order"
- 
+
 msgid  "t_sku"
 msgstr "SKU"
- 
+
 msgid  "t_slug"
 msgstr "Slug"
 
@@ -554,8 +554,8 @@ msgstr "Notes"
 
 
 
-# global alerts 
- 
+# global alerts
+
 msgid "success"
 msgstr "Success"
 
@@ -576,10 +576,10 @@ msgstr "Was successfully published"
 
 msgid  "was_successfully_unpublished"
 msgstr "Was successfully unpublished"
- 
+
 msgid  "no_data_table"
 msgstr "No data available in table"
- 
+
 msgid  "upload_failed"
 msgstr "<strong>Oops! </strong>&nbsp;&nbsp;Upload failed."
 
@@ -603,7 +603,7 @@ msgstr "Something went wrong"
 
 msgid  "description_is_only_used_in_mobile_view"
 msgstr "Note : </strong>this description is only used in mobile view."
- 
+
 msgid  "image_uploading_error"
 msgstr "An error occurred while uploading the image!"
 
@@ -912,7 +912,7 @@ msgid "c_id"
 msgstr "Id"
 
 msgid "parameter_required"
-msgstr "{0} parameter is required!" 
+msgstr "{0} parameter is required!"
 
 msgid "html_page_creation_successfully"
 msgstr "The Html Page creation was done successfully."
@@ -925,7 +925,7 @@ msgstr "The Sections Page creation was done successfully."
 
 msgid "section_page_updating_successfully"
 msgstr "The Sections Page updating was done successfully."
-  
+
 #: pages Index.cshtml
 msgid "new_html_page"
 msgstr "New html Page"
@@ -936,7 +936,7 @@ msgstr "New Sections Page"
 #: HtmlPageDetails.cshtml
 msgid "page_details"
 msgstr "Page Details"
- 
+
 #:menus controller
 msgid "menu_creation_successfully"
 msgstr "The Menu creation was done successfully."
@@ -984,7 +984,7 @@ msgstr "Static Page"
 
 msgid "service"
 msgstr "Service"
- 
+
 msgid "gallery"
 msgstr "Gallery"
 
@@ -1109,30 +1109,30 @@ msgstr "New Slider"
 #: EditSliderItemForm.cshtml
 msgid "edit_slider_item"
 msgstr "Edit Slider Item"
- 
+
 msgid "f_slider_title"
 msgstr "Slider Title"
 
 #:EditSliderForm.cshtml
 msgid "edit_slider"
 msgstr "Edit Slider"
- 
+
 msgid "unpublish/publish"
 msgstr "Unpublish/Publish"
- 
+
 msgid "slider"
 msgstr "Slider"
 
 #: _sliderItems.cshtml
 msgid "slider_items"
 msgstr "Slider Items"
- 
+
 msgid "upload_single_image"
 msgstr "Upload Single Image"
 
 msgid "add_video"
 msgstr "Add Video"
- 
+
 #: sliders Details.cshtml
 msgid "slider_details"
 msgstr "Slider Details "
@@ -1140,7 +1140,7 @@ msgstr "Slider Details "
 #:CreateSliderItemForm.cshtml
 msgid "create_slider_item"
 msgstr "Create Slider Item"
- 
+
 msgid "back_to_slider"
 msgstr "Back to Slider"
 
@@ -1171,13 +1171,13 @@ msgstr "Create Video"
 msgid "edit_video_item"
 msgstr "Edit Video"
 
-#:FormGallery.cshtml 
+#:FormGallery.cshtml
 msgid "create_gallery"
 msgstr "Create Gallery"
 
 msgid "update_gallery"
 msgstr "Update Gallery"
- 
+
 msgid "upload_multiple_images"
 msgstr "Upload Multiple Images"
 
@@ -1228,7 +1228,7 @@ msgstr "The attribute value of product creation was done successfully."
 msgid "attribute_value_updating_successfully"
 msgstr "The attribute value of product updating was done successfully."
 
-#: product javascript 
+#: product javascript
 msgid "delete_combination"
 msgstr "Delete Combination"
 #: products Index.cshtml
@@ -1278,7 +1278,7 @@ msgstr "Full Description (WEB) :"
 
 msgid "maximum_cart_quantity"
 msgstr "Maximum Cart Quantity"
- 
+
 msgid "requires_shipping"
 msgstr "Requires Shipping"
 
@@ -1350,10 +1350,10 @@ msgstr "Welcome to TamCMS Admin Panel!"
 
 msgid "welcome_message"
 msgstr "We’ve assembled some links to get you started:"
- 
+
 msgid "create_page"
 msgstr "Create Page"
- 
+
 msgid "next_steps"
 msgstr "Next Steps"
 
@@ -1362,16 +1362,16 @@ msgstr "Get started"
 
 msgid "more_actions"
 msgstr "More actions"
- 
+
 msgid "upload_first_gallery"
 msgstr "Upload your first gallery"
- 
+
 msgid "managing_services"
 msgstr "Start managing your services"
- 
+
 msgid "view_site"
 msgstr "View your site"
- 
+
 msgid "check_home_slider"
 msgstr "Check your home page slider"
 
@@ -1447,7 +1447,7 @@ msgstr "Post Title"
 msgid "section_name"
 msgstr "Section Name"
 
- 
+
 #: Posts Form.cshtml
 msgid "post_edit"
 msgstr "Edit post"
@@ -1493,7 +1493,7 @@ msgstr "Section details"
 msgid "section_parent"
 msgstr "Section Parent"
 
-# : request index.cshtml 
+# : request index.cshtml
 
 msgid "customer_name"
 msgstr "Cutomer name"
@@ -1508,7 +1508,7 @@ msgstr "Choice option"
 
 msgid "request_details"
 msgstr "Request Details"
- 
+
 msgid "request_status"
 msgstr "Request Status"
 
@@ -1532,7 +1532,7 @@ msgstr "Current status"
 
 msgid "previous_status"
 msgstr "Previous status"
- 
+
 msgid "information"
 msgstr "Information"
 
@@ -1548,7 +1548,7 @@ msgstr "Only use numbers,letters and   _ , - , +  symbols. no space are allowed.
 msgid "regex_msg"
 msgstr "Please check your input."
 
- 
+
 msgid "lessThan_msg"
 msgstr "The value must be less than"
 
@@ -1560,14 +1560,14 @@ msgstr  "The @type is required and cannot be an empty string "
 
 msgid "url_msg"
 msgstr "Url must be in this form : http://example.com"
- 
+
 msgid "filesize_msg"
 msgstr "File size must be less than "
 
 # :controller adminbaseController.cs // filters
 
 msgid "title_a_to_z"
-msgstr "Title: A to Z" 
+msgstr "Title: A to Z"
 
 msgid "title_z_to_a"
 msgstr "Title: Z to A"
@@ -1577,7 +1577,7 @@ msgstr "Newest first"
 
 msgid "oldest_first"
 msgstr "Oldest first"
- 
+
 
 #:home page
 
@@ -1727,7 +1727,7 @@ msgstr "Actual End Date"
 msgid "SellerName"
 msgstr "Seller name"
 
-  
+
 msgid "Outbids"
 msgstr "Outbids"
 
@@ -1737,7 +1737,7 @@ msgstr "Participants"
 msgid "LimitPrice"
 msgstr "Limit price"
 
- 
+
 
 msgid "Buyers"
 msgstr "Buyers"
@@ -1747,3 +1747,24 @@ msgstr "Sellers"
 
 msgid "Auctioneers"
 msgstr "Auctioneers"
+
+msgid "last_day"
+msgstr "Last day"
+
+msgid "last_week"
+msgstr "Last week"
+
+msgid "last_month"
+msgstr "Last month"
+
+msgid "custom"
+msgstr "custom"
+
+msgid "from_date"
+msgstr "start Date"
+
+msgid "to_date"
+msgstr "End Date"
+
+msgid "Auctions"
+msgstr "Auctions"
