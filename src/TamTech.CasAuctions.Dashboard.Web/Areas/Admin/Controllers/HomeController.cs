@@ -13,24 +13,13 @@ using TamTech.CasAuctions.Dashboard.SDK.Models.VMs;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Constants;
 using Microsoft.AspNetCore.Http;
 using TamTech.CasAuctions.Dashboard.SDK.Services.Upload;
-using Microsoft.Extensions.Localization;     
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContactUs;
-using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Statistics;
-using TamTech.CasAuctions.Dashboard.SDK.Core.Settings.Utilities;
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContentCommonUtilities;
-using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos;
-using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Pagination;
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContactUs.Models;
-using TamTech.CasAuctions.Dashboard.SDK.Core.Helpers;
-using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
-using TamTech.CasAuctions.Dashboard.SDK.Services.Upload.Models;
+using Microsoft.Extensions.Localization;                   
 using Microsoft.Extensions.Logging;
 using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.Statistics;
 
 namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 {       
-    [Authorize(Policy = PolicyConstants.DashboardAdmin)]
+  [Authorize(Policy = PolicyConstants.DashboardAdmin)]
     public class HomeController : AdminBaseController
     {
         

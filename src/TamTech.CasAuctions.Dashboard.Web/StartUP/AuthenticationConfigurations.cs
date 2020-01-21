@@ -17,6 +17,22 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
             string authority = Configuration.GetSection(AppSettings.BackendAPIsSettings)
                                                            .GetSection(AppSettings.IdentityApiUrl).Get<string>();
 
+            //services.AddAuthentication()
+            //     .AddIdentityServerAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme, isAuth =>
+            //     {
+            //         isAuth.Authority = IdentityServiceSettings.Url;
+            //         isAuth.ApiName = IdentityServiceSettings.ApiName;
+            //         isAuth.RequireHttpsMetadata = IdentityServiceSettings.RequireHttpsMetadata;
+            //     }).Services.ConfigureApplicationCookie(options =>
+            //     {
+            //         options.SlidingExpiration = true;
+            //         options.ExpireTimeSpan = TimeSpan.FromMinutes(LogoutAfterMinutes);
+            //     })
+
+
+
+
+
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";

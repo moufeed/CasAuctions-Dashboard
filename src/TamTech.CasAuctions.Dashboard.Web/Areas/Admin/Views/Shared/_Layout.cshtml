@@ -95,29 +95,43 @@
 
             <div class="clearfix"></div>
             <!-- page content -->
+            <div style="float:right; background-color:darkslategrey">
 
-            <div class="right_col" role="main">
-                @RenderBody()
+
+                @foreach (var item in User.Identity.GetPoliciesAccessible())
+                {
+                    <b>  Policy Accessible :  <h4 style="color:white; margin:10px">@item</h4></b>
+                }
             </div>
-            <!-- /page content -->
-            <!-- footer content -->
-            <footer>
-                <div class="pull-left flip-dir">
-                    <a href="https://tantumproj.com" class="c-blue"
-                       data-toggle="tooltip" data-placement="top" title="@Localizer["visit_website"]" target="_blank">
-                        <span class="fa fa-globe"></span>
-                        @Localizer["tantum"]
-                    </a>
+            <div style="float:right; background-color:darkslategrey">
+
+                @foreach (var item in User.Identity.GetUserRoles())
+                {
+                    <b> Role : <h4 style="color:white; margin:10px">@item</h4></b>
+                }
+            </div>
+                <div class="right_col" role="main">
+                    @RenderBody()
                 </div>
-                <div class="pull-right flip-dir">
-                    &copy; 2018 - @DateTime.Now.Year
-                    @Localizer["AdminPanel"] - V @ViewBag.AppVersion
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
+                <!-- /page content -->
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-left flip-dir">
+                        <a href="https://tantumproj.com" class="c-blue"
+                           data-toggle="tooltip" data-placement="top" title="@Localizer["visit_website"]" target="_blank">
+                            <span class="fa fa-globe"></span>
+                            @Localizer["tantum"]
+                        </a>
+                    </div>
+                    <div class="pull-right flip-dir">
+                        &copy; 2018 - @DateTime.Now.Year
+                        @Localizer["AdminPanel"] - V @ViewBag.AppVersion
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
         </div>
-    </div>
 
 
 

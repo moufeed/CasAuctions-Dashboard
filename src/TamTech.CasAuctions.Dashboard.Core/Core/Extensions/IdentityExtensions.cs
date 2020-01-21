@@ -60,5 +60,13 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Extensions
                 return claim?.Value;
             }
         }
+
+
+        public static List<string> GetPoliciesAccessible(this IIdentity identity)   
+        {
+            List<string> roles =  identity.GetUserRoles();
+            List<string> policies = PolicyConstants.Policies.Where(p => p.Value.Split(',').Any(r => roles.Contains(r)))?.Select(p => p.Key)?.ToList();
+            return policies;
+        }
     }
 }

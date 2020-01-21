@@ -1,4 +1,7 @@
-﻿ 
+﻿
+
+using System.Collections.Generic;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Policies;
 
 namespace TamTech.CasAuctions.Dashboard.SDK.Core.Constants
 {      /// <summary>
@@ -10,12 +13,20 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Constants
        /// </summary>
     public static class PolicyConstants
     {
-        public const string AuthenticatedUser = "AuthenticatedUser";
 
-        
+        public static List<PolicySetting> Policies;
+        #region CAS Auctions
 
-       
+        public const string AuctionsAdmin = "AuctionsAdmin";
+        public const string DsItemsAdmin = "DsItemsAdmin";
+        public const string SellerRequestsAdmin = "SellerRequestsAdmin";
 
+
+
+        #endregion
+
+
+        public const string AuthenticatedUser = "AuthenticatedUser";  
        
 
         public const string MenusContentAdmin = "MenusContentAdmin";
@@ -29,6 +40,9 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Constants
         public const string BiographiesAdmin = "BiographiesAdmin";
 
         public const string IdentityUserAccess = "IdentityUserAccess";
-        public const string IdentityManager = "IdentityManager";         
+        public const string IdentityManager = "IdentityManager";
+
+
+
     }
 }

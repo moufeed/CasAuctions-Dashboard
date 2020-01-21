@@ -14,11 +14,13 @@ namespace TamTech.CasAuctions.Dashboard.Web
     public class Startup
     {
         private readonly IConfiguration _configuration;   
+        private readonly IHostingEnvironment _env;   
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
 
              _configuration = configuration;
+            _env = env;
         }
 
 
@@ -39,7 +41,7 @@ namespace TamTech.CasAuctions.Dashboard.Web
             services.AddFiltersConfigurations();
 
            services.AddAuthenticationConfigurations(_configuration);   
-           services.AddAuthorizationConfigurations(_configuration);   
+           services.AddAuthorizationConfigurations(_configuration, _env);   
 
             services.AddCommonServicesConfigurations(_configuration);           
 

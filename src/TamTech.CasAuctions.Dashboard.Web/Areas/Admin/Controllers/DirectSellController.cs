@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using TamTech.CasAuctions.Dashboard.SDK.Core.Constants;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Telemetry;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
@@ -16,6 +18,8 @@ using TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers;
 
 namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 {
+
+    [Authorize(Policy = PolicyConstants.DsItemsAdmin)]
     public class DirectSellController : AdminBaseController
     {
 

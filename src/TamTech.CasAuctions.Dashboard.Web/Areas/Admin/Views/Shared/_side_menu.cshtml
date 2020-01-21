@@ -1,10 +1,12 @@
 ﻿
 
 @{ 
-    
-     
+
+
     string activeController = ViewContext.RouteData.Values["Controller"].ToString();
     string activeAction = ViewContext.RouteData.Values["Action"].ToString();
+    List<string> policiesAccessible = User.Identity.GetPoliciesAccessible();
+
 }
 
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -20,7 +22,7 @@
 
 
 
-
+            
 
 
 
@@ -33,19 +35,19 @@
             </if>
 
 
-            <if include-if="@AdminModules.SellerRequests">
+            <if include-if="@policiesAccessible.Any(p => p.Equals(PolicyConstants.SellerRequestsAdmin))">
                 <li>
                     <a asp-area="Admin" asp-controller="SellerRequests" asp-action="Index"><i class="fa fa-id-card-o"></i>@Localizer["seller_requests"]</a>
                 </li>
             </if>
 
-            <if include-if="@AdminModules.Auctions">
+            <if include-if="@policiesAccessible.Any(p => p.Equals(PolicyConstants.AuctionsAdmin))">
                 <li>
                     <a asp-area="Admin" asp-controller="Auctions" asp-action="Index"><i class="fa fa-gavel"></i>@Localizer["auctions"]</a>
                 </li>
             </if>
             
-            <if include-if="@AdminModules.DirectSell">
+            <if include-if="@policiesAccessible.Any(p => p.Equals(PolicyConstants.DsItemsAdmin))">
                 <li>
                     <a asp-area="Admin" asp-controller="DirectSell" asp-action="Index"><i class="fa fa-cube"></i>@Localizer["Direct Sell"]</a>
                 </li>

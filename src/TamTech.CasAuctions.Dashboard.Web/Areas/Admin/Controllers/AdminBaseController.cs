@@ -25,7 +25,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [ServiceFilter(typeof(AdminFilter))]
-    [Authorize(Policy = PolicyConstants.AdminAccess)]
+   [Authorize(Policy = PolicyConstants.AdminAccess)]
     public abstract class AdminBaseController : BaseController
     {
 
