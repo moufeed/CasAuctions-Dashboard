@@ -248,7 +248,8 @@ function drawChart(data, update) {
           }
         },
         legend: {
-          position: "right"
+          position: "right",
+          align: "start"
         }
       }
     });
@@ -328,17 +329,16 @@ $("#customDateForm").validate({
     error.insertAfter(element);
   },
   submitHandler: function(form) {
-    let action = $(form).attr("action");
-    let fromdate = $(form)
+    let fromDate = $(form)
       .find('input[name="fromdate"]')
       .val();
-    let todate = $(form)
+    let toDate = $(form)
       .find('input[name="todate"]')
       .val();
 
     loadChart(
-      new Date(fromdate).toISOString(),
-      new Date(todate).toISOString(),
+      new Date(fromDate).toISOString(),
+      new Date(toDate).toISOString(),
       true
     );
   }
