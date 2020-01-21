@@ -19,13 +19,14 @@ using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Statistics;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Settings.Utilities;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContentCommonUtilities;
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Statistics.Models;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Pagination;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContactUs.Models;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Helpers;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
 using TamTech.CasAuctions.Dashboard.SDK.Services.Upload.Models;
 using Microsoft.Extensions.Logging;
+using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.Statistics;
 
 namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 {       
@@ -34,31 +35,21 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
     {
         
         #region Props  
-        private readonly ISettingsManager _settingsHelpers;
-        private readonly IUsersManagerService _identityService; 
-        private readonly IContactService _contactService;
-        private readonly ICCUServices _contentServices;
-        private readonly IStatisticsService _statisticsService;
+                                                                  
+        private readonly SDK.Services.AuctionService.Statistics.IStatisticsService _casAuctionStatisticsService;
     //    IUploadManagerService _uploadManager;
 
         #endregion
 
         #region Ctors  
-        public HomeController(ITelemetryService telemetryClientService,
-            ISettingsManager settingsHelpers,
-           //  IUploadManagerService uploadManager,
+        public HomeController(ITelemetryService telemetryClientService,   
                ILogger<HomeController> logger,
-             IStringLocalizer<BaseController> localizer,
-             ICCUServices contentServices,
-             IContactService contactService,
-             IStatisticsService statisticsService )
+               IStringLocalizer<BaseController> localizer,
+            SDK.Services.AuctionService.Statistics.IStatisticsService  casAuctionStatisticsService )
             : base(telemetryClientService, logger, localizer)
         {
-            _settingsHelpers = settingsHelpers;
-          //  _uploadManager = uploadManager;
-            _contentServices = contentServices;
-            _contactService = contactService;
-            _statisticsService = statisticsService;
+        
+            _casAuctionStatisticsService = casAuctionStatisticsService;
           
         }
         #endregion
@@ -89,7 +80,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             {
 
                 var _lang = GetCurrentDataLang();
-                var users = await _statisticsService.GetUsersStatistics(_lang);
+                var users = await _casAuctionStatisticsService.GetUsersStatistics(_lang);
 
                 if (users.Success)
                 {
@@ -119,7 +110,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 
             try
             {
-                var auctions_statistics = await _statisticsService.GetAuctionsStatistics(fromdate, todate, TimeZone);
+                var auctions_statistics = await _casAuctionStatisticsService.GetAuctionsStatistics(fromdate, todate, TimeZone);
                 return Json(auctions_statistics);
             }
             catch (Exception ex)

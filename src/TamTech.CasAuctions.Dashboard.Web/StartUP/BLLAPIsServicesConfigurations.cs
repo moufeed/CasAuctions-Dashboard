@@ -6,8 +6,8 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Biograp
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Biography.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Contact;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Contact.Settings;
-using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions;
-using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.DirectSellItems;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.AuctionService.Auctions;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.AuctionService.DirectSellItems;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Directory;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Directory.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.IdentityService;
@@ -34,11 +34,11 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Values.
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Vendor;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Vendor.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Attributes;
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Auctions;
+using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.Auctions;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Biographies;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContactUs;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.ContentCommonUtilities;
-using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.DirectSellItems;
+using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.DirectSellItems;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Menus;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Pages;
 using TamTech.CasAuctions.Dashboard.SDK.Services.ContentService.Regions;
@@ -70,6 +70,11 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
 
             services.AddTransient<IAuctionsService, AcutionsService>();
             services.AddTransient<IDsItemsService, DSItemsService>();
+
+            services.AddTransient<TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.Statistics.IStatisticsService,
+                TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Statistics.StatisticsService>();
+            
+
 
             services.AddTransient<IPosTypeService>((serviceExtension) =>
             {

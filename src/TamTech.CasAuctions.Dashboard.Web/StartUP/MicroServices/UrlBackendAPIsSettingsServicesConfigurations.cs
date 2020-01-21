@@ -6,8 +6,8 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Attributes.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Biography.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Contact.Settings;
-using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.Auctions.settings;
-using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.ContentService.DirectSellItems.settings;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.AuctionService.Auctions.settings;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.AuctionService.DirectSellItems.settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Directory.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.IdentityService.SellerRequests.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Menus.Settings;
@@ -30,13 +30,15 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP.MicroServices
     {
         public static void MicroServices_AddBackendAPIsSettingsConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-
             services.AddSingleton((serviceExtension) =>
             {
                 return configuration.GetSection(AppSettings.BackendAPIsSettings)
                                                                   .Get<BackendAPIsSettings>();
             });
 
+
+
+            #region CAS Auctions
 
             services.AddScoped<IRequestApiEndpoints, RequestApiEndpoints>((serviceExtension) =>
             {
@@ -57,6 +59,21 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP.MicroServices
                 return new DsItemsApiSettings(settings);
             });
 
+            services.AddScoped<TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Statistics.Settings.IStatisticsApiSettings>((serviceExtension) =>
+            {
+                BackendAPIsSettings settings = serviceExtension.GetRequiredService<BackendAPIsSettings>();
+                return new TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Statistics.Settings.StatisticsApiSettings(settings, BaseAPISettings.StatisticsController);
+            });
+
+            #endregion
+
+
+
+
+
+         
+
+      
 
             services.AddScoped<IContactUsTypeApiSettings, TypeApiSettings>((serviceExtension) =>
             {
