@@ -26,6 +26,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Sta
         public string GetContactUsNumericalStatisticsByTypeEndpoint => $"{_AdminPath}/GetContactUsNumericalStatisticsByTypeAsync";
         public string GetUsersStatisticsEndpoint => $"{_IdentityPath}/Admin/Statistics/User/Numerical/ByStatus";
 
-        public string GetAuctionsStatisticsByDate => $"{_AuctionUrl}/api/Admin/Auction/Statistics/Numerical/ByStatus";
+        public string GetAuctionsStatisticsByDate => $"{_AuctionUrl}/api/Admin/Statistic/Auction/Numerical/ByStatus";
+        public string GetDSItemsStatisticsByDate => $"{_AuctionUrl}/api/Admin/Statistic/DsItem/Numerical/ByStatus";
     }
 }

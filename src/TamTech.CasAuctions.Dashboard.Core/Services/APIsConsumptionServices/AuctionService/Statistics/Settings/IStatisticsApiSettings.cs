@@ -20,6 +20,9 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Sta
         string GetContactUsNumericalStatisticsByTypeEndpoint { get; }
 
         string GetUsersStatisticsEndpoint { get; }
+
         string GetAuctionsStatisticsByDate { get; }
+
+        string GetDSItemsStatisticsByDate { get; }
     }
 }

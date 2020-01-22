@@ -2097,7 +2097,7 @@ msgstr "Role"
 
 
 msgid "permissions"
-msgstr "permissions"
+msgstr "الصلاحيات"
 
 msgid ""
 msgstr ""

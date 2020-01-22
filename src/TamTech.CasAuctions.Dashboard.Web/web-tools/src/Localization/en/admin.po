@@ -1786,5 +1786,5 @@ msgstr "Role"
 
 
 msgid "permissions"
-msgstr "permissions"
+msgstr "permissions info"
 
