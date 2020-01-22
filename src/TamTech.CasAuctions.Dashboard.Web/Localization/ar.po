@@ -2206,3 +2206,20 @@ msgstr "الرئيسية"
 
 msgid "other_section"
 msgstr "غير ذلك"
+msgid "Policies"
+msgstr "Policies"
+
+
+msgid "Policy Accessible"
+msgstr "Policy Accessible"
+
+msgid "Roles"
+msgstr "Roles"
+
+
+msgid "Role"
+msgstr "Role"
+
+
+msgid "permissions"
+msgstr "permissions"

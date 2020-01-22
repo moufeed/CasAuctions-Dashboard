@@ -2081,6 +2081,24 @@ msgid "Auctions"
 msgstr "Auctions"
 
 
+msgid "Policies"
+msgstr "Policies"
+
+
+msgid "Policy Accessible"
+msgstr "Policy Accessible"
+
+msgid "Roles"
+msgstr "Roles"
+
+
+msgid "Role"
+msgstr "Role"
+
+
+msgid "permissions"
+msgstr "permissions"
+
 msgid ""
 msgstr ""
 

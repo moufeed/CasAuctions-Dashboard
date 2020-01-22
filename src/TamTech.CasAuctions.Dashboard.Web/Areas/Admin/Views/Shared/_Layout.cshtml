@@ -95,21 +95,7 @@
 
             <div class="clearfix"></div>
             <!-- page content -->
-            <div style="float:right; background-color:darkslategrey">
-
-
-                @foreach (var item in User.Identity.GetPoliciesAccessible())
-                {
-                    <b>  Policy Accessible :  <h4 style="color:white; margin:10px">@item</h4></b>
-                }
-            </div>
-            <div style="float:right; background-color:darkslategrey">
-
-                @foreach (var item in User.Identity.GetUserRoles())
-                {
-                    <b> Role : <h4 style="color:white; margin:10px">@item</h4></b>
-                }
-            </div>
+            
                 <div class="right_col" role="main">
                     @RenderBody()
                 </div>
