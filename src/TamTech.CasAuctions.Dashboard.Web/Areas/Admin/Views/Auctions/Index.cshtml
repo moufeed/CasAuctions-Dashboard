@@ -87,7 +87,7 @@
                                                    class="link"
                                                    role="button" data-toggle="popover"
                                                    data-trigger="focus"
-                                                   title="Dismissible popover"
+                                                   data-placement="left"
                                                    data-content="@item.ItemDescription">
                                                     @TruncateAtWord(item.ItemDescription, 40)
                                                 </a>
@@ -131,3 +131,10 @@
 <if exclude-if="Model != null">
     <partial name="~/Areas/Admin/Views/Shared/_empty.cshtml" />
 </if>
+
+
+<style>
+    .popover{
+        max-width: 450px;
+    }
+</style>
