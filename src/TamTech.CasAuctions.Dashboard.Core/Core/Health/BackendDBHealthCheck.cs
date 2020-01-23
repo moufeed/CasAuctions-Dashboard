@@ -25,13 +25,13 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Health
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            var healthCheckResultHealthy = SendAsync($"{_backendApiSettings.IdentityApiUrl}/api/Ping/DB").GetAwaiter().GetResult().Status;
+            //var healthCheckResultHealthy = SendAsync($"{_backendApiSettings.IdentityApiUrl}/api/Ping/DB").GetAwaiter().GetResult().Status;
 
-            if (healthCheckResultHealthy)
-            {
-                return Task.FromResult(
-                    HealthCheckResult.Healthy("The check ping backend DB indicates a healthy result."));
-            }
+            //if (healthCheckResultHealthy)
+            //{
+            //    return Task.FromResult(
+            //        HealthCheckResult.Healthy("The check ping backend DB indicates a healthy result."));
+            //}
 
             return Task.FromResult(
                 HealthCheckResult.Unhealthy("The check ping backend DB an unhealthy result."));

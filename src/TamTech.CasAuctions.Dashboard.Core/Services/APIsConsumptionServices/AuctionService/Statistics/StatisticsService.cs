@@ -40,7 +40,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Sta
 
         public async Task<IRequestProviderResult<StatisticsDto>> GetAuctionsStatistics(DateTime fromDate, DateTime toDate , int? TimeZone)
         {
-            var prms = $"fromDate={fromDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}&toDate={toDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}";
+            var prms = $"fromOfsetDate={fromDate.ToUniversalTime().ToString("o")}&toOfsetDate={toDate.ToUniversalTime().ToString("o")}";
             var url = $"{_apiSettings.GetAuctionsStatisticsByDate}?{prms}";
             var result = await ReqProvider.GetAsync<IEnumerable<ChartsStatistics>>(url,false, TimeZone != null ? new Dictionary<string, string>() { { "device_time_zone", TimeZone.ToString() } } : null);
             return MapToChartsDTo(result);
@@ -48,7 +48,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Sta
 
         public async Task<IRequestProviderResult<StatisticsDto>> GetDSItemsStatistics(DateTime fromDate, DateTime toDate, int? TimeZone)
         {
-            var prms = $"fromDate={fromDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}&toDate={toDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}";
+            var prms = $"fromOfsetDate={fromDate.ToUniversalTime().ToString("o")}&toOfsetDate={toDate.ToUniversalTime().ToString("o")}";
             var url = $"{_apiSettings.GetDSItemsStatisticsByDate}?{prms}";
             var result = await ReqProvider.GetAsync<IEnumerable<ChartsStatistics>>(url, false, TimeZone != null ? new Dictionary<string, string>() { { "device_time_zone", TimeZone.ToString() } } : null);
             return MapToChartsDTo(result);
