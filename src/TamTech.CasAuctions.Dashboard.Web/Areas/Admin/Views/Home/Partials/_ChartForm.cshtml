@@ -1,0 +1,37 @@
+﻿<form class="radio" data-parent="@Model">
+    <label for="@Model-h">
+        <input type="radio" value="h" name="startDate" id="@Model-h">
+        <span>  @Localizer["last_hour"]</span>
+    </label>
+
+    <label for="@Model-d">
+        <input type="radio" value="d" name="startDate"  id="@Model-d" checked>
+        <span>  @Localizer["last_day"]</span>
+    </label>
+    <label for="@Model-w">
+        <input type="radio" value="w" name="startDate"  id="@Model-w">
+        <span>@Localizer["last_week"]</span>
+    </label>
+    <label for="@Model-m">
+        <input type="radio" value="m" name="startDate"  id="@Model-m">
+        <span> @Localizer["last_month"]</span>
+    </label>
+    <label for="@Model-c">
+        <input type="radio" value="c" name="customDate"  id="@Model-c">
+        <span> @Localizer["custom"] </span>
+    </label>
+</form>
+<form class="row customDateForm"  style="display:none" data-parent="@Model">
+    <div class="from-group col-md-12 col-lg-5">
+        <label for="">@Localizer["from_date"]</label>
+        <input type="datetime-local" name="fromdate" class="form-control" required />
+    </div>
+    <div class="from-group col-md-12 col-lg-5">
+        <label for="">@Localizer["to_date"]</label>
+        <input type="datetime-local" name="todate" class="form-control" required />
+    </div>
+    <div class="from-group col-md-12 col-lg-2">
+
+        <button class="btn btn-success m-t5"> @Localizer["send"]</button>
+    </div>
+</form>

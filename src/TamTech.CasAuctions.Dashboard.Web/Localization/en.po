@@ -1769,6 +1769,9 @@ msgstr "Last week"
 msgid "last_month"
 msgstr "Last month"
 
+msgid "last_hour"
+msgstr "Last hour"
+
 msgid "custom"
 msgstr "custom"
 
@@ -1800,6 +1803,52 @@ msgstr "Role"
 msgid "permissions"
 msgstr "permissions info"
 
+
+msgid "Increment Type"
+msgstr "Increment Type"
+
+
+msgid "Date & Time Info"
+msgstr "Date & Time Info"
+
+msgid "Created Date"
+msgstr "Created Date"
+
+msgid "Modified Date"
+msgstr "Modified Date"
+
+msgid "Start Date"
+msgstr "Start Date"
+
+msgid "End Date"
+msgstr "End Date"
+
+msgid "Actual End Date"
+msgstr "Actual End Date"
+
+msgid "Start Price"
+msgstr "Start Price"
+
+msgid "Limit Price"
+msgstr "Limit Price"
+
+msgid "Purchase Price"
+msgstr "Purchase Price"
+
+msgid "Participants Count"
+msgstr "Participants Count"
+
+msgid "Outbids Count"
+msgstr "Outbids Count"
+
+msgid "More Details"
+msgstr "More Details"
+
+msgid "DSItems"
+msgstr "Direct Sell Items"
+
+msgid ""
+msgstr ""
 
 
 # adminbar

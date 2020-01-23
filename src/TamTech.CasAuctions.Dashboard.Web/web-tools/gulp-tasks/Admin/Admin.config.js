@@ -60,12 +60,17 @@ let ListFiles = [
     inputs: [`${admin_src}/js/auctions.js`]
   },
   {
-    output: "cahrt.js",
+    output: "chart.js",
     es6: false,
     inputs: [
       "./node_modules/Chart.js/dist/chart.min.js",
       `${admin_src}/js/chart.js`
     ]
+  },
+  {
+    output: "statistics.js",
+    es6: true,
+    inputs: [`${admin_src}/js/statistics.js`]
   }
 ];
 

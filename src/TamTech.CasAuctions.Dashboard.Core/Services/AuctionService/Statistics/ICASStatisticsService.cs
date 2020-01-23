@@ -11,6 +11,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.Statistics
     {          
         Task<IRequestProviderResult<StatisticsDto>> GetUsersStatistics(string lang);
         Task<IRequestProviderResult<StatisticsDto>> GetAuctionsStatistics(DateTime fromDate, DateTime toDate , int? TimeZone);
+        Task<IRequestProviderResult<StatisticsDto>> GetDSItemsStatistics(DateTime fromDate, DateTime toDate , int? TimeZone);
 
     }
 }

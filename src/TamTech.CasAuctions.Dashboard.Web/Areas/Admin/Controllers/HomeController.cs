@@ -111,6 +111,22 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
              
 
         }
+        [HttpGet("{Culture}/[Area]/[Controller]/DSItemsStatistics")]
+        public async Task<JsonResult> DSItemsStatistics(DateTime fromdate, DateTime todate, int TimeZone)
+        {
+
+            try
+            {
+                var statistics = await _casAuctionStatisticsService.GetDSItemsStatistics(fromdate, todate, TimeZone);
+                return Json(statistics);
+            }
+            catch (Exception ex)
+            {
+                return ReturnJsonErrorResult(ex.Message, fromdate);
+
+            }
+
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

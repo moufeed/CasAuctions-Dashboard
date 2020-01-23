@@ -46,8 +46,12 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Sta
             return MapToChartsDTo(result);
         }
 
-
-
-      
+        public async Task<IRequestProviderResult<StatisticsDto>> GetDSItemsStatistics(DateTime fromDate, DateTime toDate, int? TimeZone)
+        {
+            var prms = $"fromDate={fromDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}&toDate={toDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}";
+            var url = $"{_apiSettings.GetDSItemsStatisticsByDate}?{prms}";
+            var result = await ReqProvider.GetAsync<IEnumerable<ChartsStatistics>>(url, false, TimeZone != null ? new Dictionary<string, string>() { { "device_time_zone", TimeZone.ToString() } } : null);
+            return MapToChartsDTo(result);
+        }
     }
 }
