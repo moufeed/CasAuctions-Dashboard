@@ -27,10 +27,6 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Sta
 
     
      
-
-
-
-
         public async Task<IRequestProviderResult<StatisticsDto>> GetUsersStatistics(string lang)
         {
             var result = await ReqProvider.GetAsync<IEnumerable<ChartsStatistics>>(_apiSettings.GetUsersStatisticsEndpoint);
@@ -40,16 +36,18 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Sta
 
         public async Task<IRequestProviderResult<StatisticsDto>> GetAuctionsStatistics(DateTime fromDate, DateTime toDate , int? TimeZone)
         {
-            var prms = $"fromDate={fromDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}&toDate={toDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}";
-            var url = $"{_apiSettings.GetAuctionsStatisticsByDate}?{prms}";
+            var startDate = fromDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss");
+            var endDate = toDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss");
+            var url = $"{_apiSettings.GetAuctionsStatisticsByDate}?fromDate={startDate}&toDate={endDate}";
             var result = await ReqProvider.GetAsync<IEnumerable<ChartsStatistics>>(url,false, TimeZone != null ? new Dictionary<string, string>() { { "device_time_zone", TimeZone.ToString() } } : null);
             return MapToChartsDTo(result);
         }
 
         public async Task<IRequestProviderResult<StatisticsDto>> GetDSItemsStatistics(DateTime fromDate, DateTime toDate, int? TimeZone)
         {
-            var prms = $"fromDate={fromDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}&toDate={toDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss")}";
-            var url = $"{_apiSettings.GetDSItemsStatisticsByDate}?{prms}";
+            var startDate = fromDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss");
+            var endDate = toDate.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ss");
+            var url = $"{_apiSettings.GetDSItemsStatisticsByDate}?fromDate={startDate}&toDate={endDate}";
             var result = await ReqProvider.GetAsync<IEnumerable<ChartsStatistics>>(url, false, TimeZone != null ? new Dictionary<string, string>() { { "device_time_zone", TimeZone.ToString() } } : null);
             return MapToChartsDTo(result);
         }

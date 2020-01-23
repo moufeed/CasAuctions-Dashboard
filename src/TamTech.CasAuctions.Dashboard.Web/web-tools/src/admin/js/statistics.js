@@ -132,7 +132,7 @@ const SwitchDate = (selector, date) => {
   const endDate = new Date().toISOString();
   switch (date) {
     case "h":
-      var d = new Date(new Date().getTime() - 1 * 60 * 1000).toISOString();
+      var d = new Date(new Date().getTime() - 1 * 60 * 60 * 1000).toISOString();
       loadChart(selector, d, endDate);
       break;
     case "w":
