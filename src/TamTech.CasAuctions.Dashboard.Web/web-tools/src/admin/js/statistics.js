@@ -20,7 +20,7 @@ const fetchData = (startDate, endDate, ChartUrl) => {
  * @param {number} day  - count of  day's
  */
 const collectDate = day =>
-  new Date(new Date().getTime() - day * 60 * 60 * 1000).toISOString();
+  new Date(new Date().getTime() - day * 24 * 60 * 60 * 1000).toISOString();
 
 /**
  *
@@ -184,4 +184,33 @@ $('input[name="startDate"]').on("change", function() {
     previousValue[selector] = $this.val();
     SwitchDate(selector, $this.val());
   }
+});
+
+$(".customDateForm").each((indx, _form) => {
+  console.log(_form);
+
+  $(_form).validate({
+    errorClass: "invalid_field",
+    validClass: "valid_field",
+    ignore: ".ignore",
+    errorPlacement: function(error, element) {
+      error.insertAfter(element);
+    },
+    submitHandler: form => {
+      console.log("form", form);
+      const selector = $(form).data("parent");
+
+      let startDate = $(form)
+        .find('input[name="fromdate"]')
+        .val();
+      let endDate = $(form)
+        .find('input[name="todate"]')
+        .val();
+      loadChart(
+        selector,
+        new Date(startDate).toISOString(),
+        new Date(endDate).toISOString()
+      );
+    }
+  });
 });
