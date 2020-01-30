@@ -24,6 +24,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Constants
 
         public const string BackendAPIsSettings = "BackendAPIsSettings";    
         public const string IdentityApiUrl = "IdentityApiUrl";    
+        public const string ApplicationInsights = "ApplicationInsights";    
                                                                               
         
        

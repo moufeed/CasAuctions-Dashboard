@@ -23,6 +23,8 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Utiliti
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Values.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Vendor.Settings;
 using TamTech.CasAuctions.Dashboard.SDK.Services.Identity.Settings;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.TelemetryAnalyticService.settings;
+using TamTech.CasAuctions.Dashboard.SDK.Models.Settings;
 
 namespace TamTech.CasAuctions.Dashboard.Web.StartUP.MicroServices
 {
@@ -30,12 +32,22 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP.MicroServices
     {
         public static void MicroServices_AddBackendAPIsSettingsConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
+
+
+
+          
             services.AddSingleton((serviceExtension) =>
             {
                 return configuration.GetSection(AppSettings.BackendAPIsSettings)
                                                                   .Get<BackendAPIsSettings>();
             });
 
+            services.AddSingleton<ITelemetryApiSettings>((serviceExtension) =>
+            {
+                ApplicationInsightsSettings settings = configuration.GetSection(AppSettings.ApplicationInsights)
+                                                                  .Get<ApplicationInsightsSettings>(); ;
+                return new  TelemetryApiSettings(settings );
+            });
 
 
             #region CAS Auctions
