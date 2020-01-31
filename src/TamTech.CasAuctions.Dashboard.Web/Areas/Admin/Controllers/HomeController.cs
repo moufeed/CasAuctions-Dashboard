@@ -71,13 +71,24 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
            
             try
             {
+              var dailyUsers = await _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddDays(-1), DateTime.Now);
+              var weeklyUsers = await _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddDays(-7) ,DateTime.Now);
+              var MonthlyUsers  =  await  _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddMonths(-1), DateTime.Now);
 
-              var _analyticResult  =  await  _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddMonths(-3), DateTime.Now);
-
-                if (_analyticResult.Success)
+                if (dailyUsers.Success)
                 {
-                    ViewBag.ActiveUsersChart = _analyticResult.Data;
+                    ViewBag.dailyUsers = dailyUsers.Data;
                 }
+                if (weeklyUsers.Success)
+                {
+                    ViewBag.weeklyUsers = weeklyUsers.Data;
+                }
+
+                if (MonthlyUsers.Success)
+                {
+                    ViewBag.MonthlyUsers = MonthlyUsers.Data;
+                }
+
                 var _lang = GetCurrentDataLang();
                 var users = await _casAuctionStatisticsService.GetUsersStatistics(_lang);
 
@@ -128,6 +139,24 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             try
             {
                 var statistics = await _casAuctionStatisticsService.GetDSItemsStatistics(fromdate, todate, TimeZone);
+                return Json(statistics);
+            }
+            catch (Exception ex)
+            {
+                return ReturnJsonErrorResult(ex.Message, fromdate);
+
+            }
+
+        }
+
+        [HttpGet("{Culture}/[Area]/[Controller]/activeUsersStatistics")]
+        public async Task<JsonResult> activeUsersStatistics(DateTime fromdate, DateTime todate)
+        {
+
+            try
+            {
+
+                var statistics = await _telemetryAnalyticService.GetCountActiveUsersAsync(fromdate, todate);
                 return Json(statistics);
             }
             catch (Exception ex)

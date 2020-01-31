@@ -2145,5 +2145,10 @@ msgstr "More Details"
 msgid "DSItems"
 msgstr "Direct Sell Items"
 
+
+msgid "customDate"
+msgstr "Custom date"
+
+
 msgid ""
 msgstr ""

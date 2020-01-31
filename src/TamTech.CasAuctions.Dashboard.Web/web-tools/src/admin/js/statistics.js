@@ -187,8 +187,6 @@ $('input[name="startDate"]').on("change", function() {
 });
 
 $(".customDateForm").each((indx, _form) => {
-  console.log(_form);
-
   $(_form).validate({
     errorClass: "invalid_field",
     validClass: "valid_field",
@@ -197,7 +195,6 @@ $(".customDateForm").each((indx, _form) => {
       error.insertAfter(element);
     },
     submitHandler: form => {
-      console.log("form", form);
       const selector = $(form).data("parent");
 
       let startDate = $(form)
@@ -213,4 +210,36 @@ $(".customDateForm").each((indx, _form) => {
       );
     }
   });
+});
+
+$(".customForm").validate({
+  errorClass: "invalid_field",
+  validClass: "valid_field",
+  ignore: ".ignore",
+  errorPlacement: function(error, element) {
+    error.insertAfter(element);
+  },
+  submitHandler: form => {
+    $(".count-number").hide();
+    $("#loader").show();
+    const selector = $(form).data("parent");
+
+    let startDate = $(form)
+      .find('input[name="fromdate"]')
+      .val();
+    let endDate = $(form)
+      .find('input[name="todate"]')
+      .val();
+
+    fetchData(
+      new Date(startDate).toISOString(),
+      new Date(endDate).toISOString(),
+      Urls["#activeusers"]
+    ).done(response => {
+      const count = response.data;
+      $(".count-number").text(count);
+      $("#loader").hide();
+      $(".count-number").show();
+    });
+  }
 });
