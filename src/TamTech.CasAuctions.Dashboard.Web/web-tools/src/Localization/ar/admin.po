@@ -2149,6 +2149,11 @@ msgstr "Direct Sell Items"
 msgid "customDate"
 msgstr "Custom date"
 
+msgid "last_6_hours"
+msgstr "Last 6 hours"
+
+msgid "ActiveUsers"
+msgstr "Active users"
 
 msgid ""
 msgstr ""

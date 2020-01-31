@@ -143,18 +143,24 @@
                     <div class="x_content p-3  wiflex">
                         <div class="clearfix">
                             <div class="tile_count">
-                                <div class=" col-sm-4  tile_stats_count">
+                                <div class=" col-sm-6 col-md-3  tile_stats_count">
+                                    <span class="count_top"><i class="fa fa-user green"></i> @Localizer["last_6_hours"]</span>
+                                    <div class="count">@ViewBag.hourlyUsers</div>
+
+                                </div>
+
+                                <div class=" col-sm-6 col-md-3  tile_stats_count">
                                     <span class="count_top"><i class="fa fa-user green"></i> @Localizer["last_day"]</span>
                                     <div class="count">@ViewBag.dailyUsers</div>
 
                                 </div>
 
-                                <div class="col-sm-4  tile_stats_count">
+                                <div class="col-sm-6 col-md-3  tile_stats_count">
                                     <span class="count_top"><i class="fa fa-user green"></i> @Localizer["last_week"]</span>
                                     <div class="count">@ViewBag.weeklyUsers</div>
 
                                 </div>
-                                <div class="col-sm-4  tile_stats_count">
+                                <div class="col-sm-6 col-md-3  tile_stats_count">
                                     <span class="count_top"><i class="fa fa-user green"></i> @Localizer["last_month"]</span>
                                     <div class="count ">@ViewBag.MonthlyUsers</div>
 

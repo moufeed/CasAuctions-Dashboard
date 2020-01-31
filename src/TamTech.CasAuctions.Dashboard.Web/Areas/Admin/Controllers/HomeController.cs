@@ -71,9 +71,15 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
            
             try
             {
+              var hourlyUsers = await _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddHours(-6), DateTime.Now);
               var dailyUsers = await _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddDays(-1), DateTime.Now);
               var weeklyUsers = await _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddDays(-7) ,DateTime.Now);
               var MonthlyUsers  =  await  _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddMonths(-1), DateTime.Now);
+
+                if (hourlyUsers.Success)
+                {
+                    ViewBag.hourlyUsers = hourlyUsers.Data;
+                }
 
                 if (dailyUsers.Success)
                 {
@@ -131,7 +137,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             }
              
 
-        }
+       }
         [HttpGet("{Culture}/[Area]/[Controller]/DSItemsStatistics")]
         public async Task<JsonResult> DSItemsStatistics(DateTime fromdate, DateTime todate, int TimeZone)
         {
