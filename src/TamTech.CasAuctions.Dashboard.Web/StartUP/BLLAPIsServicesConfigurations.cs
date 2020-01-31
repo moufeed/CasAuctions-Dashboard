@@ -54,6 +54,8 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.Identity;
 using TamTech.CasAuctions.Dashboard.SDK.Services.IdentityService.SellerRequests;
 using TamTech.CasAuctions.Dashboard.SDK.Services.POSs;
 using TamTech.CasAuctions.Dashboard.SDK.Services.POSs.Directory;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.TelemetryAnalyticService;
+using TamTech.CasAuctions.Dashboard.SDK.Services.TelemetryAnalyticService;
 
 namespace TamTech.CasAuctions.Dashboard.Web.StartUP
 {
@@ -70,6 +72,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
 
             services.AddTransient<IAuctionsService, AcutionsService>();
             services.AddTransient<IDsItemsService, DSItemsService>();
+            services.AddTransient<ITelemetryAnalyticService, AnalyticService>();
 
             services.AddTransient<TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.Statistics.IStatisticsService,
                 TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Statistics.StatisticsService>();

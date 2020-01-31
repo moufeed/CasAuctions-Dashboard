@@ -16,6 +16,8 @@ using TamTech.CasAuctions.Dashboard.SDK.Services.Upload;
 using Microsoft.Extensions.Localization;                   
 using Microsoft.Extensions.Logging;
 using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.Statistics;
+using TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices;
+using TamTech.CasAuctions.Dashboard.SDK.Services.TelemetryAnalyticService;
 
 namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 {       
@@ -26,6 +28,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         #region Props  
                                                                   
         private readonly SDK.Services.AuctionService.Statistics.IStatisticsService _casAuctionStatisticsService;
+        private readonly ITelemetryAnalyticService _telemetryAnalyticService;
     //    IUploadManagerService _uploadManager;
 
         #endregion
@@ -34,11 +37,12 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         public HomeController(ITelemetryService telemetryClientService,   
                ILogger<HomeController> logger,
                IStringLocalizer<BaseController> localizer,
-            SDK.Services.AuctionService.Statistics.IStatisticsService  casAuctionStatisticsService )
+            SDK.Services.AuctionService.Statistics.IStatisticsService  casAuctionStatisticsService, ITelemetryAnalyticService telemetryAnalyticService)
             : base(telemetryClientService, logger, localizer)
         {
         
             _casAuctionStatisticsService = casAuctionStatisticsService;
+            _telemetryAnalyticService = telemetryAnalyticService;
           
         }
         #endregion
@@ -68,6 +72,12 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             try
             {
 
+              var _analyticResult  =  await  _telemetryAnalyticService.GetCountActiveUsersAsync(DateTime.Now.AddMonths(-3), DateTime.Now);
+
+                if (_analyticResult.Success)
+                {
+                    ViewBag.ActiveUsersChart = _analyticResult.Data;
+                }
                 var _lang = GetCurrentDataLang();
                 var users = await _casAuctionStatisticsService.GetUsersStatistics(_lang);
 
@@ -76,9 +86,9 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
                     ViewBag.UsersChart = users.Data;
                 }
 
+                
 
 
-               
 
             }
             catch (Exception ex)
