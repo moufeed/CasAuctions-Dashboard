@@ -1,6 +1,6 @@
-﻿ 
+﻿
 
- 
+
  (function ($, sr) {
      // debouncing function from John Hann
      // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
@@ -15,7 +15,7 @@
                  if (!execAsap)
                      func.apply(obj, args);
                  timeout = null;
-             } 
+             }
              if (timeout)
                  clearTimeout(timeout);
              else if (execAsap)
@@ -24,14 +24,14 @@
              timeout = setTimeout(delayed, threshold || 100);
          };
      };
-       
-     // smartresize 
+
+     // smartresize
      jQuery.fn[sr] = function (fn) {
          return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr);
      };
 
  })(jQuery, 'smartresize');
- 
+
 
  var CURRENT_URL = window.location.href.split('#')[0].split('?')[0],
      $BODY = $('body'),
@@ -52,10 +52,10 @@
 
  $(document).ready(function () {
 
-    
+
 
     $(".preloader").fadeOut();
-    
+
     if(localStorage.getItem("menu-type") === null){
         localStorage.setItem("menu-type","full");
     }else{
@@ -76,24 +76,24 @@
          $RIGHT_COL.css('min-height', $(window).height());
 
          var bodyHeight = $BODY.outerHeight(),
-             footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(), 
+             footerHeight = $BODY.hasClass('footer_fixed') ? -10 : $FOOTER.height(),
              leftColHeight = $LEFT_COL.eq(1).height() + ( $SIDEBAR_FOOTER.height() || 0),
              contentHeight = bodyHeight < leftColHeight ? leftColHeight : bodyHeight;
 
 
          // normalize content
-            
+
          contentHeight -= ($NAV_MENU.height() + footerHeight + 147);
-          
-         $RIGHT_COL.css('min-height', contentHeight);  
+
+         $RIGHT_COL.css('min-height', contentHeight);
      };
 
-    
-    
- 
+
+
+
      $SIDEBAR_MENU.find('a').on('click', function (ev) {
          var $li = $(this).parent();
-        
+
          if ($li.is('.active')) {
              $li.removeClass('active active-sm');
              $('ul:first', $li).slideUp(250,function () {
@@ -108,17 +108,17 @@
 
              $li.addClass('active');
 
-             $('ul:first', $li).slideDown(250,function () { 
+             $('ul:first', $li).slideDown(250,function () {
                  setContentHeight();
              });
          }
      });
-     $(document).mouseup(function(e) 
+     $(document).mouseup(function(e)
      {
          var container = $($SIDEBAR_MENU.find(".child_menu")) ;
-         if (!container.is(e.target) && container.has(e.target).length === 0 &&  $BODY.hasClass("nav-sm")) 
+         if (!container.is(e.target) && container.has(e.target).length === 0 &&  $BODY.hasClass("nav-sm"))
          {
-              container.parent().removeClass("active");            
+              container.parent().removeClass("active");
               container.hide();
          }
      });
@@ -147,7 +147,7 @@
      // check active menu
      $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
 
-     
+
      $SIDEBAR_MENU.find('a').filter(function () {
          return this.href === CURRENT_URL;
      }).parent('li').addClass('current-page').parents('ul').slideDown(250,function () {
@@ -159,7 +159,7 @@
          setContentHeight();
      });
 
-     
+
      setContentHeight();
      // fixed sidebar
      if ($.fn.mCustomScrollbar) {
@@ -185,7 +185,7 @@
             })
         }
     }
-      
+
 
  });
 
@@ -203,9 +203,9 @@
         content: function(){return '<img src="'+$(this).data('img') + '"  class="img-responsive '+ $(this).data("img-class") + '" />';}
       });
 
-    
+
  });
-  
+
   window.aspectRatio = function (img, target) {
      var css;
      if (img.width > img.height) {
@@ -242,17 +242,17 @@
      }
  }
  //---------------------------------------
- // input file  
+ // input file
  //---------------------------------------
 
- 
+
 
  $(document).ready(function () {
      $('#avater').change(function () {
          readURL(this);
      })
  })
- 
+
 
  //#endregion
 
@@ -273,7 +273,7 @@
      }).then((result) => {
 
          if (result.value) {
- 
+
              swal(
                  'Deleted!',
                  'has been deleted.',
@@ -306,7 +306,7 @@ function RemoveItem (table , itm ){
                     if(response.success){
                         row.remove().draw();
                         $notification.success(window.localization.deleted ,window.localization.item_deleted , 2000, "fa fa-check");
-                         
+
                     }else{
                         var errors = response.errors;
                         if (errors.length > 0) {
@@ -321,8 +321,8 @@ function RemoveItem (table , itm ){
         }
 
      })
-    
-   
+
+
  }
 
  //---------------------------------------
@@ -331,7 +331,7 @@ function RemoveItem (table , itm ){
  var $notification = {
      alert: function (type, title, message, delay, icon, timer) {
          return $.notify({
-              
+
              icon: icon,
              title: title,
              message: message,
@@ -342,11 +342,11 @@ function RemoveItem (table , itm ){
              z_index: 9000,
              placement: {
                 from: "top",
-                align: "center" 
-            }, 
+                align: "center"
+            },
             offset: {
                 x: 0,
-                y: 10 
+                y: 10
             },
              animate: {
                  enter: 'animated fadeInDown',
@@ -356,12 +356,12 @@ function RemoveItem (table , itm ){
                  '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
                  '<span data-notify="icon"></span> ' +
                  '<span data-notify="title">{1}</span> ' +
-                 '<span data-notify="message">{2}</span>' + 
+                 '<span data-notify="message">{2}</span>' +
                  '<div class="progress" data-notify="progressbar">' +
                  '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
                  '</div>' +
                  '<a href="{3}" target="{4}" data-notify="url"></a>' +
-                 '</div>' 
+                 '</div>'
          });
      },
      success: function (title, message, delay, icon = false, timer = false) {
@@ -391,17 +391,17 @@ function RemoveItem (table , itm ){
  //-------------------------------------------------------------------------
 
 $(document).ready(function(){
-    
+
     $('.upload-input').on('change',function(e){
-        
+
         var fileInputTextContent = $(this).data('text');
-        
+
         var value = e.target.value.length > 0 ? e.target.value : fileInputTextContent;
-        
+
         $(this).parent('.uploadfile').find('.url').text(value.replace('C:\\fakepath\\', ''));
-         
-        
-    }) 
+
+
+    })
 })
 
 
@@ -477,7 +477,7 @@ var $Confirm  = function(opts, callback){
 
 
 $(document).ready(function(){
-    
+
     var Temptext='<span class="pull-left characters-alerts "></span>' +
         '<span class="pull-right sms_messages">'+
             '<small class="characters">@@</small> <small>'+ window.localization.characters  +'</small>'+
@@ -485,16 +485,16 @@ $(document).ready(function(){
 
     var optDefaults = {
         warning_count: 158,
-        warning_alert: window.localization.text_will_be_truncated , 
-        maximum_count: 300, 
-        maximum_alert: window.localization.text_count_be_more_than 
-    } 
+        warning_alert: window.localization.text_will_be_truncated ,
+        maximum_count: 300,
+        maximum_alert: window.localization.text_count_be_more_than
+    }
 
     $("[data-characters]").each(function(index,item){
         var $this = $(item);
         var opts = $this.data("characters");
         var object = $.extend({}, optDefaults ,opts);
-         
+
         var length = opts.maximum_count  - $this.val().length;
 
         $this.after(Temptext.replace("@@", length));
@@ -505,7 +505,7 @@ $(document).ready(function(){
             console.log(length ,  val_length)
             if( val_length  > opts.warning_count &&  val_length <  opts.maximum_count){
                 $this.parent().find('.characters-alerts').addClass("warning_field").text(optDefaults.warning_alert);
-            }  
+            }
 
             if( val_length  > opts.maximum_count ){
                 $this.parent().find('.characters-alerts').removeClass("warning_field").addClass("error").text(optDefaults.maximum_alert);
@@ -516,13 +516,13 @@ $(document).ready(function(){
                 $this.parent().find('.characters-alerts').removeClass("warning_field error").text(" ")
             }
 
-            $this.parent().find('.characters').text( opts.maximum_count - val_length); 
+            $this.parent().find('.characters').text( opts.maximum_count - val_length);
         })
     })
 
 });
 
- 
+
 function toggleFullscreen(elem) {
     elem = elem || document.documentElement;
     if (!document.fullscreenElement && !document.mozFullScreenElement &&
@@ -548,8 +548,8 @@ function toggleFullscreen(elem) {
       }
     }
   }
-  
-$(".fullscreen").click(function(){toggleFullscreen()});
+
+$(".fullscreen,[data-fullscreen]").click(function(){toggleFullscreen()});
 
 
 
@@ -563,11 +563,11 @@ const MakeErrorsMsg = (errors)=>{
         el.value.map((vl)=> div += `${vl}<br/>`)
         div += "</div>";
         txt += div;
-    }) 
+    })
 
     return txt;
 }
- 
+
 
 const ImgReader = (img,callback)=>{
     let reader = new FileReader();
@@ -592,18 +592,18 @@ $(document).ready(()=>{
         }
         $ICON.toggleClass('fa-chevron-up fa-chevron-down');
     });
-    
+
     $(".toggle__publish").on("change",function(event){
 
         let $this = $(this);
         let link = $this.data('url');
         let status = $this.prop('checked');
-        
+
 
         fetch(link,{headers :{"Content-Type" : "application/json;charset=utf-8"}})
-        .then(res=>res.json()) 
+        .then(res=>res.json())
         .then(response => {
-            if(!response.success){  
+            if(!response.success){
                 if (response.errors.length > 0) {
                    let txt = MakeErrorsMsg(response.errors);
                     $notification.error("", txt , 3500, "fa fa-exclamation-circle");
@@ -611,7 +611,7 @@ $(document).ready(()=>{
                     $notification.error(window.localization.error , window.localization.something_wrong , 3500, "fa fa-exclamation-circle");
                 }
                 $this.prop('checked' , !status )
-            } 
+            }
         })
         .catch(error =>  $notification.error("", error.message , 2000, "fa fa-exclamation-circle"));
     })
@@ -632,7 +632,7 @@ async function async_fetch(url, body, headers) {
     return await response.json();
 }
 
-const refreshHistory =  url => $.get(url, data  => $( "#history" ).html( data ) );  
+const refreshHistory =  url => $.get(url, data  => $( "#history" ).html( data ) );
 
 
 $(document).ready(function(){

@@ -68,9 +68,23 @@ let ListFiles = [
     ]
   },
   {
+    output: "carousel.js",
+    es6: false,
+    inputs: [
+      "./node_modules/owl.carousel/dist/owl.carousel.min.js",
+      `${admin_src}/js/carousel.js`
+    ]
+  },
+
+  {
     output: "statistics.js",
     es6: true,
     inputs: [`${admin_src}/js/statistics.js`]
+  },
+  {
+    output: "details.js",
+    es6: true,
+    inputs: [`${admin_src}/js/details.js`]
   }
 ];
 

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Constants;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Telemetry;
-using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;    
+using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Shared;
 using TamTech.CasAuctions.Dashboard.SDK.Models.VMs.Shared.Filters;
@@ -35,7 +35,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 
 
 
-        private void createSortList(Filter model)
+        private void createSortList(Filter model , bool isPravite = false)
         {
             List<SelectListItem> SortItems = new List<SelectListItem>()
             {
@@ -69,19 +69,55 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
           Value = "StatusId" ,
           Selected =  model.SortBy == "StatusId"
         },
-         new SelectListItem  {
-          Text = _localizer["Category"] ,
-          Value = "CategoryId" ,
-          Selected =  model.SortBy == "CategoryId"
-        },
+
          new SelectListItem  {
           Text = _localizer["Type"] ,
           Value = "TypeId" ,
           Selected =  model.SortBy == "TypeId"
         },
+          new SelectListItem
+
+                 {
+                Text = _localizer["Category"],
+                    Value = "CategoryId",
+                     Selected = model.SortBy == "CategoryId"
+                 }
             };
+            if (isPravite)
+            {
+                SortItems.Remove(SortItems.Find(itm =>  itm.Value == "CategoryId"));
+            }
+           
             ViewBag.sortList = SortItems;
         }
+
+
+        private List<SelectListItemModel> MakeListItems(List<SelectListItemModel> items)
+        {
+            List<SelectListItemModel> List = new List<SelectListItemModel>();
+
+            if (items.Count > 0) {
+                items.ForEach(item => List.Add(new SelectListItemModel() { Value = item.Value, Text = _localizer[item.Text]}));
+            }
+            return List;
+        }
+
+        private async void makeSelcets(Filter model)
+        {
+            var status = await _acutionsservice.GetStatusListAsync();
+
+            ViewBag.statusList = new SelectList(VerifySucceed(status) ? MakeListItems(status.Data) : new List<SelectListItemModel>(), "Value", "Text", model.StatusId);
+
+            var categories = await _acutionsservice.GetCatgoriesListAsync();
+
+            ViewBag.categoriesList = new SelectList(VerifySucceed(categories) ? categories.Data : new List<SelectListItemModel>(), "Value", "Text", model.CategoryId);
+
+            var types = await _acutionsservice.GetTypesListAsync();
+
+            ViewBag.typesList = new SelectList(VerifySucceed(types) ? types.Data : new List<SelectListItemModel>(), "Value", "Text", model.TypeId);
+        }
+
+
 
         [HttpGet("{Culture}/[Area]/[Controller]")]
         public async Task<IActionResult> Index(Filter model)
@@ -90,21 +126,11 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             ViewBag.FilterModel = model;
             GetDefaultFiltersList(model, "name");
             createSortList(model);
-             
+
             try
             {
 
-                var status = await _acutionsservice.GetStatusListAsync();
-
-                ViewBag.statusList = new SelectList(VerifySucceed(status) ? status.Data : new List<SelectListItemModel>(), "Value", "Text", model.StatusId);
-
-                var categories = await _acutionsservice.GetCatgoriesListAsync();
-
-                ViewBag.categoriesList = new SelectList(VerifySucceed(categories) ? categories.Data : new List<SelectListItemModel>(), "Value", "Text", model.CategoryId);
-
-                var types = await _acutionsservice.GetTypesListAsync();
-
-                ViewBag.typesList = new SelectList(VerifySucceed(types) ? types.Data : new List<SelectListItemModel>(), "Value", "Text", model.TypeId);
+                makeSelcets(model);
 
                 DTFilter filters = new DTFilter
                 {
@@ -133,6 +159,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         [HttpGet("{Culture}/[Area]/[Controller]/Details/{id}")]
         public async Task<IActionResult> Details(Guid id)
         {
+            ViewBag.isPrivate = false;
             try
             {
                 var result = await _acutionsservice.GetAuctionDetailsAsync(id);
@@ -168,6 +195,62 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
                 TrackException(ex, model);
                 return ReturnJsonErrorResult(ex.Message, model);
             }
+        }
+
+
+
+
+
+        [HttpGet("{Culture}/[Area]/[Controller]/private-auctions")]
+        public async Task<IActionResult> PrivateAuctions(Filter model)
+        {
+
+            ViewBag.showReset = new Filter().Equals(model);
+            ViewBag.FilterModel = model;
+            GetDefaultFiltersList(model, "name");
+            createSortList(model , true);
+
+            try
+            {
+                makeSelcets(model);
+
+                DTFilter filters = new DTFilter
+                {
+                    Lang = GetCurrentDataLang(),
+                    PageSize = model.PageSize,
+                    PageNumber = model.PageNumber,
+                    SortBy = model.SortBy,
+                    Search = GenrateSearchParams(model)
+                };
+
+                var result = await _acutionsservice.GetAllAuctionsListAsync(filters);
+                if (result.Success)
+                {
+                    return View(result.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                TrackException(ex);
+            }
+            return View();
+        }
+
+
+        [HttpGet("{Culture}/[Area]/[Controller]/private-Details/{id}")]
+        public async Task<IActionResult> PrivateDetails(Guid id)
+        {
+            ViewBag.isPrivate = true;
+            try
+            {
+                var result = await _acutionsservice.GetAuctionDetailsAsync(id);
+                return View("/Areas/Admin/Views/Auctions/Details.cshtml", VerifySucceed(result) ? result.Data : null);
+            }
+            catch (Exception ex)
+            {
+                TrackException(ex);
+            }
+            return View("/Areas/Admin/Views/Auctions/Details.cshtml");
         }
     }
 }

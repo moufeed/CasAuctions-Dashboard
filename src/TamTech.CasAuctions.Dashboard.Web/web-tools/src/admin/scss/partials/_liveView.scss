@@ -1,0 +1,325 @@
+.lv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  button {
+    border: 0;
+    background: transparent;
+    color: black;
+    padding: 6px 12px;
+    margin: 0;
+    svg {
+      width: 12px;
+      polygon {
+        fill: black;
+      }
+    }
+  }
+}
+.ac-date{
+  cursor: pointer;
+}
+.auction-info {
+  padding: 25px;
+  .ai-header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 150px auto;
+    p {
+      letter-spacing: 1px;
+      max-width: 90%;
+    }
+  }
+}
+
+.a-list {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)) ;
+  grid-auto-rows: minmax(40px, max-content);
+  column-gap: 25px;
+  row-gap: 10px;
+  li {
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #eee;
+    strong {
+    }
+    span {
+    }
+  }
+}
+
+.auction-screen {
+  margin: 0 15px;
+  height: 90vh;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 0 0 3px #fff inset, 0 0 0 6px #f8f8f8 inset;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 50% 100px calc(50% - 100px);
+  .a-images {
+    .owl-stage-outer {
+      height: calc(100% - 45px);
+    }
+    .owl-carousel,
+    .owl-stage,
+    .owl-item {
+      height: 100%;
+    }
+    .img-itm {
+      height: 100%;
+      overflow: hidden;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      img {
+        min-width: 35%;
+        width: auto;
+        height: 100%;
+        $shine-opacity: 5%;
+        background: darken(#f6f7f8, $shine-opacity)
+          linear-gradient(
+            to right,
+            darken(#f6f7f8, $shine-opacity) 0%,
+            darken(#edeef1, $shine-opacity) 20%,
+            darken(#f6f7f8, $shine-opacity) 40%,
+            darken(#f6f7f8, $shine-opacity) 100%
+          )
+          no-repeat;
+        background-size: 800px 400px;
+        display: inline-block;
+        position: relative;
+        animation: 1s linear infinite placeholder-shimmer;
+      }
+    }
+    .owl-dots {
+      text-align: center;
+      margin-top: 25px;
+      .owl-dot {
+        @include square(15px);
+        border-radius: 50%;
+        background: #959cc9;
+        margin: 0 6px;
+        transition: all 0.3s;
+        span {
+        }
+        &.active {
+          transform: scale(1.3);
+          background: #3e9fd9;
+        }
+      }
+    }
+  }
+}
+@keyframes placeholder-shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.lv-status {
+  &,
+  .a-hprice,
+  .a-time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .fa {
+    font-size: 50px;
+    margin: 0;
+    margin-#{$right}: 30px;
+    color: lighten(#999, 15%);
+  }
+  strong {
+    display: block;
+  }
+}
+
+.lv-outbid {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  h4 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  ul {
+    li {
+      display: grid;
+      grid-template-columns: 125px auto;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      picture {
+        width: 100%;
+        height: 125px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          height: 80%;
+        }
+      }
+      .outbid-info {
+
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .outbid-price {
+            .price {
+              font-size: 25px;
+              font-weight: bold;
+              color: $blue;
+            }
+            .currency {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.participants-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 120px);
+  grid-auto-rows: 120px;
+  row-gap: 10px;
+  column-gap: 10px;
+  overflow: auto;
+  border: 1px solid #eee;
+  padding: 25px 10px;
+  picture {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    img {
+      height: 100%;
+    }
+  }
+}
+.outbids-box{
+  overflow: auto;
+  border: 1px solid #eee;
+  padding: 25px 10px;
+
+  .outbids-list{
+    li{
+      display: grid;
+      grid-template-columns: 100px auto;
+      grid-template-rows:100%;
+      align-items: center;
+      margin-bottom: 10px;
+      picture{
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+        img{
+          height: 100%;
+        }
+      }
+      .outbid-info{
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .outbid-price {
+            .price {
+              font-size: 25px;
+              font-weight: bold;
+              color: $blue;
+            }
+            .currency {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width : 1024px){
+  .lv-outbid ul li .outbid-info div{
+    flex-direction: column;
+  }
+}
+
+@media screen and(min-width : 1366px) {
+  .auction-info {
+    h2 {
+      font-size: 1.5vw;
+    }
+    p {
+      font-size: 1vw;
+    }
+  }
+  .a-list {
+    li {
+      font-size: 0.8vw;
+      strong {
+        font-size: 0.9vw;
+      }
+      span {
+      }
+    }
+  }
+  .lv-status {
+    font-size: 1vw;
+  }
+
+  .outbid-info {
+
+    .outbids-name{
+      font-size: 1vw;
+    }
+  }
+}
+
+@media screen and (max-width : 576px){
+  .auction-info{
+     .ai-header{
+       display: block;
+     }
+  }
+  .lv-outbids-list{
+    text-align: center;
+  }
+  .lv-outbid {
+    ul {
+      li{
+        display: block;
+      }
+    }
+  }
+  .outbid-info{
+     div{
+       flex-direction: column;
+     }
+  }
+  .lv-status {
+    .fa{
+      font-size: 30px;
+      margin-#{$right}: 10px ;
+    }
+  }
+}

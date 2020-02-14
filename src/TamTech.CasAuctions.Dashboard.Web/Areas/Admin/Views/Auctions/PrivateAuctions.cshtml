@@ -1,0 +1,124 @@
+﻿
+
+@model AuctionsList
+@using TamTech.CasAuctions.Dashboard.SDK.Core.Helpers.Converters
+@{
+    ViewData["Title"] = Localizer["auctions"];
+    ViewData["UnitTestPageClass"] = "ut-auctions";
+    var activeLang = DataCultureHelper.GetCurrent(Context.Request.Query);
+
+
+}
+@functions {
+    public string TruncateAtWord(string input, int length)
+    {
+        if (input == null || input.Length < length)
+            return input;
+        int iNextSpace = input.LastIndexOf(" ", length, StringComparison.Ordinal);
+        return string.Format("{0}…", input.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
+    }
+}
+
+
+
+<div class="clearfix">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@Localizer["auctions"] <small></small></h3>
+        </div>
+        <div class="title_right">
+
+        </div>
+    </div>
+</div>
+
+
+<if include-if="Model != null">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+            <div class="x_panel p-x-0">
+                <div class="x_content">
+                    <partial name="_private_filters.cshtml" model="ViewBag.FilterModel" />
+                    <div class="table-responsive datatable drag">
+                        <table class="table table-middle table-striped  table-hover  padding-10" id="pagesTable" style="table-layout: fixed;user-select: none;">
+                            <thead>
+                                <tr>
+
+                                    <th width="250">@Localizer["t_title"] </th>
+                                    <th width="200">@Localizer["t_status"]</th>
+                                    <th width="200">@Localizer["SellerName"]</th>
+                                    <th width="100">@Localizer["t_type"]</th>
+                                    <th width="175">@Localizer["starting_date"]</th>
+                                    <th width="175">@Localizer["end_date"]</th>
+                                    <th width="175">@Localizer["ActualEndDate"]</th>
+                                    <th width="75" class="text-center">@Localizer["t_actions"]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <if include-if="Model.Data != null && Model.Data.Count > 0">
+                                    @foreach (Auction item in Model.Data)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="@Localizer["t_details"]"
+                                                   href="@Url.AdminUrl("Details" , "Auctions",new { id = item.Id })">
+                                                    @item.ItemTitle
+                                                </a>
+
+                                            </td>
+                                            <td>@item.StatusName</td>
+                                            <td>@item.SellerProfile.FullName</td>
+                                            <td>@item.TypeName</td>
+                                            <td>@item.StartDate</td>
+                                            <td>@item.EndDate</td>
+                                            <td>@item.ActualEndDate</td>
+
+                                            <td>
+                                                <a data-toggle="tooltip"
+                                                   data-placement="top"
+                                                   title="@Localizer["t_details"]"
+                                                   href="@Url.AdminUrl("PrivateDetails" , "Auctions",new { id = item.Id})"
+                                                   class="btn btn-view btn-round ">
+                                                    <i class="fa fa-bolt" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </if>
+                                <if exclude-if="Model.Data != null && Model.Data.Count > 0">
+                                    <tr>
+                                        <td colspan="10" class="text-center">
+                                            <p class="empty_row">
+                                                <i class='fa fa fa-exclamation-circle'></i>
+                                                @Localizer["no_data_table"]
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </if>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr class="m-y-2" />
+                    <pagination controller-name="Auctions" action-name="PrivateAuctions" filter-model="ViewBag.FilterModel" pagniation-model="Model.Pagination" total="true"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</if>
+
+
+<if exclude-if="Model != null">
+    <partial name="~/Areas/Admin/Views/Shared/_empty.cshtml" />
+</if>
+
+
+<style>
+    .popover {
+        max-width: 450px;
+    }
+</style>

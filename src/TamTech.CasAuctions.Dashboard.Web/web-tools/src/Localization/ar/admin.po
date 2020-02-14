@@ -2155,5 +2155,81 @@ msgstr "Last 6 hours"
 msgid "ActiveUsers"
 msgstr "Active users"
 
+msgid "public_auctions"
+msgstr "public auctions"
+
+msgid "private_auctions"
+msgstr "private auctions"
+
+
+msgid "All"
+msgstr "All"
+
+msgid "scheduled"
+msgstr "scheduled"
+
+msgid "active"
+msgstr "active"
+
+msgid "ended_without_winner"
+msgstr "ended without winner"
+
+msgid "ended_with_winner"
+msgstr "ended with winner"
+
+msgid "closing_request_sent_by_seller"
+msgstr "closing request sent by seller"
+
+msgid "closing_request_sent_by_buyer"
+msgstr "closing request sent by buyer"
+
+msgid "closing_request_declined_by_seller"
+msgstr "closing request declined by seller"
+
+msgid "closing_request_declined_by_buyer"
+msgstr "closing request declined by buyer"
+
+msgid "closed"
+msgstr "closed"
+
+msgid "cancelled_by_seller"
+msgstr "cancelled by seller"
+
+msgid "cancelled_by_admin"
+msgstr "cancelled by admin"
+
+msgid "cancelled_by_system"
+msgstr "cancelled by system"
+
+msgid "reported"
+msgstr "reported"
+
+msgid "draft"
+msgstr "draft"
+
+msgid "live_view"
+msgstr "live view"
+
+msgid "qr_code"
+msgstr "Qr code"
+
+msgid "location"
+msgstr "Location"
+
+msgid "active_now"
+msgstr "Active now"
+
+msgid "end_in"
+msgstr "End in"
+
+msgid "high_price"
+msgstr "High price"
+
+msgid "Last_outbid"
+msgstr "Last outbid"
+
+msgid ""
+msgstr ""
+
 msgid ""
 msgstr ""

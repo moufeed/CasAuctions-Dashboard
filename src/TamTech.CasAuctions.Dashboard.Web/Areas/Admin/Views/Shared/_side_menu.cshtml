@@ -43,7 +43,17 @@
 
             <if include-if="@policiesAccessible.Any(p => p.Equals(PolicyConstants.AuctionsAdmin))">
                 <li>
-                    <a asp-area="Admin" asp-controller="Auctions" asp-action="Index"><i class="fa fa-gavel"></i>@Localizer["auctions"]</a>
+                    <a>
+                        <i class="fa fa-sliders"></i> @Localizer["auctions"] <span class="fa fa-chevron-down"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                        <li>
+                            <a asp-area="Admin" asp-controller="Auctions" asp-action="Index"><i class="fa fa-gavel"></i>@Localizer["public_auctions"]</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="Auctions" asp-action="PrivateAuctions"><i class="fa fa-gavel"></i>@Localizer["private_auctions"]</a>
+                        </li>
+                      </ul>
                 </li>
             </if>
             

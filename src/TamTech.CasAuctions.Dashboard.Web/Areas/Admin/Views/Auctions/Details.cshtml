@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "auction details";
 
-
-    bool ShowCurrency = Model.CurrencyGrade != null || Model.CurrencyPickNumber != null || Model.CurrencyDenomination != null || Model.CurrencyCountry != null || Model.CurrencyYear != null;
+    bool ShowCurrency = Model != null && Model.CurrencyGrade != null || Model.CurrencyPickNumber != null || Model.CurrencyDenomination != null || Model.CurrencyCountry != null || Model.CurrencyYear != null;
+   int  ActiveId = 2;
 }
 
 <style>
@@ -26,6 +26,10 @@
             <div class="title_right">
                 <a asp-action="Index"
                    class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+
+                <if include-if='Model.StatusId == ActiveId'>
+                    <a href="#liveView" data-backdrop="static" class="btn btn-success" data-toggle="modal"> <span class="fa fa-eye"></span>@Localizer["live_view"]</a>
+                </if>
             </div>
         </div>
     </div>
@@ -47,7 +51,7 @@
 
     </div>
     <div class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
             <div class="x_panel">
                 <div class="x_title clearfix">
                     <h2>@Localizer["Main Info"]</h2>
@@ -65,9 +69,11 @@
                         </dt>
                         <dd>
                             <span class="badge badge-light">
-                                 @Html.DisplayFor(model => model.StatusName)
-                            </span> 
+                                @Html.DisplayFor(model => model.StatusName)
+                            </span>
                         </dd>
+
+
                         <dt>
                             @Localizer["Category"]
                         </dt>
@@ -94,7 +100,7 @@
 
             </div>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
             <div class="x_panel">
                 <div class="x_title clearfix">
                     <h2>@Localizer["Date & Time Info"]</h2>
@@ -109,7 +115,7 @@
                                     <a href="#" onclick="utcTime(true)">UTC Zone</a>
                                 </li>
                                 <li>
-                                    
+
                                     <a href="#" onclick="utcTime(false)">Local Zone</a>
                                 </li>
                             </ul>
@@ -163,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
             <div class="x_panel">
                 <div class="x_title clearfix">
                     <h2>@Localizer["Prices Info"]</h2>
@@ -222,14 +228,12 @@
                         <dd>
                             @Html.DisplayFor(model => model.ExtendedTime)
                         </dd>
-
                     </dl>
                 </div>
             </div>
         </div>
-
         <if include-if="ShowCurrency">
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
                 <div class="x_panel">
                     <div class="x_title clearfix">
                         <h4>@Localizer["Currency Info"]</h4>
@@ -281,8 +285,38 @@
             </div>
         </if>
 
-       
-    
+        <if include-if="ViewBag.isPrivate">
+            <if include-if="true">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
+                    <div class="x_panel">
+                        <div class="x_title clearfix">
+                            <h4>@Localizer["qr_code"]</h4>
+                        </div>
+                        <div class="x_content">
+                            <img src="~/Admin/img/qrcode.png" alt="" width="225" />
+                        </div>
+                    </div>
+                </div>
+            </if>
+            <if include-if="true">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
+                    <div class="x_panel">
+                        <div class="x_title clearfix">
+                            <h4>@Localizer["location"]</h4>
+                        </div>
+                        <div class="x_content">
+
+                            <iframe style="width:100%;height:220px;border:0" src="https://www.google.com/maps/embed/v1/place?q=40.984089,28.7230693&amp;key=AIzaSyDlfzP6-imK36fRZLkxadSigMedVVOK5T0" frameborder="0"></iframe>
+
+                        </div>
+                    </div>
+                </div>
+            </if>
+
+        </if>
+
+
+
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title clearfix">
@@ -330,8 +364,8 @@
             </div>
         </div>
     </div>
-   
-    
+
+
 
 
     <div class="row">
@@ -339,7 +373,7 @@
             @{
                 var Seller = Model.SellerProfile;
             }
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
                 <div class="well profile_view clearfix">
                     <div class="col-sm-12">
 
@@ -348,7 +382,7 @@
                             <strong>@Seller.FullName</strong>
                         </div>
                         <div class="right col-xs-6 text-right">
-                            <img src="@Seller.Photo" alt="" class=" img-responsive img-thumbnail"   style="height:125px">
+                            <img src="@Seller.Photo" alt="" class=" img-responsive img-thumbnail" style="height:125px">
                         </div>
                     </div>
 
@@ -361,7 +395,7 @@
             @{
                 var Buyer = Model.BuyerProfile;
             }
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
                 <div class="well profile_view clearfix">
                     <div class="col-sm-12">
 
@@ -369,17 +403,17 @@
                             <h4> @Localizer["Buyer"]</h4>
                             <strong>@Buyer.FullName</strong>
                             <p>
-                                @Localizer["display Buyer"]  
+                                @Localizer["display Buyer"]
                                 @if (Model.DisplayBuyer)
-                                                        {
-                                                            <i class="fa fa-check"></i>
-                                                        }
-                                                        else
-                                                        {
-                                                            <i class="fa fa-times"></i>
-                                                        }
+                                {
+                                    <i class="fa fa-check"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-times"></i>
+                                }
                             </p>
-                            
+
                         </div>
                         <div class="right col-xs-6 text-right">
                             <img src="@Buyer.Photo" alt="" class=" img-responsive img-thumbnail" style="height:125px">
@@ -394,7 +428,7 @@
         </if>
 
     </div>
-   
+
 
 
 
@@ -409,7 +443,7 @@
                 <div class="row">
                     @foreach (var item in Model.ItemImages)
                     {
-                        <div class="col-md-2 col-sm-3">
+                        <div class="col-md-3 col-sm-4 col-lg-2">
                             <div class="gi-card">
                                 <a href="@item.Original" class="gi-image" data-lightbox="images" data-title="@Model.ItemTitle">
                                     <img src="@item.Thumb" class="img-responsive">
@@ -506,15 +540,16 @@
                                             {
                                                 <img src="@outbid.Profile.Photo" class="img-responsive" />
                                             }
-                                    </td>
-                                    <td>@outbid.Profile.FullName</td>
-                                    <td>@outbid.Price</td>
-                                    <td>@outbid.CreatedDate</td>
-                                </tr>
-                            }
+                                        </td>
+                                        <td>@outbid.Profile.FullName</td>
+                                        <td>@outbid.Price</td>
+                                        <td>@outbid.CreatedDate</td>
+                                    </tr>
+                                }
                             </table>
                         </div>
                     </if>
+
                     <if include-if="Model.StepsHistory != null ">
                         <div role="tabpanel" class="tab-pane fade in active p-y-5" id="StepsHistory">
 
@@ -632,19 +667,34 @@
     <partial name="~/Areas/Admin/Views/Shared/_empty.cshtml" />
 </if>
 
-
-
+<if include-if="Model.StatusId  == ActiveId">
+    <partial name="_modal.cshtml" model="Model" />
+</if>
 
 
 @section Scripts {
+
+
+
+
 
     <partial name="_ValidationScriptsPartial" />
 
     <script src="~/Admin/js/auctions.min.js"></script>
 
 
+
+    <if include-if="Model.StatusId == ActiveId">
+        <script src="~/Admin/js/carousel.min.js"></script>
+        <script src="~/Admin/js/details.min.js"></script>
+
+    </if>
+
+
     <script src="~/Admin/js/lightbox.min.js"></script>
     <script>
+
+
 
         function utcTime(utc) {
             if (utc) {
@@ -663,4 +713,3 @@
     </script>
 
 }
- 
