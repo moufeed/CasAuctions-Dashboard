@@ -85,4 +85,41 @@ $(document).ready(() => {
       return false;
     }
   });
+
+  $("#RolesForm").validate({
+    errorClass: "invalid_field",
+    validClass: "valid_field",
+    ignore: ".ignore",
+    submitHandler: function(form) {
+      let action = $(form).attr("action");
+      $.ajax({
+        url: action,
+        type: "POST",
+        data: $(form).serialize(),
+        cache: false,
+        processData: false,
+        success: function(data) {
+          console.log(data);
+
+          if (data.success) {
+            $notification.success(
+              "",
+              window.localization.processed_successfully,
+              2000,
+              "fa fa-check"
+            );
+            $(form)
+              .find('button[type="submit"],input[name="private_auction"]')
+              .attr("disabled", "disabled");
+          } else {
+            var errors = data.errors;
+            if (errors.length > 0) {
+              let txt = MakeErrorsMsg(errors);
+              $notification.error("", txt, 3500, "fa fa-exclamation-circle");
+            }
+          }
+        }
+      });
+    }
+  });
 });

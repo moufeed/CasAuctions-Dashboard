@@ -46,12 +46,14 @@
                 <div class="pos-actions p-t5">
                     <h4 class="m-b3">@Localizer["t_actions"]</h4>
                     <ul class="nav nav-tabs sub-tabs" role="tablist">
+
                         <if include-if="ViewBag.Actions != null">
                             <li role="presentation" class="active"><a href="#form" aria-controls="form" role="tab" data-toggle="tab">@Localizer["new_action"]</a></li>
                         </if>
                         <if include-if="Model.Histories != null">
-                            <li role="presentation" class="@(ViewBag.Actions == null ?  "active" :"")"><a href="#history" aria-controls="profile" role="tab" data-toggle="tab">@Localizer["History"]</a></li>
+                            <li role="presentation" class="@(ViewBag.Actions == null ?  "active" :"")"><a href="#history" aria-controls="history" role="tab" data-toggle="tab">@Localizer["History"]</a></li>
                         </if>
+                        <li role="presentation" class=""><a href="#sellerRoles" aria-controls="sellerRoles" role="tab" data-toggle="tab">@Localizer["seller_roles"]</a></li>
 
                     </ul>
 
@@ -110,10 +112,35 @@
                                 <partial name="~/Areas/Admin/Views/SellerRequests/_history.cshtml" model="@history" />
                             </div>
                         </if>
-                    </div>
-                </div>
 
-            </div>
+
+
+                        <if include-if="true">
+                            <div role="tabpanel" class="tab-pane fade " id="sellerRoles">
+                                <form asp-action="UserRoles" class="form p-5" id="RolesForm">
+                                    <input type="hidden" value="@Model.UserId" name="UserId" />
+      
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label data-toggle="tooltip" data-placement="top" title="@Localizer["this_action_can_t_be_undone"]">
+                                                <input type="checkbox" name="private_auction">  @Localizer["private_auctions_role"]
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success ">@Localizer["submit"]</button>
+
+                                </form>
+                            </div>
+
+                        </if>
+
+
+                    </div>
+
+                     
+                    </div>
+
+                </div>
         </div>
     </div>
 

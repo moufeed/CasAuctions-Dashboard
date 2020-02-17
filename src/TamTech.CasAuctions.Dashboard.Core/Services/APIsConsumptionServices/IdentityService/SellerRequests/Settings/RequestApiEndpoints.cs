@@ -25,6 +25,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Ide
 
         public string StatusListEndpoint => $"{_identityServiceUrl}/api/SellerRequest/Status/SelectList";
 
-      
+        public string PrivatePermissionEndpoint => $"{_identityServiceUrl}/api/Admin/User/AddPrivatePermission";
+
     }
 }

@@ -115,5 +115,29 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
                 return ReturnJsonErrorResult(ex.Message, model);
             }
         }
+
+        [HttpPost("{Culture}/[Area]/[Controller]/user-roles")]
+        public async Task<JsonResult> UserRoles(Guid userId)
+        {
+
+            try
+            {
+                var result = await _sellerRequests.AddPrivatePermission(userId);
+                if (result.Success)
+                {
+                    return ReturnJsonResult(result, userId);
+                }
+                else
+                {
+                    return ReturnJsonResult(result, userId);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                TrackException(ex, userId);
+                return ReturnJsonErrorResult(ex.Message, userId);
+            }
+        }
     }
 }

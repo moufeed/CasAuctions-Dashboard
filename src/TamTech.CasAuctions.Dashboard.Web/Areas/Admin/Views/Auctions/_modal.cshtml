@@ -35,9 +35,8 @@
                             </span>
                         </div>
 
-
-
-
+                        
+                      
                         <ul class="list-unstyled a-list">
                             <li>
                                 <span>@Localizer["Category"]</span>
@@ -58,8 +57,9 @@
                                 <strong>@Model.IncrementTypeName</strong>
                             </li>
                             <li class="ac-date">
+                             
                                 <span>@Localizer["Start Date"]</span>
-                                <strong class="utc">@Model.StartDate (<small>UTC</small>)</strong>
+                                <strong class="utc"> @Model.StartDate (<small>UTC</small>)</strong>
                                 <strong class="local hidden">@Model.StartDate.ToLocalTime() (<small>local</small>)</strong>
                             </li>
                             <li>

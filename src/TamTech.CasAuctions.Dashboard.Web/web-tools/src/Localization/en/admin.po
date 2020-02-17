@@ -1918,8 +1918,47 @@ msgstr "High price"
 msgid "Last_outbid"
 msgstr "Last outbid"
 
-msgid ""
-msgstr ""
 
-msgid ""
-msgstr ""
+msgid "about_days_ago"
+msgstr "about {0} days ago"
+
+msgid "yesterday"
+msgstr "yesterday"
+
+msgid "seconds_ago"
+msgstr "{0} seconds ago"
+
+msgid "minute_ago"
+msgstr "about a minute ago"
+
+msgid "minutes_ago"
+msgstr "about {0} minutes ago"
+
+msgid "hours_ago"
+msgstr "about {0} hours ago"
+
+msgid "hour_ago"
+msgstr "about an hour ago"
+
+msgid "months_ago"
+msgstr "about {0} months ago"
+
+msgid "month_ago"
+msgstr "about a month ago"
+
+msgid "years_ago"
+msgstr "about {0} years ago"
+
+msgid "year_ago"
+msgstr "about a year ago"
+
+msgid "this_action_can_t_be_undone"
+msgstr "this action can't be undone"
+
+msgid "private_auctions_role"
+msgstr "Create private auction"
+
+
+
+msgid "seller_roles"
+msgstr "seller roles"
