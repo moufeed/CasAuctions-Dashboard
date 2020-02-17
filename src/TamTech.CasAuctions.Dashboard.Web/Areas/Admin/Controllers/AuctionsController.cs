@@ -132,13 +132,17 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 
                 makeSelcets(model);
 
+                Dictionary<string, object> searchKeys = GenrateSearchParams(model);
+
+                searchKeys.Add("IsPrivate", false);
+
                 DTFilter filters = new DTFilter
                 {
                     Lang = GetCurrentDataLang(),
                     PageSize = model.PageSize,
                     PageNumber = model.PageNumber,
                     SortBy = model.SortBy,
-                    Search = GenrateSearchParams(model)
+                    Search = searchKeys
                 };
 
                 var result = await _acutionsservice.GetAllAuctionsListAsync(filters);
@@ -213,6 +217,9 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             try
             {
                 makeSelcets(model);
+                Dictionary<string, object> searchKeys = GenrateSearchParams(model);
+
+                searchKeys.Add("IsPrivate", true);
 
                 DTFilter filters = new DTFilter
                 {
@@ -220,7 +227,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
                     PageSize = model.PageSize,
                     PageNumber = model.PageNumber,
                     SortBy = model.SortBy,
-                    Search = GenrateSearchParams(model)
+                    Search = searchKeys
                 };
 
                 var result = await _acutionsservice.GetAllAuctionsListAsync(filters);
