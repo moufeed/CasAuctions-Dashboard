@@ -252,6 +252,12 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests
                     {
                         var errors = JsonConvert.DeserializeObject<RequestProviderErrors> (content, _serializerSettings);
                         result.Messages = errors.Errors;
+                         if(result.Messages == null)
+                        {
+                            result.Messages  = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(content, _serializerSettings);
+                        }
+
+
                     }
                     catch (Exception exc)
                     {
