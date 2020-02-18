@@ -17,8 +17,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.IdentityService.SellerReque
             Task<IRequestProviderResult<SellerRequest>> GetRequestDetailsAsync(Guid id);
             Task<IRequestProviderResult<List<ProcessActionModel>>> GetRequestActionsAsync(Guid id);
             Task<IRequestProviderResult<CasAuctionResponsModel<SellerRequest>>> TakeActionAsync(TakeActionModel model);
-            Task<IRequestProviderResult<List<SelectListItemModel>>> GetAllSelectListAsync();
-            Task<IRequestProviderResult<bool>> AddPrivatePermission(Guid id);
+            Task<IRequestProviderResult<List<SelectListItemModel>>> GetAllSelectListAsync();     
+            Task<IRequestProviderResult<CasAuctionResponsModel<bool>>> AddPrivatePermission(Guid id);
     }
 }
  

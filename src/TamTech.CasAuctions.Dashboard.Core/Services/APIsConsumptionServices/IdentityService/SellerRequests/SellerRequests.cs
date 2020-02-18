@@ -54,7 +54,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Ide
             return await ReqProvider.GetAsync<List<SelectListItemModel>>(_apiSettings.StatusListEndpoint);
         }
 
-        public async Task<IRequestProviderResult<bool>> AddPrivatePermission(Guid userId)
+        public async Task<IRequestProviderResult<CasAuctionResponsModel<bool>>> AddPrivatePermission(Guid userId)
         {
 
             var model = new Role
@@ -62,7 +62,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Ide
                 userId = userId
             };
          
-            var result  = await ReqProvider.PostAsync<bool, Role>(_apiSettings.PrivatePermissionEndpoint, model);
+            var result  = await ReqProvider.PostAsync<CasAuctionResponsModel<bool>, Role>(_apiSettings.PrivatePermissionEndpoint, model);
             return result;
         }
 
