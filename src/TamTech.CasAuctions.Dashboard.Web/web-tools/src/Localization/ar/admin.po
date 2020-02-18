@@ -2273,6 +2273,8 @@ msgstr "Create private auction"
 msgid "seller_roles"
 msgstr "seller roles"
 
+msgid "seller_permissions"
+msgstr "seller permissions"
 
 msgid ""
 msgstr ""
