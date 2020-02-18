@@ -134,7 +134,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 
                 Dictionary<string, object> searchKeys = GenrateSearchParams(model);
 
-                searchKeys.Add("IsPrivate", false);
+              //  searchKeys.Add("IsPrivate", false);
 
                 DTFilter filters = new DTFilter
                 {
