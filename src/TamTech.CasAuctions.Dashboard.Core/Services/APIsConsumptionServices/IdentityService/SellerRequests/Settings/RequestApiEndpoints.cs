@@ -27,5 +27,6 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Ide
 
         public string PrivatePermissionEndpoint => $"{_identityServiceUrl}/api/Admin/User/AddPrivatePermission";
 
+        public string UserRoles => $"{_identityServiceUrl}/api/Admin/User/";
     }
 }

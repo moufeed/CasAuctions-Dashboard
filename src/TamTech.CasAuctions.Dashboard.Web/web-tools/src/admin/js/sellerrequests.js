@@ -99,8 +99,6 @@ $(document).ready(() => {
         cache: false,
         processData: false,
         success: function(data) {
-          console.log(data);
-
           if (data.success) {
             $notification.success(
               "",

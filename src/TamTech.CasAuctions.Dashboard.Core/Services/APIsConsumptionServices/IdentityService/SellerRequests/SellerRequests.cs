@@ -57,17 +57,20 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Ide
         public async Task<IRequestProviderResult<CasAuctionResponsModel<bool>>> AddPrivatePermission(Guid userId)
         {
 
-            var model = new Role
+            var model = new UserRole
             {
                 userId = userId
             };
          
-            var result  = await ReqProvider.PostAsync<CasAuctionResponsModel<bool>, Role>(_apiSettings.PrivatePermissionEndpoint, model);
+            var result  = await ReqProvider.PostAsync<CasAuctionResponsModel<bool>, UserRole>(_apiSettings.PrivatePermissionEndpoint, model);
             return result;
         }
 
+        public async  Task<IRequestProviderResult<List<Role>>> GetUserRoles(string userName)
+        {
+            return await ReqProvider.GetAsync<List<Role>>(string.Format(_apiSettings.UserRoles+ "{0}/Roles", userName));
 
-
+        }
     }
 }
 

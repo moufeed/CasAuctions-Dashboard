@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "View";
+
+    bool hasPrivate = ViewBag.hasPrivate ? true : false;
 }
-
-
+ 
 
 <if include-if="Model != null">
     <div class="clearfix">
@@ -53,8 +54,10 @@
                         <if include-if="Model.Histories != null">
                             <li role="presentation" class="@(ViewBag.Actions == null ?  "active" :"")"><a href="#history" aria-controls="history" role="tab" data-toggle="tab">@Localizer["History"]</a></li>
                         </if>
-                        <li role="presentation" class=""><a href="#sellerRoles" aria-controls="sellerRoles" role="tab" data-toggle="tab">@Localizer["seller_permissions"]</a></li>
 
+                        <if exclude-if="hasPrivate">
+                            <li role="presentation" class=""><a href="#sellerRoles" aria-controls="sellerRoles" role="tab" data-toggle="tab">@Localizer["seller_permissions"]</a></li>
+                        </if>
                     </ul>
 
 
@@ -115,7 +118,7 @@
 
 
 
-                        <if include-if="true">
+                        <if exclude-if="hasPrivate">
                             <div role="tabpanel" class="tab-pane fade " id="sellerRoles">
                                 <form asp-action="UserRoles" class="form p-5" id="RolesForm">
                                     <input type="hidden" value="@Model.UserId" name="UserId" />

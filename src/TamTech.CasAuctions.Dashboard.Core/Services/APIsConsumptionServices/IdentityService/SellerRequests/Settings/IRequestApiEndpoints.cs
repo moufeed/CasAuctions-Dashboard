@@ -18,7 +18,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Ide
        
         string PrivatePermissionEndpoint { get; }
 
-
+        string UserRoles { get; }
 
     }
 }

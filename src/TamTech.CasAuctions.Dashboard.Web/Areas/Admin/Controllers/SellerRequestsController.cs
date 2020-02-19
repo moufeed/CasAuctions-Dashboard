@@ -79,11 +79,22 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         {
             try
             {
+                
+
                 var _Actions = await _sellerRequests.GetRequestActionsAsync(id);
                 ViewBag.Actions = VerifySucceed(_Actions) ? _Actions.Data : null;
 
                 var result = await _sellerRequests.GetRequestDetailsAsync(id);
-                return View(VerifySucceed(result) ? result.Data : null);
+
+                if (VerifySucceed(result))
+                {
+                    var roles = await _sellerRequests.GetUserRoles(result.Data.UserName.Replace("+","00"));
+
+
+                    ViewBag.hasPrivate = roles.Data.Exists(m => m.Name  == "Private") ;
+                    return View(result.Data);
+                }
+                return View(null);
 
             }
             catch (Exception ex)
