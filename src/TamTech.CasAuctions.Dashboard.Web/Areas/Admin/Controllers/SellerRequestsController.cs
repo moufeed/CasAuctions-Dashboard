@@ -90,8 +90,11 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
                 {
                     var roles = await _sellerRequests.GetUserRoles(result.Data.UserName.Replace("+","00"));
 
+                    ViewBag.PrivatePermission = roles.Data.Exists(m => m.Name == "Private");
+                    ViewBag.SellerRole = roles.Data.Exists(m => m.Name == "Seller");
+                    
 
-                    ViewBag.hasPrivate = roles.Data.Exists(m => m.Name  == "Private") ;
+
                     return View(result.Data);
                 }
                 return View(null);

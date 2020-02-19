@@ -58,7 +58,9 @@ $(document).ready(() => {
               2000,
               "fa fa-check"
             );
-            $("#request_status").text(_data.status_name);
+            location.reload();
+
+            /* $("#request_status").text(_data.status_name);
             $("#request_status")
               .removeClass()
               .addClass(`badge badge-${_data.status_options}`);
@@ -72,7 +74,7 @@ $(document).ready(() => {
                 .parent()
                 .remove();
               $("#form").remove();
-            }, 500);
+            }, 500); */
           } else {
             var errors = data.errors;
             if (errors.length > 0) {

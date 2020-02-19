@@ -3,7 +3,10 @@
 @{
     ViewData["Title"] = "View";
 
-    bool hasPrivate = ViewBag.hasPrivate ? true : false;
+    bool PrivatePermission =  ViewBag.PrivatePermission ? true : false;
+    bool SellerRole =  ViewBag.SellerRole ? true : false;
+
+     
 }
  
 
@@ -55,7 +58,7 @@
                             <li role="presentation" class="@(ViewBag.Actions == null ?  "active" :"")"><a href="#history" aria-controls="history" role="tab" data-toggle="tab">@Localizer["History"]</a></li>
                         </if>
 
-                        <if exclude-if="hasPrivate">
+                        <if include-if="SellerRole">
                             <li role="presentation" class=""><a href="#sellerRoles" aria-controls="sellerRoles" role="tab" data-toggle="tab">@Localizer["seller_permissions"]</a></li>
                         </if>
                     </ul>
@@ -118,19 +121,31 @@
 
 
 
-                        <if exclude-if="hasPrivate">
+                        <if include-if="SellerRole">
                             <div role="tabpanel" class="tab-pane fade " id="sellerRoles">
                                 <form asp-action="UserRoles" class="form p-5" id="RolesForm">
                                     <input type="hidden" value="@Model.UserId" name="UserId" />
-      
+
                                     <div class="form-group">
                                         <div class="checkbox">
                                             <label data-toggle="tooltip" data-placement="top" title="@Localizer["this_action_can_t_be_undone"]">
-                                                <input type="checkbox" name="private_auction">  @Localizer["private_auctions_role"]
+                                                @if (PrivatePermission)
+                                                {
+                                                    <input type="checkbox" name="private_auction" checked disabled> @Localizer["private_auctions_role"]
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox" name="private_auction"> @Localizer["private_auctions_role"]
+                                                }
+
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-success ">@Localizer["submit"]</button>
+                                    @if (!PrivatePermission)
+                                    {
+                                        <button type="submit" class="btn btn-success ">@Localizer["submit"]</button>
+                                    }
+                                     
 
                                 </form>
                             </div>
