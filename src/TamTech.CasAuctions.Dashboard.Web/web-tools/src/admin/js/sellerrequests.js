@@ -123,37 +123,3 @@ $(document).ready(() => {
     }
   });
 });
-
-function GetDays(distance) {
-  return Math.floor(distance / (1000 * 60 * 60 * 24));
-}
-function GetHours(distance) {
-  return Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-}
-function GetMinutes(distance) {
-  return Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-}
-function GetSeconds(distance) {
-  return Math.floor((distance % (1000 * 60)) / 1000);
-}
-
-function Timer(EndDate, target, callback) {
-  var _endDate = new Date(EndDate).getTime();
-  var timer = setInterval(() => {
-    var distance = _endDate - Date.now();
-    if (distance <= 0) {
-      clearInterval(timer);
-      return false;
-    }
-    if (callback && typeof callback == "function") {
-      callback(
-        GetDays(distance),
-        GetHours(distance),
-        GetMinutes(distance),
-        GetSeconds(distance),
-        target
-      );
-    }
-  }, 1000);
-  return timer;
-}

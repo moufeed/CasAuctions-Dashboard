@@ -25,7 +25,9 @@
   .ai-header {
     width: 100%;
     display: grid;
-    grid-template-columns: 150px auto;
+    &.has-qr{
+      grid-template-columns: 150px auto;
+    }
     p {
       letter-spacing: 1px;
       max-width: 90%;

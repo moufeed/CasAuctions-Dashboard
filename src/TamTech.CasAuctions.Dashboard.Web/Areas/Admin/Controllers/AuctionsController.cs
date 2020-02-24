@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
+using QRCoder;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Constants;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Telemetry;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
@@ -34,6 +35,18 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         }
 
 
+
+        private string QrCode (string text)
+        {
+            //https://github.com/codebude/QRCoder/
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(text, QRCodeGenerator.ECCLevel.Q);
+            Base64QRCode qrCode = new Base64QRCode(qrCodeData);
+            string qrCodeImageAsBase64 = qrCode.GetGraphic(20);
+
+            return qrCodeImageAsBase64;
+        }
 
         private void createSortList(Filter model , bool isPravite = false)
         {
@@ -164,10 +177,18 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Details(Guid id)
         {
             ViewBag.isPrivate = false;
+           
             try
             {
                 var result = await _acutionsservice.GetAuctionDetailsAsync(id);
-                return View(VerifySucceed(result) ? result.Data : null);
+
+                if (VerifySucceed(result))
+                {
+                    ViewBag.qrcode = QrCode(result.Data.Id.ToString());
+                    return View(result.Data);
+                }
+                
+                return View(null);
             }
             catch (Exception ex)
             {
@@ -251,7 +272,18 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             try
             {
                 var result = await _acutionsservice.GetAuctionDetailsAsync(id);
-                return View("/Areas/Admin/Views/Auctions/Details.cshtml", VerifySucceed(result) ? result.Data : null);
+
+
+
+                if (VerifySucceed(result))
+                {
+                    ViewBag.qrcode = QrCode(result.Data.Id.ToString());
+                    return View("/Areas/Admin/Views/Auctions/Details.cshtml", result.Data);
+                }
+
+                return View(null);
+
+              
             }
             catch (Exception ex)
             {

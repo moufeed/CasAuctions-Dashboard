@@ -2276,5 +2276,5 @@ msgstr "seller roles"
 msgid "seller_permissions"
 msgstr "seller permissions"
 
-msgid ""
-msgstr ""
+msgid "count_down"
+msgstr "Countdown"

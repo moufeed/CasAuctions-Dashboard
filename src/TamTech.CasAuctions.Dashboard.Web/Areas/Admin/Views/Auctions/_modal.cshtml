@@ -2,7 +2,7 @@
 @{
     bool ShowCurrency = Model != null && Model.CurrencyGrade != null || Model.CurrencyPickNumber != null || Model.CurrencyDenomination != null || Model.CurrencyCountry != null || Model.CurrencyYear != null;
 }
-<div class="modal fade modal-liveview in" id="liveView" tabindex="-1" role="dialog" aria-labelledby="liveViewLabel" >
+<div class="modal fade modal-liveview in" id="liveView" tabindex="-1" role="dialog" aria-labelledby="liveViewLabel">
     <div class="modal-dialog modal-full" role="document">
         <div class="modal-content">
 
@@ -27,16 +27,21 @@
 
                 <div class="col-md-7 col-lg-8 ">
                     <div class="auction-info">
-                        <div class="ai-header">
-                                <img src="~/Admin/img/qrcode.png" alt="" class="img-responsive" />
+                        <div class="ai-header @if (ViewBag.isPrivate) {<text>has-qr</text> }">
+
+                                <if include-if="ViewBag.isPrivate">
+                                    <img src="data:image/png;base64,@ViewBag.qrcode" alt="" class="img-responsive" />
+                                </if>
+                            
+                    
                             <span>
                                 <h2>@Model.ItemTitle</h2>
-                            <p>@Model.ItemDescription</p>
+                                <p>@Model.ItemDescription</p>
                             </span>
                         </div>
 
-                        
-                      
+
+
                         <ul class="list-unstyled a-list">
                             <li>
                                 <span>@Localizer["Category"]</span>
@@ -57,7 +62,7 @@
                                 <strong>@Model.IncrementTypeName</strong>
                             </li>
                             <li class="ac-date">
-                             
+
                                 <span>@Localizer["Start Date"]</span>
                                 <strong class="utc"> @Model.StartDate (<small>UTC</small>)</strong>
                                 <strong class="local hidden">@Model.StartDate.ToLocalTime() (<small>local</small>)</strong>
@@ -102,7 +107,7 @@
                                     {
                                         <i class="fa fa-times"></i>
                                     }
-                                   </strong>
+                                </strong>
                             </li>
 
                             <if include-if="ShowCurrency">
@@ -150,7 +155,7 @@
                                     }
                                 </style>
                             }
-                            <div class="col-md-6 col-sm-6">
+                            @*<div class="col-md-6 col-sm-6">
                                 <h4>@Localizer["Participants"]</h4>
 
                                 <div class="participants-box">
@@ -173,8 +178,8 @@
                                     </if>
                                 </div>
 
-                            </div>
-                            <div class="col-md-6 col-sm-6">
+                            </div>*@
+                            <div class="col-md-8 col-sm-8">
                                 <h4>@Localizer["Outbids"]</h4>
 
                                 <div class="outbids-box">
@@ -184,21 +189,26 @@
                                             {
                                                 <li>
                                                     <picture>
-                                                        @if (!string.IsNullOrEmpty(outbid.Profile.Photo))
-                                                        {
-                                                            <img src="@outbid.Profile.Photo" />
-                                                        }
-                                                        else
-                                                        {
-                                                            <img src="~/Admin/img/empty_image.png" alt="" />
-                                                        }
+                                                        @*@if (!string.IsNullOrEmpty(outbid.Profile.Photo))
+        {
+            <img src="@outbid.Profile.Photo" />
+        }
+        else
+        {
+
+        }*@
+                                                        <img src="~/Admin/img/Avatar.svg" alt="" width="70" />
                                                     </picture>
 
                                                     <div class="outbid-info">
                                                         <strong class="outbids-name">@outbid.Profile.FullName</strong>
                                                         <div>
-                                                            <span class="outbid-price"><strong class="price">@outbid.Price</strong> <small class="currency">$</small></span>
-                                                            <span class="outbid-date">@outbid.CreatedDate</span>
+                                                            <span class="outbid-price"><strong class="price">@outbid.Price</strong> <small class="currency"></small></span>
+                                                            <span class="outbid-date">
+                                                                <strong class="utc"> @outbid.CreatedDate (<small>UTC</small>)</strong>
+                                                                <strong class="local hidden">@outbid.CreatedDate.ToLocalTime() (<small>local</small>)</strong>
+                                                            </span>
+
                                                         </div>
                                                     </div>
                                                 </li>
@@ -232,14 +242,19 @@
                                 <i class="fa fa-clock-o"></i>
                                 <span>
                                     <strong>@Localizer["active_now"]</strong>
-                                    <span class="">@Localizer["end_in"]  <b class="end_timer">24:07</b></span>
+                                    <span class="time_to_end"><span>@Localizer["end_in"]</span>  <b class="end_timer"  data-end="@Model.EndDate">00:00</b></span>
+                                    <span class="time_to_actual_end hidden text-red"> <span> @Localizer["count_down"]</span><b class="actual_end_timer" data-end="@Model.ActualEndDate">00:00</b></span>
                                 </span>
                             </div>
                             <div class="a-hprice">
                                 <i class="fa fa-dollar"></i>
                                 <span>
                                     <strong>@Localizer["high_price"]</strong>
-                                    $ <b class="hprice">200</b>
+
+                                    @if (Model.Outbids != null && Model.Outbids.Count > 0)
+                                    {
+                                        <b class="hprice">@((Model.Outbids.First()).Price)</b>
+                                    }
                                 </span>
                             </div>
 
@@ -247,42 +262,30 @@
                         <div class="lv-outbid">
                             <h4 class="text-uppercase">@Localizer["Last_outbid"]</h4>
                             <ul class="list-unstyled lv-outbids-list">
-                                <li>
-                                            <picture>
-
-                                                    <img src="~/Admin/img/empty_image.png" alt="outbid.Profile.FullName" />
-
-                                            </picture>
-                                            <div class="outbid-info">
-                                                <strong class="outbids-name">outbid.Profile.FullName</strong>
-                                                <div>
-                                                    <span class="outbid-price"><strong class="price">outbid.Price</strong> <small class="currency">$</small></span>
-                                                    <span class="outbid-date">outbid.CreatedDate</span>
-                                                </div>
-                                            </div>
-                                        </li>
                                 <if include-if="Model.Outbids != null && Model.Outbids.Count > 0">
 
+                                    @{
+                                        var Outbid = Model.Outbids.First();
 
-
-                                    @foreach (var outbid in Model.Outbids )
-                                    {
                                         <li>
                                             <picture>
-                                                @if (!string.IsNullOrEmpty(outbid.Profile.Photo))
-                                                {
-                                                    <img src="@outbid.Profile.Photo" class="img-responsive" />
-                                                }
-                                                else
-                                                {
-                                                    <img src="~/Admin/img/empty_image.png" alt="@outbid.Profile.FullName" />
-                                                }
+                                                @*@if (!string.IsNullOrEmpty(outbid.Profile.Photo))
+                                                    {
+                                                        <img src="@outbid.Profile.Photo" class="img-responsive" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Admin/img/empty_image.png" alt="@outbid.Profile.FullName" />
+                                                    }*@
+                                                <img src="~/Admin/img/Avatar.svg" alt="@Outbid.Profile.FullName" />
                                             </picture>
                                             <div class="outbid-info">
-                                                <strong class="outbids-name">@outbid.Profile.FullName</strong>
+                                                <strong class="outbids-name">@Outbid.Profile.FullName</strong>
                                                 <div>
-                                                    <span class="outbid-price"><strong class="price">@outbid.Price</strong> <small class="currency">$</small></span>
-                                                    <span class="outbid-date">@outbid.CreatedDate</span>
+                                                    <span class="outbid-price"><strong class="price">@Outbid.Price</strong> <small class="currency"></small></span>
+                                                    <span class="outbid-date">
+                                                        <TimeAgo date-time="@Outbid.CreatedDate"></TimeAgo>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </li>

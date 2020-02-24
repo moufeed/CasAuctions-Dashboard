@@ -82,6 +82,11 @@ let ListFiles = [
     inputs: [`${admin_src}/js/statistics.js`]
   },
   {
+    output: "moment.js",
+    es6: false,
+    inputs: ["./node_modules/moment/min/moment.min.js"]
+  },
+  {
     output: "details.js",
     es6: true,
     inputs: [`${admin_src}/js/details.js`]

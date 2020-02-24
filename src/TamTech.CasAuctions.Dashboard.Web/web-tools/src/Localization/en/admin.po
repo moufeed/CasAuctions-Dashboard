@@ -1965,3 +1965,7 @@ msgstr "seller roles"
 
 msgid "seller_permissions"
 msgstr "seller permissions"
+
+
+msgid "count_down"
+msgstr "Countdown"

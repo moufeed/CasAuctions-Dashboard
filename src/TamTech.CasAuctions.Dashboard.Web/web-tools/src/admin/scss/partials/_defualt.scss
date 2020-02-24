@@ -13,7 +13,7 @@ body {
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: if-ltr("dosis-bold","tl-bold"), Roboto, Arial, "Droid Sans", sans-serif;  
+    font-family: if-ltr("dosis-bold","tl-bold"), Roboto, Arial, "Droid Sans", sans-serif;
 }
 
 a, tr {
@@ -455,7 +455,7 @@ a:focus {
 .input-group-addon{
     background-color :#f0f3f4;
     border-color :#f0f3f4;
-}  
+}
 .fade.show:not(.modal-backdrop){
     opacity: 1;
 }
@@ -465,10 +465,10 @@ a:focus {
 
 .popover-image{
     padding: 5px;
-} 
+}
 
 .tabel-img-circle{
-    margin: 5px 0;  
+    margin: 5px 0;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -482,11 +482,11 @@ a:focus {
         width: auto;
         height: 100%;
     }
-   
+
 }
 
 @media screen and (min-width: 992px){
-    .modal-lg { 
+    .modal-lg {
         width: 950px;
     }
 }
@@ -515,5 +515,9 @@ a:focus {
     &.badge-Rejected{
         background: $red;
     }
-    
+
+}
+
+.text-red{
+    color: #B10F2E;
 }

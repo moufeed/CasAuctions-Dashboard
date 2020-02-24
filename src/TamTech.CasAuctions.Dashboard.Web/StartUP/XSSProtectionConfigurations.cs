@@ -28,7 +28,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
                         "style-src 'self' 'unsafe-inline' use.fontawesome.com stackpath.bootstrapcdn.com; " +
                         "script-src 'self' 'unsafe-inline'  'unsafe-eval' ajax.googleapis.com stackpath.bootstrapcdn.com cdnjs.cloudflare.com www.google.com www.gstatic.com;" +
                         "frame-src 'self' www.google.com;" +
-                        "connect-src 'self';");
+                        "connect-src 'self' wss://casauctions-dev-auctionservice-realtime.azurewebsites.net ;");
                 await next();
             });
         }
