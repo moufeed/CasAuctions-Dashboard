@@ -90,7 +90,11 @@ const outbidTemplate = outbid => {
 </li>`;
 };
 
-//#region  timer  // "DD/MM/YYYY - LTS"
+function handleCloseEvent(event) {
+  console.log(event);
+}
+
+//#region  timer
 
 function Timer(EndDate, target, callback) {
   var _endDate = new Date(EndDate).getTime();
@@ -125,6 +129,11 @@ function callback(d, h, m, s, target) {
   ele.text(`${time}${m}:${s}`);
 }
 
+/**
+ *
+ *
+ *
+ */
 var end_timer = Timer(new Date(endDate), ".end_timer", (d, h, m, s, target) => {
   callback(d, h, m, s, target);
   if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
@@ -132,7 +141,10 @@ var end_timer = Timer(new Date(endDate), ".end_timer", (d, h, m, s, target) => {
     $(".time_to_actual_end").removeClass("hidden");
   }
 });
-
+/**
+ *
+ *
+ */
 var actual_timer = Timer(
   new Date(ActualEndDate),
   ".actual_end_timer",
@@ -149,11 +161,12 @@ var actual_timer = Timer(
 /**
  * socket
  */
+
 if (socketUrl && socketUrl.length > 0) {
   const StartWS = () => {
     let socket = new WebSocket(socketUrl);
     socket.onopen = event => {
-      console.log(event);
+      console.log(`[websocket] open : ${event}`);
     };
 
     socket.onmessage = event => {
@@ -163,6 +176,19 @@ if (socketUrl && socketUrl.length > 0) {
         switch (msg.mt) {
           case OUTBID:
             OnOutbidMsg(msg.o);
+            if (actual_timer != null) {
+              clearInterval(actual_timer);
+            }
+            actual_timer = Timer(
+              new Date(msg.aaed),
+              ".actual_end_timer",
+              (d, h, m, s, target) => {
+                callback(d, h, m, s, target);
+                if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
+                  TimerToCLose = setTimeout(() => location.reload(), 5000);
+                }
+              }
+            );
             break;
           case ACTIVE:
             OnActiveMsg(msg);
@@ -175,11 +201,13 @@ if (socketUrl && socketUrl.length > 0) {
     };
 
     socket.onclose = event => {
-      console.log(event);
+      console.log(`[websocket] open : ${event}`);
+      handleCloseEvent(event);
     };
 
-    socket.onerror = error => {
-      console.log(error);
+    socket.onerror = event => {
+      console.log(event);
+      $notification.error("", "There was an error with your live view", 3500);
     };
     return socket;
   };
@@ -187,34 +215,39 @@ if (socketUrl && socketUrl.length > 0) {
   /**
    * call ws on open live view modal
    */
+  var hasStarted;
+
   $("#liveView").on("show.bs.modal", () => {
-    if (ws == null) ws = StartWS();
-
-    if (time != null) {
-      clearInterval(time);
+    if (!hasStarted) {
+      if (time != null) {
+        clearInterval(time);
+      }
+      time = setInterval(() => {
+        var date = $(".lv-outbids-list .outbid-date").data("date");
+        $(".lv-outbids-list .outbid-date").text(
+          timeDifference(Date.now(), new Date(`${date} UTC`).getTime())
+        );
+      }, 1000);
+      hasStarted = true;
     }
-
-    time = setInterval(() => {
-      var date = $(".lv-outbids-list .outbid-date").data("date");
-      console.log(date);
-
-      $(".lv-outbids-list .outbid-date").text(
-        timeDifference(Date.now(), new Date(`${date} UTC`).getTime())
+  });
+  $("#liveView").on("shown.bs.modal", () => {
+    if ("WebSocket" in window) {
+      if (ws == null) ws = StartWS();
+    } else {
+      $notification.error(
+        "Error",
+        "LiveView is not supported by your browser",
+        5000
       );
-    }, 1000);
+      $("#liveView").modal("hide");
+    }
   });
 
-  /**
-   * stop ws after close live view modal
-   */
-  $("#liveView").on("hidden.bs.modal", () => {
-    /* if (ws != null) {
-      ws.close();
-      ws = null;
-    } */
-  });
+  $("#liveView").on("hidden.bs.modal", () => {});
 }
 
+//#region messages
 const OnOutbidMsg = msg => {
   console.log("[Outbid] Data received ", msg);
   var LstTpl = lastOutbidTemplate(msg);
@@ -235,15 +268,16 @@ const OnOutbidMsg = msg => {
   }, 1000);
 };
 
-const OnActiveMsg = msg => {
-  console.log(msg);
-};
-
 /**
  * close websocket by reloading the page
  * @param {*} msg
  */
 const OnCloseMsg = msg => setTimeout(() => location.reload(), 500);
+
+const OnActiveMsg = msg => {
+  console.log(msg);
+};
+////#endregion
 
 $(".ac-date").on("click", function(e) {
   $(".ac-date , .outbid-date")
