@@ -69,7 +69,11 @@ const outbidTemplate = outbid => {
 };
 
 function handleCloseEvent(event) {
-  console.log(event);
+  console.log(`[handleCloseEvent] ${event}`);
+  if ($("#liveView").hasClass("in")) {
+    $("#liveView").modal("hide");
+    $notification.info(event.code, "connection closed");
+  }
 }
 
 //#region  timer
@@ -179,7 +183,7 @@ if (socketUrl && socketUrl.length > 0) {
     };
 
     socket.onclose = event => {
-      console.log(`[websocket] open : ${event}`);
+      console.log(`[websocket] close : ${event}`);
       handleCloseEvent(event);
     };
 
