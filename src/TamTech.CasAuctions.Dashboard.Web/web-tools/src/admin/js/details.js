@@ -22,28 +22,6 @@ const GetSeconds = distance => {
   return Math.floor((distance % (1000 * 60)) / 1000);
 };
 
-const timeDifference = (current, previous) => {
-  let msPerMinute = 60 * 1000;
-  let msPerHour = msPerMinute * 60;
-  let msPerDay = msPerHour * 24;
-  let msPerMonth = msPerDay * 30;
-  let msPerYear = msPerDay * 365;
-  let elapsed = current - previous;
-  if (elapsed < msPerMinute) {
-    return Math.round(elapsed / 1000) + " seconds ago";
-  } else if (elapsed < msPerHour) {
-    return Math.round(elapsed / msPerMinute) + " minutes ago";
-  } else if (elapsed < msPerDay) {
-    return Math.round(elapsed / msPerHour) + " hours ago";
-  } else if (elapsed < msPerMonth) {
-    return "approximately " + Math.round(elapsed / msPerDay) + " days ago";
-  } else if (elapsed < msPerYear) {
-    return "approximately " + Math.round(elapsed / msPerMonth) + " months ago";
-  } else {
-    return "approximately " + Math.round(elapsed / msPerYear) + " years ago";
-  }
-};
-
 const lastOutbidTemplate = outbid => {
   return `
  <li data-id="${outbid.id}">
@@ -57,7 +35,7 @@ const lastOutbidTemplate = outbid => {
             outbid.pr
           }</strong> <small class="currency"></small></span>
           <span class="outbid-date" id="OutbidDate">
-              ${timeDifference(Date.now(), new Date(outbid.d).getTime())}
+              ${moment(outbid.d).fromNow()}
           </span>
       </div>
   </div>
@@ -67,7 +45,7 @@ const lastOutbidTemplate = outbid => {
 
 const outbidTemplate = outbid => {
   return `
-<li>
+<li id="pr-${outbid.pid}">
     <picture>
         <img src="/Admin/img/auction.png" alt="" width="70">
     </picture>
@@ -218,6 +196,17 @@ if (socketUrl && socketUrl.length > 0) {
   var hasStarted;
 
   $("#liveView").on("show.bs.modal", () => {
+    if (outbids != null) {
+      /*   outbidsList = outbids.reduce(
+        (list, outbid) => {
+          return {
+            ...list,
+            [outbid.id]: outbid
+          };
+        },
+        { ...outbidsList }
+      ); */
+    }
     if (!hasStarted) {
       if (time != null) {
         clearInterval(time);
@@ -225,7 +214,7 @@ if (socketUrl && socketUrl.length > 0) {
       time = setInterval(() => {
         var date = $(".lv-outbids-list .outbid-date").data("date");
         $(".lv-outbids-list .outbid-date").text(
-          timeDifference(Date.now(), new Date(`${date} UTC`).getTime())
+          moment(new Date(`${date} UTC`)).fromNow()
         );
       }, 1000);
       hasStarted = true;
@@ -247,24 +236,50 @@ if (socketUrl && socketUrl.length > 0) {
   $("#liveView").on("hidden.bs.modal", () => {});
 }
 
+function GetHighestOutBid(outbid) {
+  if (lastOutbid === null || outbid.pr > lastOutbid.pr) {
+    lastOutbid = outbid;
+    return outbid;
+  }
+  if (outbid.pr == lastOutbid.pr) {
+    if (moment(lastOutbid.d).isSameOrBefore(outbid.d)) {
+      return lastOutbid;
+    }
+  }
+  lastOutbid = outbid;
+  return outbid;
+}
+function ChangeOutbidsList(msg) {
+  //x = aa.sort((a,b)=> (b.pr - a.pr)).sort((a,b)=> new Date(b.d) - new Date(a.d))
+
+  if (outbids.length > 0) {
+    if (outbids.findIndex(o => o == msg.id) > 0) {
+      outbids = outbids.filter(ot => ot.id != msg.id);
+    }
+  }
+  outbids.push(msg);
+  outbids = outbids
+    .sort((a, b) => b.pr - a.pr)
+    .sort((a, b) => new Date(b.d) - new Date(a.d));
+  var html = "";
+  outbids.forEach(itm => (html += outbidTemplate(itm)));
+  $(".outbids-list").html(html);
+}
+
 //#region messages
 const OnOutbidMsg = msg => {
   console.log("[Outbid] Data received ", msg);
-  var LstTpl = lastOutbidTemplate(msg);
-  var OutTpl = outbidTemplate(msg);
-  $(".lv-outbids-list").html(LstTpl);
-  $(".outbids-list").prepend(OutTpl);
-  $(document)
-    .find(".hprice")
-    .text(msg.pr);
+  let hestOutbid = GetHighestOutBid(msg);
+  $(".lv-outbids-list").html(lastOutbidTemplate(hestOutbid));
+  $(".hprice").text(hestOutbid.pr);
+
+  ChangeOutbidsList(msg);
 
   if (time != null) {
     clearInterval(time);
   }
   time = setInterval(() => {
-    $("#OutbidDate").text(
-      timeDifference(Date.now(), new Date(msg.d).getTime())
-    );
+    $("#OutbidDate").text(moment(new Date(msg.d)).fromNow());
   }, 1000);
 };
 

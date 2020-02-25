@@ -187,7 +187,7 @@
                                         <if include-if="Model.Outbids != null && Model.Outbids.Count > 0">
                                             @foreach (var outbid in Model.Outbids)
                                             {
-                                                <li>
+                                                <li id="pr-@outbid.ParticipantId">
                                                     <picture>
                                                         @*@if (!string.IsNullOrEmpty(outbid.Profile.Photo))
         {
@@ -270,17 +270,17 @@
 
                                     @{
                                         var Outbid = Model.Outbids.First();
-
+                                         
                                         <li>
                                             <picture>
                                                 @*@if (!string.IsNullOrEmpty(outbid.Profile.Photo))
-                                                    {
-                                                        <img src="@outbid.Profile.Photo" class="img-responsive" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <img src="~/Admin/img/empty_image.png" alt="@outbid.Profile.FullName" />
-                                                    }*@
+                    {
+                        <img src="@outbid.Profile.Photo" class="img-responsive" />
+                    }
+                    else
+                    {
+                        <img src="~/Admin/img/empty_image.png" alt="@outbid.Profile.FullName" />
+                    }*@
                                                 <img src="~/Admin/img/auction.png" alt="@Outbid.Profile.FullName" />
                                             </picture>
                                             <div class="outbid-info">
@@ -290,7 +290,7 @@
                                                     <span class="outbid-date" data-date="@Outbid.CreatedDate">
                                                         <TimeAgo date-time="@Outbid.CreatedDate"></TimeAgo>
                                                     </span>
-                                                        
+
                                                 </div>
                                             </div>
                                         </li>
