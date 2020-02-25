@@ -48,7 +48,7 @@ const lastOutbidTemplate = outbid => {
   return `
  <li data-id="${outbid.id}">
   <picture>
-      <img src="/Admin/img/Avatar.svg" class="img-responsive" />
+      <img src="/Admin/img/auction.png" class="img-responsive" />
   </picture>
   <div class="outbid-info">
       <strong class="outbids-name">${outbid.pfn}</strong>
@@ -69,7 +69,7 @@ const outbidTemplate = outbid => {
   return `
 <li>
     <picture>
-        <img src="/Admin/img/Avatar.svg" alt="" width="70">
+        <img src="/Admin/img/auction.png" alt="" width="70">
     </picture>
     <div class="outbid-info">
         <strong class="outbids-name">${outbid.pfn}</strong>
