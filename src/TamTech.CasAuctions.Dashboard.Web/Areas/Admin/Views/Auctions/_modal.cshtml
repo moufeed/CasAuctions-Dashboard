@@ -64,8 +64,8 @@
                             <li class="ac-date">
 
                                 <span>@Localizer["Start Date"]</span>
-                                <strong class="utc"> @Model.StartDate (<small>UTC</small>)</strong>
-                                <strong class="local hidden">@Model.StartDate.ToLocalTime() (<small>local</small>)</strong>
+                                <strong class="utc"> @Model.StartDate.ToString("dd/MM/yyyy - HH:mm:ss tt") (<small>UTC</small>)</strong>
+                                <strong class="local hidden">@Model.StartDate.ToLocalTime().ToString("dd/MM/yyyy - HH:mm:ss tt") (<small>local</small>)</strong>
                             </li>
                             <li>
                                 <span>@Localizer["Start Price"]</span>
@@ -197,7 +197,7 @@
         {
 
         }*@
-                                                        <img src="~/Admin/img/Avatar.svg" alt="" width="70" />
+                                                        <img src="~/Admin/img/auction.png" alt="" width="70" />
                                                     </picture>
 
                                                     <div class="outbid-info">
@@ -205,8 +205,8 @@
                                                         <div>
                                                             <span class="outbid-price"><strong class="price">@outbid.Price</strong> <small class="currency"></small></span>
                                                             <span class="outbid-date">
-                                                                <strong class="utc"> @outbid.CreatedDate (<small>UTC</small>)</strong>
-                                                                <strong class="local hidden">@outbid.CreatedDate.ToLocalTime() (<small>local</small>)</strong>
+                                                                <strong class="utc"> @outbid.CreatedDate.ToString("dd/MM/yyyy - HH:mm:ss tt") (<small>UTC</small>)</strong>
+                                                                <strong class="local hidden">@outbid.CreatedDate.ToLocalTime().ToString("dd/MM/yyyy - HH:mm:ss tt") (<small>local</small>)</strong>
                                                             </span>
 
                                                         </div>
@@ -277,15 +277,16 @@
                                                     {
                                                         <img src="~/Admin/img/empty_image.png" alt="@outbid.Profile.FullName" />
                                                     }*@
-                                                <img src="~/Admin/img/Avatar.svg" alt="@Outbid.Profile.FullName" />
+                                                <img src="~/Admin/img/auction.png" alt="@Outbid.Profile.FullName" />
                                             </picture>
                                             <div class="outbid-info">
                                                 <strong class="outbids-name">@Outbid.Profile.FullName</strong>
                                                 <div>
                                                     <span class="outbid-price"><strong class="price">@Outbid.Price</strong> <small class="currency"></small></span>
-                                                    <span class="outbid-date">
+                                                    <span class="outbid-date" data-date="@Outbid.CreatedDate">
                                                         <TimeAgo date-time="@Outbid.CreatedDate"></TimeAgo>
                                                     </span>
+                                                        
                                                 </div>
                                             </div>
                                         </li>

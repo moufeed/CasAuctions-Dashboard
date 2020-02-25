@@ -7,6 +7,7 @@ const CANCEL = 4;
 let IsUTC = true;
 var ws = null;
 var TimerToCLose;
+var time = null;
 
 const GetDays = distance => {
   return Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -55,7 +56,7 @@ const lastOutbidTemplate = outbid => {
           <span class="outbid-price"><strong class="price">${
             outbid.pr
           }</strong> <small class="currency"></small></span>
-          <span class="outbid-date">
+          <span class="outbid-date" id="OutbidDate">
               ${timeDifference(Date.now(), new Date(outbid.d).getTime())}
           </span>
       </div>
@@ -77,19 +78,19 @@ const outbidTemplate = outbid => {
               outbid.pr
             }</strong> <small class="currency"></small></span>
             <span class="outbid-date">
-                <strong class="utc ${IsUTC ? "" : "hidden"}"> ${new Date(
+                <strong class="utc ${IsUTC ? "" : "hidden"}"> ${moment(outbid.d)
+    .utc()
+    .format("DD/MM/YYYY -  kk:mm:ss a")} (<small>UTC</small>)</strong>
+                <strong class="local ${IsUTC ? "hidden" : ""}">${moment(
     outbid.d
-  ).toUTCString()} (<small>UTC</small>)</strong>
-                <strong class="local ${IsUTC ? "hidden" : ""}">${new Date(
-    outbid.d
-  )}(<small>local</small>)</strong>
+  ).format("DD/MM/YYYY - kk:mm:ss a")}(<small>local</small>)</strong>
             </span>
         </div>
     </div>
 </li>`;
 };
 
-//#region  timer
+//#region  timer  // "DD/MM/YYYY - LTS"
 
 function Timer(EndDate, target, callback) {
   var _endDate = new Date(EndDate).getTime();
@@ -187,17 +188,30 @@ if (socketUrl && socketUrl.length > 0) {
    * call ws on open live view modal
    */
   $("#liveView").on("show.bs.modal", () => {
-    ws = StartWS();
+    if (ws == null) ws = StartWS();
+
+    if (time != null) {
+      clearInterval(time);
+    }
+
+    time = setInterval(() => {
+      var date = $(".lv-outbids-list .outbid-date").data("date");
+      console.log(date);
+
+      $(".lv-outbids-list .outbid-date").text(
+        timeDifference(Date.now(), new Date(`${date} UTC`).getTime())
+      );
+    }, 1000);
   });
 
   /**
    * stop ws after close live view modal
    */
   $("#liveView").on("hidden.bs.modal", () => {
-    if (ws != null) {
+    /* if (ws != null) {
       ws.close();
       ws = null;
-    }
+    } */
   });
 }
 
@@ -207,7 +221,18 @@ const OnOutbidMsg = msg => {
   var OutTpl = outbidTemplate(msg);
   $(".lv-outbids-list").html(LstTpl);
   $(".outbids-list").prepend(OutTpl);
-  $(".hprice").text(msg.p);
+  $(document)
+    .find(".hprice")
+    .text(msg.pr);
+
+  if (time != null) {
+    clearInterval(time);
+  }
+  time = setInterval(() => {
+    $("#OutbidDate").text(
+      timeDifference(Date.now(), new Date(msg.d).getTime())
+    );
+  }, 1000);
 };
 
 const OnActiveMsg = msg => {
