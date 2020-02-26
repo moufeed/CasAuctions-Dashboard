@@ -8,7 +8,6 @@ let IsUTC = true;
 var ws = null;
 var TimerToCLose;
 var time = null;
-
 const GetDays = distance => {
   return Math.floor(distance / (1000 * 60 * 60 * 24));
 };

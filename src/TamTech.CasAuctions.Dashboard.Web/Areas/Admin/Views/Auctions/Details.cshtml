@@ -691,17 +691,18 @@
 
     <script src="~/Admin/js/auctions.min.js"></script>
 
-
-
+ 
     <if include-if="Model.StatusId == ActiveId">
 
         <script>
             var outbidsList = null;
             var ListOutbids = null;
+            var lastOutbid = null;
             var outbids = [];
             var endDate = '@Model.EndDate.ToLocalTime()';
             var ActualEndDate = '@Model.ActualEndDate.ToLocalTime()';
             var socketUrl = "wss://casauctions-dev-auctionservice-realtime.azurewebsites.net/auctions-realtime?access_token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1MmNlYjEyMDJlOGMzZjcwMjUxZjQyMjE4N2VjZTRiIiwidHlwIjoiSldUIn0.eyJuYmYiOjE1ODIyODgwOTcsImV4cCI6MTU4NDg4MDA5NiwiaXNzIjoiaHR0cHM6Ly9jYXNhdWN0aW9ucy1kZXYtaWRlbnRpdHkuYXp1cmV3ZWJzaXRlcy5uZXQiLCJzdWIiOiJjZDE1MDZhYy05YjEzLTQ1OTMtOTkwOC05Mjc0ZTEwOTUwMGIiLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IlVaRlBDVEpBUEdSMlRSWEFIREZWR1VYTlNYRU9OWUdTIiwicm9sZSI6IkF1Y3Rpb25zU3VwZXJBZG1pbiIsInByZWZlcnJlZF91c2VybmFtZSI6InN1cGVyYWRtaW4iLCJuYW1lIjoic3VwZXJhZG1pbiIsImVtYWlsIjoic3VwZXJhZG1pbkBzdXBlcmFkbWluLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicGhvbmVfbnVtYmVyIjoiKzk2NjAwMDAwMDAwMDEiLCJwaG9uZV9udW1iZXJfdmVyaWZpZWQiOmZhbHNlLCJmbmFtZSI6IlN1cGVyIEFkbWluIiwiaW1hZ2V1cmwiOiJodHRwczovL2Nhc2F1Y3Rpb25zZGV2LmJsb2IuY29yZS53aW5kb3dzLm5ldC9hdmF0YXJzL3BsYWNlaG9sZGVyX3Byb2ZpbGUucG5nIiwiZGlzcGxheV9pbmZvIjoiRmFsc2UiLCJjbGllbnRfaWQiOiJBdWN0aW9uc2FwcCIsImZhY3RvcnkiOiJKV1Rva2VuU2VydmljZSIsImF1dGhfdGltZSI6IjE1ODIyODgwOTciLCJhdWQiOlsiYXVjdGlvbnMubm90aWZpY2F0aW9ucy5wdXNoIiwiYXVjdGlvbnMucmVhbHRpbWUiLCJhdWN0aW9ucy5hcGkiLCJhdWN0aW9ucy5pZGVudGl0eS5hcGkiLCJhdWN0aW9ucy5jaGF0LmFwaSIsImF1Y3Rpb25zLmNoYXQucmVhbHRpbWUiLCJjYXNhdWN0aW9ucy1kZXYtaWRlbnRpdHkuYXp1cmV3ZWJzaXRlcy5uZXQvcmVzb3VyY2VzIl0sImlkcCI6ImxvY2FsIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsImF1Y3Rpb25zLm5vdGlmaWNhdGlvbnMucHVzaCIsIm9mZmxpbmVfYWNjZXNzIiwiYXVjdGlvbnMucmVhbHRpbWUiLCJhdWN0aW9ucy5hcGkiLCJhdWN0aW9ucy5pZGVudGl0eS5hcGkiLCJhdWN0aW9ucy5jaGF0LmFwaSIsImF1Y3Rpb25zLmNoYXQucmVhbHRpbWUiXX0.QeAYdkKl65RtreYoafXoTBiNiUjp-5qjr95OAYmSgavam1y_uCgUefa4ufrGis1Y67Oenx5pfx71cAN8oJQdr_hAZ7Xo9O8K67jXql5N-daFGg8Ocg4iT1FH7KS0i_S5H5AEUqG48McEQ9M7Ku6vmxqNra0SCaSoZdvpB1oXFbTah42ScMn8NUFV3P4MFstz_TPQTS0BnRKPFwVWhHsBp1LCzKFOivx8kZBgynxvpMZfFC8_RIwZJ0ysxBNk8fWY9rUNofW-WbhsoNrgZAJ_ihk_oNj_LukvFvSf3ofLd7pl187Uez03rt-GLRZxLKtH8GO29upeWrACj6u9nZwoMA";
+            //var socketUrl = "wss://casauctions-dev-auctionservice-realtime.azurewebsites.net/auctions-realtime?access_token=@ViewBag.accessToken";
             @if (Model.Outbids != null && Model.Outbids.Count > 0)
             {
                 var list = JsonConvert.SerializeObject(Model.Outbids);
@@ -722,7 +723,7 @@
                     "pfn": ob.profile.FullName
                 }
             });
-           var lastOutbid = {
+              lastOutbid = {
                "id": outbid.id,
                "pid": outbid.pid,
                "pr": outbid.pr,

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
@@ -27,11 +29,14 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 
         private readonly IAuctionsService _acutionsservice;
         private readonly IStringLocalizer<BaseController> _localizer;
+         
+
         public AuctionsController(ITelemetryService telemetryClientService, ILogger<AdminBaseController> logger,
-            IStringLocalizer<BaseController> localizer, IAuctionsService acutionsservice) : base(telemetryClientService, logger, localizer)
+            IStringLocalizer<BaseController> localizer, IAuctionsService acutionsservice ) : base(telemetryClientService, logger, localizer)
         {
             _acutionsservice = acutionsservice;
             _localizer = localizer;
+           
         }
 
 
@@ -180,6 +185,8 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
            
             try
             {
+                ViewBag.accessToken = await HttpContext.GetTokenAsync("access_token");
+
                 var result = await _acutionsservice.GetAuctionDetailsAsync(id);
 
                 if (VerifySucceed(result))
@@ -273,7 +280,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
             {
                 var result = await _acutionsservice.GetAuctionDetailsAsync(id);
 
-
+                ViewBag.accessToken = await HttpContext.GetTokenAsync("access_token");
 
                 if (VerifySucceed(result))
                 {
