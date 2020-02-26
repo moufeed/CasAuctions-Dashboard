@@ -74,6 +74,7 @@ function handleCloseEvent(event) {
     $("#liveView").modal("hide");
     $notification.info(event.code, "connection closed");
   }
+  ws = null;
 }
 
 //#region  timer
@@ -254,11 +255,11 @@ function GetHighestOutBid(outbid) {
   return outbid;
 }
 function ChangeOutbidsList(msg) {
-  //x = aa.sort((a,b)=> (b.pr - a.pr)).sort((a,b)=> new Date(b.d) - new Date(a.d))
+  var list = [];
 
   if (outbids.length > 0) {
-    if (outbids.findIndex(o => o == msg.id) > 0) {
-      outbids = outbids.filter(ot => ot.id != msg.id);
+    if (outbids.findIndex(o => o.pid == msg.pid) > -1) {
+      outbids = outbids.filter(ot => ot.pid != msg.pid);
     }
   }
   outbids.push(msg);
