@@ -89,13 +89,13 @@ function Timer(EndDate, target, callback) {
 function callback(d, h, m, s, target) {
   var time = "";
   var ele = $(target);
+  console.log(`d : ${d} - h: ${h} - m :${m} - s : ${s} `);
   if (d > 0) {
-    time = `${d}:`;
+    time = `<span class="days">${d}  ${d > 1 ? "days" : "day"}</span>    <br> `;
   }
-  if (h > 0) {
-    time = `${time}${h}:`;
-  }
-  ele.text(`${time}${m}:${s}`);
+
+  var time = `${time}<span>${h}:${m}:${s}</span>`;
+  ele.html(`${time}`);
 }
 
 //#endregion
