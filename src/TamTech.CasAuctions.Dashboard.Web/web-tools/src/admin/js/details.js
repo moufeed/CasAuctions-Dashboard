@@ -263,8 +263,9 @@ function ChangeOutbidsList(msg) {
   }
   outbids.push(msg);
   outbids = outbids
-    .sort((a, b) => b.pr - a.pr)
-    .sort((a, b) => new Date(b.d) - new Date(a.d));
+    .sort((a, b) => new Date(b.d) - new Date(a.d))
+    .sort((a, b) => b.pr - a.pr);
+  console.log(outbids);
   var html = "";
   outbids.forEach(itm => (html += outbidTemplate(itm)));
   $(".outbids-list").html(html);
