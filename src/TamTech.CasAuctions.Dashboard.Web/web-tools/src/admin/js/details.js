@@ -262,9 +262,12 @@ function ChangeOutbidsList(msg) {
     }
   }
   outbids.push(msg);
-  outbids = outbids
+  /* outbids = outbids
     .sort((a, b) => new Date(b.d) - new Date(a.d))
-    .sort((a, b) => b.pr - a.pr);
+    .sort((a, b) => b.pr - a.pr); */
+  outbids = outbids
+    .sort((a, b) => b.pr - a.pr)
+    .sort((a, b) => new Date(a.d) - new Date(b.d));
   console.log(outbids);
   var html = "";
   outbids.forEach(itm => (html += outbidTemplate(itm)));
