@@ -2,9 +2,9 @@
 @{
     bool ShowCurrency = Model != null && Model.CurrencyGrade != null || Model.CurrencyPickNumber != null || Model.CurrencyDenomination != null || Model.CurrencyCountry != null || Model.CurrencyYear != null;
 }
-<div class="modal fade modal-liveview in" id="liveView" tabindex="-1" role="dialog" aria-labelledby="liveViewLabel">
+<div class="modal fade modal-liveview in" id="liveView" data-auction="@Model.Id" tabindex="-1" role="dialog" aria-labelledby="liveViewLabel">
     <div class="modal-dialog modal-full" role="document">
-        <div class="modal-content">
+        <div class="modal-content" id="modal-@Model.Id">
 
             <div class="row">
                 <div class="col-xs-12">

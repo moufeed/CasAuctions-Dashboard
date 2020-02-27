@@ -108,7 +108,7 @@
                         @if (ViewBag.UsersChart != null)
                         {
 
-                            int total = (ViewBag.UsersChart.Data as List<int>).Sum();
+                            int total = (ViewBag.UsersChart.Data as List<int>).Max();
 
                             <canvas id="cahrt" class="chart-widget"
                                     data-values="[@(string.Join(",", ViewBag.UsersChart.Data))]"
@@ -206,10 +206,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
     </div>
 </section>

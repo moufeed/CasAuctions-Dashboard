@@ -1,13 +1,12 @@
-//----------
-// Live Message Type Enum
+//#region
 const OUTBID = 1;
 const ACTIVE = 2;
 const CLOSE = 3;
 const CANCEL = 4;
+const WebSockets = [];
+var lastOutbidTimeAgo = null;
 let IsUTC = true;
-var ws = null;
-var TimerToCLose;
-var time = null;
+
 const GetDays = distance => {
   return Math.floor(distance / (1000 * 60 * 60 * 24));
 };
@@ -67,19 +66,8 @@ const outbidTemplate = outbid => {
 </li>`;
 };
 
-function handleCloseEvent(event) {
-  console.log(`[handleCloseEvent] ${event}`);
-  if ($("#liveView").hasClass("in")) {
-    $("#liveView").modal("hide");
-    $notification.info(event.code, "connection closed");
-  }
-  ws = null;
-}
-
-//#region  timer
-
 function Timer(EndDate, target, callback) {
-  var _endDate = new Date(EndDate).getTime();
+  var _endDate = EndDate;
   var timer = setInterval(() => {
     var distance = _endDate - Date.now();
     if (distance <= 0) {
@@ -98,7 +86,6 @@ function Timer(EndDate, target, callback) {
   }, 1000);
   return timer;
 }
-
 function callback(d, h, m, s, target) {
   var time = "";
   var ele = $(target);
@@ -111,196 +98,146 @@ function callback(d, h, m, s, target) {
   ele.text(`${time}${m}:${s}`);
 }
 
-/**
- *
- *
- *
- */
-var end_timer = Timer(new Date(endDate), ".end_timer", (d, h, m, s, target) => {
-  callback(d, h, m, s, target);
-  if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
-    $(".time_to_end").addClass("hidden");
-    $(".time_to_actual_end").removeClass("hidden");
-  }
-});
-/**
- *
- *
- */
-var actual_timer = Timer(
-  new Date(ActualEndDate),
-  ".actual_end_timer",
-  (d, h, m, s, target) => {
-    callback(d, h, m, s, target);
-    if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
-      TimerToCLose = setTimeout(() => location.reload(), 5000);
-    }
-  }
-);
-
 //#endregion
 
-/**
- * socket
+/***
+ *
+ *
  */
+class AuctionWebSocket {
+  constructor(id, outbids, endDate, ActualEndDate, socketUrl) {
+    this.id = id;
+    this.outbids = outbids;
+    this.endDate = endDate;
+    this.ActualEndDate = ActualEndDate;
+    this.socketUrl = socketUrl;
+    this.CountDown();
+    this.actual_timer = null;
+    this.end_timer = null;
+  }
 
-if (socketUrl && socketUrl.length > 0) {
-  const StartWS = () => {
-    let socket = new WebSocket(socketUrl);
-    socket.onopen = event => {
-      console.log(`[websocket] open : ${event}`);
-    };
+  log(...arg) {
+    if (isDev) console.log(...arg);
+  }
 
-    socket.onmessage = event => {
-      console.log("[message] Data received from server", event);
-      if (event.data != null) {
-        var msg = JSON.parse(event.data);
-        switch (msg.mt) {
-          case OUTBID:
-            OnOutbidMsg(msg.o);
-            if (actual_timer != null) {
-              clearInterval(actual_timer);
-            }
-            actual_timer = Timer(
-              new Date(msg.aaed),
-              ".actual_end_timer",
-              (d, h, m, s, target) => {
-                callback(d, h, m, s, target);
-                if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
-                  TimerToCLose = setTimeout(() => location.reload(), 5000);
-                }
-              }
-            );
-            break;
-          case ACTIVE:
-            OnActiveMsg(msg);
-            break;
-          case CLOSE:
-            OnCloseMsg(msg);
-            break;
+  handleCloseEvent(event) {
+    this.log("[handleCloseEvent]", event);
+
+    if ($(`#liveView[data-auction='${this.id}']`).hasClass("in")) {
+      $(`#liveView[data-auction='${this.id}']`).modal("hide");
+      $notification.info(event.code, "connection closed");
+    }
+    WebSockets[this.id] = null;
+  }
+
+  CountDown() {
+    this.endTimer();
+    this.actualEndTimer(this.ActualEndDate);
+  }
+  actualEndTimer(a_date) {
+    if (this.actual_timer != null) {
+      clearInterval(this.actual_timer);
+    } else {
+      this.actual_timer = Timer(
+        new Date(a_date),
+        `#modal-${this.id} .actual_end_timer`,
+        (d, h, m, s, target) => {
+          callback(d, h, m, s, target);
+          if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
+            setTimeout(() => location.reload(), 5000);
+          }
+        }
+      );
+    }
+  }
+
+  endTimer() {
+    this.end_timer = Timer(
+      new Date(this.endDate),
+      `#modal-${this.id} .end_timer`,
+      (d, h, m, s, target) => {
+        callback(d, h, m, s, target);
+        if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
+          $(`#modal-${this.id} .time_to_end`).addClass("hidden");
+          $(`#modal-${this.id} .time_to_actual_end`).removeClass("hidden");
         }
       }
-    };
+    );
+  }
 
-    socket.onclose = event => {
-      console.log(`[websocket] close : ${event}`);
-      handleCloseEvent(event);
-    };
+  WebSocketConnect() {
+    if (this.socketUrl && this.socketUrl.length > 0) {
+      let socket = new WebSocket(this.socketUrl);
+      this.log("[socket]", socket);
+      socket.onopen = event => {
+        this.log(`[websocket] open`, event);
+      };
 
-    socket.onerror = event => {
-      console.log(event);
-      $notification.error("", "There was an error with your live view", 3500);
-    };
-    return socket;
-  };
+      socket.onmessage = event => {
+        this.log("[message] Data received from server", event);
 
-  /**
-   * call ws on open live view modal
-   */
-  var hasStarted;
+        if (event.data != null) {
+          var msg = JSON.parse(event.data);
 
-  $("#liveView").on("show.bs.modal", () => {
-    if (outbids != null) {
-      /*   outbidsList = outbids.reduce(
-        (list, outbid) => {
-          return {
-            ...list,
-            [outbid.id]: outbid
-          };
-        },
-        { ...outbidsList }
-      ); */
+          if (msg.mt == OUTBID) {
+            this.actualEndTimer(msg.aaed);
+            this.OnOutbidMsg(msg);
+          } else if (msg.mt == ACTIVE) {
+            this.log(msg);
+          } else if (msg.mt == CLOSE) {
+            setTimeout(() => location.reload(), 500);
+          }
+        }
+      };
+
+      WebSockets[this.id] = socket;
+    } else {
+      this.log("[connect] socket url is missing");
     }
-    if (!hasStarted) {
-      if (time != null) {
-        clearInterval(time);
+  }
+  OnOutbidMsg(msg) {
+    this.log("[Outbid] Data received ", msg);
+    this.CreateOutbidsList(msg);
+    this.CreateLastOutbid(msg.a);
+  }
+
+  CreateOutbidsList(msg) {
+    if (msg.a == this.id) {
+      var list = [];
+      var ob = msg.o;
+      if (this.outbids.length > 0) {
+        if (this.outbids.findIndex(o => o.pid == ob.pid) > -1) {
+          this.outbids = this.outbids.filter(ot => ot.pid != ob.pid);
+        }
       }
-      time = setInterval(() => {
-        var date = $(".lv-outbids-list .outbid-date").data("date");
-        $(".lv-outbids-list .outbid-date").text(
-          moment(new Date(`${date} UTC`)).fromNow()
+      this.outbids.push(ob);
+      this.outbids = this.outbids
+        .sort((a, b) => new Date(a.d) - new Date(b.d))
+        .sort((a, b) => b.pr - a.pr);
+
+      var html = "";
+      this.outbids.forEach(itm => (html += outbidTemplate(itm)));
+      $(`#modal-${this.id} .outbids-list`).html(html);
+    }
+  }
+  CreateLastOutbid(id) {
+    let outbid = this.outbids[0];
+    this.log("[last outbid]", outbid);
+    if (id == this.id) {
+      $(`#modal-${this.id} .lv-outbids-list`).html(lastOutbidTemplate(outbid));
+      $(`#modal-${this.id} .hprice`).text(outbid.pr);
+
+      if (lastOutbidTimeAgo != null) {
+        clearInterval(lastOutbidTimeAgo);
+      }
+      lastOutbidTimeAgo = setInterval(() => {
+        $(`#modal-${this.id} #OutbidDate`).text(
+          moment(new Date(outbid.d)).fromNow()
         );
       }, 1000);
-      hasStarted = true;
     }
-  });
-  $("#liveView").on("shown.bs.modal", () => {
-    if ("WebSocket" in window) {
-      if (ws == null) ws = StartWS();
-    } else {
-      $notification.error(
-        "Error",
-        "LiveView is not supported by your browser",
-        5000
-      );
-      $("#liveView").modal("hide");
-    }
-  });
-
-  $("#liveView").on("hidden.bs.modal", () => {});
+  }
 }
-
-function GetHighestOutBid(outbid) {
-  if (lastOutbid === null || outbid.pr > lastOutbid.pr) {
-    lastOutbid = outbid;
-    return outbid;
-  }
-  if (outbid.pr == lastOutbid.pr) {
-    if (moment(lastOutbid.d).isSameOrBefore(outbid.d)) {
-      return lastOutbid;
-    }
-  }
-  lastOutbid = outbid;
-  return outbid;
-}
-function ChangeOutbidsList(msg) {
-  var list = [];
-
-  if (outbids.length > 0) {
-    if (outbids.findIndex(o => o.pid == msg.pid) > -1) {
-      outbids = outbids.filter(ot => ot.pid != msg.pid);
-    }
-  }
-  outbids.push(msg);
-  /* outbids = outbids
-    .sort((a, b) => new Date(b.d) - new Date(a.d))
-    .sort((a, b) => b.pr - a.pr); */
-  outbids = outbids
-    .sort((a, b) => b.pr - a.pr)
-    .sort((a, b) => new Date(a.d) - new Date(b.d));
-  console.log(outbids);
-  var html = "";
-  outbids.forEach(itm => (html += outbidTemplate(itm)));
-  $(".outbids-list").html(html);
-}
-
-//#region messages
-const OnOutbidMsg = msg => {
-  console.log("[Outbid] Data received ", msg);
-  let hestOutbid = GetHighestOutBid(msg);
-  $(".lv-outbids-list").html(lastOutbidTemplate(hestOutbid));
-  $(".hprice").text(hestOutbid.pr);
-
-  ChangeOutbidsList(msg);
-
-  if (time != null) {
-    clearInterval(time);
-  }
-  time = setInterval(() => {
-    $("#OutbidDate").text(moment(new Date(msg.d)).fromNow());
-  }, 1000);
-};
-
-/**
- * close websocket by reloading the page
- * @param {*} msg
- */
-const OnCloseMsg = msg => setTimeout(() => location.reload(), 500);
-
-const OnActiveMsg = msg => {
-  console.log(msg);
-};
-////#endregion
 
 $(".ac-date").on("click", function(e) {
   $(".ac-date , .outbid-date")
@@ -309,4 +246,45 @@ $(".ac-date").on("click", function(e) {
   IsUTC = !IsUTC;
 });
 
-//
+var hasStarted;
+
+$(`#liveView[data-auction='${AuctionId}']`).on("show.bs.modal", () => {
+  if (!hasStarted) {
+    if (lastOutbidTimeAgo != null) {
+      clearInterval(lastOutbidTimeAgo);
+    }
+    lastOutbidTimeAgo = setInterval(() => {
+      var date = $(`#modal-${AuctionId} .lv-outbids-list .outbid-date`).data(
+        "date"
+      );
+      $(`#modal-${AuctionId} .lv-outbids-list .outbid-date`).text(
+        moment(new Date(`${date} UTC`)).fromNow()
+      );
+    }, 1000);
+    hasStarted = true;
+  }
+});
+
+$(`#liveView[data-auction='${AuctionId}']`).on("shown.bs.modal", () => {
+  if ("WebSocket" in window) {
+    if (WebSockets[AuctionId] == null) {
+      WebSockets[AuctionId] = new AuctionWebSocket(
+        AuctionId,
+        auctions[AuctionId].outbids,
+        auctions[AuctionId].endDate,
+        auctions[AuctionId].ActualEndDate,
+        auctions[AuctionId].socketUrl
+      );
+      WebSockets[AuctionId].WebSocketConnect();
+    }
+  } else {
+    $notification.error(
+      "Error",
+      "LiveView is not supported by your browser",
+      5000
+    );
+    $(`#liveView[data-auction='${AuctionId}']`).modal("hide");
+  }
+});
+
+$(`#liveView[data-auction='${AuctionId}']`).on("hidden.bs.modal", () => {});
