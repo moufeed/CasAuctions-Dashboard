@@ -56,6 +56,7 @@ namespace TamTech.CasAuctions.Dashboard.Web.StartUP
                 options.Scope.Add("profile");
                 options.Scope.Add("offline_access");
                 options.Scope.Add("auctions.api");
+                options.Scope.Add("auctions.realtime");
                 options.Scope.Add("auctions.identity.api");
                 // options.Scope.Add("auctions.web.app");
                 options.ClaimActions.Add(new JsonKeyClaimAction(JwtClaimTypes.Role, JwtClaimTypes.Role, JwtClaimTypes.Role));
