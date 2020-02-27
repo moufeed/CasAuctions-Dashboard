@@ -6,7 +6,7 @@ const CANCEL = 4;
 const WebSockets = [];
 var lastOutbidTimeAgo = null;
 let IsUTC = true;
-
+const actual_timer = {};
 const GetDays = distance => {
   return Math.floor(distance / (1000 * 60 * 60 * 24));
 };
@@ -135,20 +135,21 @@ class AuctionWebSocket {
     this.actualEndTimer(this.ActualEndDate);
   }
   actualEndTimer(a_date) {
-    if (this.actual_timer != null) {
-      clearInterval(this.actual_timer);
-    } else {
-      this.actual_timer = Timer(
-        new Date(a_date),
-        `#modal-${this.id} .actual_end_timer`,
-        (d, h, m, s, target) => {
-          callback(d, h, m, s, target);
-          if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
-            setTimeout(() => location.reload(), 5000);
-          }
-        }
-      );
+    if (actual_timer[this.id] && actual_timer[this.id] != null) {
+      this.log(" [clearInterval] actual_timer", actual_timer[this.id]);
+      clearInterval(actual_timer[this.id]);
+      actual_timer[this.id] = null;
     }
+    actual_timer[this.id] = Timer(
+      new Date(a_date),
+      `#modal-${this.id} .actual_end_timer`,
+      (d, h, m, s, target) => {
+        callback(d, h, m, s, target);
+        if ((d == 0) & (h == 0) & (m == 0) & (s == 0)) {
+          setTimeout(() => location.reload(), 5000);
+        }
+      }
+    );
   }
 
   endTimer() {
@@ -180,6 +181,7 @@ class AuctionWebSocket {
           var msg = JSON.parse(event.data);
 
           if (msg.mt == OUTBID) {
+            this.log("msg.aaed", msg.aaed);
             this.actualEndTimer(msg.aaed);
             this.OnOutbidMsg(msg);
           } else if (msg.mt == ACTIVE) {
