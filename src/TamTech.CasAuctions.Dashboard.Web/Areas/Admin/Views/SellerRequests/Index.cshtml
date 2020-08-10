@@ -39,7 +39,10 @@
                             </thead>
                             <tbody>
                                 <if include-if="Model.Data != null && Model.Data.Count > 0">
-                                    @foreach (SellerRequest item in Model.Data)
+                                    @{ 
+                                        var data = Model.Data.OrderByDescending(s => s.CreatedDate);
+                                    }
+                                    @foreach (SellerRequest item in data)
                                     {
 
                                         <tr>
