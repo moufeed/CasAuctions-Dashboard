@@ -38,6 +38,13 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.APIsConsumptionServices.Ide
                         _backendSettings.GetUserByUserNameEndpoint, new List<string> { username}, PassParamsBy.Route);
         }
 
+        public async Task<IRequestProviderResult<UserModel>> GetUserByIdAsync(string userId)
+        {
+            return await ReqProvider.GetAsync<UserModel, List<string>>(
+                        _backendSettings.GetUserByIdEndpoint, new List<string> { userId }, PassParamsBy.Route);
+        }
+
+
         public async Task<IRequestProviderResult<bool>> RegisterUserAsync(RegisterUserModel data)
         {
             return await ReqProvider.PostAsync<bool, RegisterUserModel>( _backendSettings.RegisterUserAsyncEndpoint, data);

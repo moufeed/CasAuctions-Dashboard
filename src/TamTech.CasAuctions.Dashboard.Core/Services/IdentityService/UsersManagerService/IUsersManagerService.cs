@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;               
 using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
 using TamTech.CasAuctions.Dashboard.SDK.Services.Identity.Models;
@@ -11,6 +12,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.Identity
         Task<IRequestProviderResult<List<UserModel>>> GetUsersAsync(GetUsersModel model);
 
         Task<IRequestProviderResult<UserModel>> GetUserByUsernameAsync(string username);      
+
+        Task<IRequestProviderResult<UserModel>> GetUserByIdAsync(string userId);      
 
         Task<IRequestProviderResult<bool>> RegisterUserAsync(RegisterUserModel data);  
 

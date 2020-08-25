@@ -4,335 +4,516 @@
     ViewData["Title"] = "Item details";
 }
 
+ 
 
+@{
+    ViewData["Title"] = "direct sell item details";
 
-    <if include-if="Model != null">
-        <div class="clearfix">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>
-                        @Localizer["auction details"]
-                        <small></small>
-                    </h3>
-                </div>
-                <div class="title_right">
-                    <a asp-action="Index"
-                       class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
-                </div>
+    bool ShowCurrency = Model != null && Model.CurrencyGrade != null || Model.CurrencyPickNumber != null || Model.CurrencyDenomination != null || Model.CurrencyCountry != null || Model.CurrencyYear != null;
+    int ActiveId = 2;
+
+    string avater = "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDYxLjc5OTggNjEuNzk5OCI+PHRpdGxlPkF2YXRhciBVc2VyIGJ1c2luZXNzIG1hbjwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9Il/DjsOTw4hfMSIgZGF0YS1uYW1lPSLigJTDjsOTw4ggMSI+PGNpcmNsZSBjeD0iMzAuODk5OSIgY3k9IjMwLjg5OTkiIHI9IjMwLjg5OTkiIGZpbGw9IiM1OGIwZTAiLz48cGF0aCBmaWxsPSIjZjlkY2E0IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMy4yNTUgMzguNjhsMTUuOTA3LjEyMXYxMi45MThsLTE1LjkwNy0uMTIxVjM4LjY4eiIvPjxwYXRoIGQ9Ik00My45NzEgNTguOTA1YTMwLjk2NyAzMC45NjcgMCAwIDEtMjUuODQzLjE0VjQ4LjQxN0g0My45N3oiIGZpbGw9IiNlNmU2ZTYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik0zMy40MDMgNjEuN3EtMS4yMzguMDk5LTIuNTAzLjEtLjk1NSAwLTEuODk1LS4wNTdsMS4wMy04Ljk4OGgyLjQxeiIgZmlsbD0iI2U5NTczZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZD0iTTI1LjY1NyA2MS4zMzJBMzQuMDcyIDM0LjA3MiAwIDAgMSAxNS45IDU3LjkyYTMxLjAzMyAzMS4wMzMgMCAwIDEtNy44NTctNi4yMjVsMS4yODQtMy4xIDEzLjkyNS02LjIxMmMwIDUuMjEyIDEuNzExIDEzLjQ4MiAyLjQwNSAxOC45NXoiIGZpbGw9IiM2NzcwNzkiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik0zOS4xNjUgMzguNzU5djMuMjMxYy00LjczMiA1LjUyNy0xMy43NzMgNC43NDUtMTUuOC0zLjQxMnoiIGZpbGwtcnVsZT0iZXZlbm9kZCIgb3BhY2l0eT0iMC4xMSIvPjxwYXRoIGQ9Ik0zMS4xMjkgOC40MzJjMjEuMjgxIDAgMTIuOTg3IDM1LjI2NiAwIDM1LjI2Ni0xMi4yNjcgMC0yMS4yODEtMzUuMjY2IDAtMzUuMjY2eiIgZmlsbD0iI2ZmZThiZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZD0iTTE4LjM2NSAyNC4wNDZjLTMuMDcgMS4zMzktLjQ2IDcuNjg2IDEuNDcyIDcuNjU4YTMxLjk3MiAzMS45NzIgMCAwIDEtMS40NzItNy42NTl6IiBmaWxsPSIjZjlkY2E0IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48cGF0aCBkPSJNNDQuMTQgMjQuMDQ1YzMuMDcgMS4zMzkuNDYgNy42ODctMS40NzEgNy42NThhMzEuOTkzIDMxLjk5MyAwIDAgMCAxLjQ3MS03LjY1OHoiIGZpbGw9IiNmOWRjYTQiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik0yMS45MzEgMTQuMzI4Yy0zLjMzNCAzLjQ1OC0yLjE2MSAxMy4wMy0yLjE2MSAxMy4wM2wtMS4wNS0uNDk1Yy02LjU1NC0yNS4zOTQgMzEuNjM0LTI1LjM5NSAyNS4wNDMgMGwtMS4wNS40OTVzMS4xNzQtOS41NzItMi4xNi0xMy4wM2MtNC4xMTkgMy45OTUtMTQuNTI2IDMuOTc0LTE4LjYyMiAweiIgZmlsbD0iIzQ2NDQ0OSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZD0iTTM2Ljc2NyA2MS4yNDNhMzAuODYzIDMwLjg2MyAwIDAgMCAxNy40MDgtMTAuMDE4bC0xLjA5LTIuNjMxLTEzLjkyNC02LjIxMmMwIDUuMjEyLTEuNyAxMy4zOTMtMi4zOTQgMTguODYxeiIgZmlsbD0iIzY3NzA3OSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZD0iTTM5LjE2MiA0MS45OGwtNy45MjYgNi40NjUgNi41NzMgNS45MTNzMS43NTItOS43MDQgMS4zNTMtMTIuMzc4eiIgZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZD0iTTIzLjI1MyA0MS45OGw3Ljk4OSA2LjQ2NS02LjY0NSA1LjkxM3MtMS43NDYtOS43MDQtMS4zNDQtMTIuMzc4eiIgZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZmlsbD0iI2U5NTczZSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMjguMTA5IDUxLjIyN2wzLjEzNy0yLjgxOCAzLjEzNyAyLjgxOC0zLjEzNyAyLjgxNy0zLjEzNy0yLjgxN3oiLz48cGF0aCBkPSJNMjUuNzY3IDYxLjM3M2EzMC44MTUgMzAuODE1IDAgMCAxLTMuNzc5LS44OCAyLjY1MiAyLjY1MiAwIDAgMS0uMTE0LS4wOTNsLTMuNTM1LTYuMzkgNC41NDEtMy4yNmgtNC43NTJsMS4wMTctNi44NTEgNC4xMS0yLjU5OWMuMTc4IDcuMzcgMS43NTkgMTUuNjU2IDIuNTEyIDIwLjA3M3oiIGZpbGw9IiM0MzQ5NTUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik0zNi42NDUgNjEuMjY2Yy41ODgtLjA5OCAxLjE3LS4yMzQgMS43NDctLjM4NC42ODItLjE3NyAxLjM2LS4zNzcgMi4wMzQtLjU3OWwuMTM0LS4wNDMgMy41MTEtNi4zMTUtNC41NDEtMy4yNDJoNC43NTJsLTEuMDE3LTYuODE3LTQuMTEtMi41ODZjLS4xNzggNy4zMzItMS43NTggMTUuNTcxLTIuNTEgMTkuOTY2eiIgZmlsbD0iIzQzNDk1NSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9nPjwvZz48bWV0YWRhdGE+PHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIiB4bWxuczpyZGZzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzAxL3JkZi1zY2hlbWEjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iPjxyZGY6RGVzY3JpcHRpb24gYWJvdXQ9Imh0dHBzOi8vaWNvbnNjb3V0LmNvbS9sZWdhbCNsaWNlbnNlcyIgZGM6dGl0bGU9ImF2YXRhcix1c2VyLGJ1c2luZXNzLG1hbiIgZGM6ZGVzY3JpcHRpb249ImF2YXRhcix1c2VyLGJ1c2luZXNzLG1hbiIgZGM6cHVibGlzaGVyPSJJY29uc2NvdXQiIGRjOmRhdGU9IjIwMTctMDktMjIiIGRjOmZvcm1hdD0iaW1hZ2Uvc3ZnK3htbCIgZGM6bGFuZ3VhZ2U9ImVuIj48ZGM6Y3JlYXRvcj48cmRmOkJhZz48cmRmOmxpPkRtaXRyaXkgQm9uZGFyY2h1azwvcmRmOmxpPjwvcmRmOkJhZz48L2RjOmNyZWF0b3I+PC9yZGY6RGVzY3JpcHRpb24+PC9yZGY6UkRGPjwvbWV0YWRhdGE+PC9zdmc+";
+}
+
+<style>
+    .dl-horizontal dt {
+        text-align: left;
+    }
+</style>
+
+@*<h1>
+        <TimeAgo date-time="Model.StartDate"></TimeAgo>
+    </h1>*@
+<if include-if="Model != null">
+    <div class="clearfix">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    @Localizer["Direct Sell Item Details"]
+                    <small></small>
+                </h3>
+            </div>
+            <div class="title_right">
+                <a asp-action="Index"
+                   class="btn btn-blue"><span class="fa fa-chevron-left"></span>@Localizer["back_to_list"]</a>
+
+                <if include-if='Model.StatusId == ActiveId'>
+                    <a href="#liveView" data-backdrop="static" class="btn btn-success" data-toggle="modal"> <span class="fa fa-eye"></span>@Localizer["live_view"]</a>
+                </if>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                @{
-                    ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { { "id", Model.Id } };
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @{
+                ViewBag.LanguageTabsRouteValues = new Microsoft.AspNetCore.Routing.RouteValueDictionary { { "id", Model.Id } };
+            }
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+
+            <style>
+                .detials dt, .detials dd {
+                    padding: 7px 5px;
                 }
-                @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+            </style>
 
-                <style>
-                    .detials dt, .detials dd {
-                        padding: 7px 5px;
-                    }
-                </style>
-                <div class="x_panel">
-                    <div class="x_content p-y-5 ">
-                        <div class="clearfix auction-detials">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <dl class="dl-horizontal detials">
-                                        <dt>
-                                            @Localizer["Title"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.ItemTitle)
-                                        </dd>
+        </div>
 
-                                        <dt>
-                                            @Localizer["Category"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.CategoryName)
-                                        </dd>
-                                         
-                                        <dt>
-                                            @Localizer["Status"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.StatusName)
-                                        </dd>
-
-                                        <dt>
-                                            @Localizer["Description"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.ItemDescription)
-                                        </dd>
-
-                                        
-                                        <if include-if="Model.CurrencyGrade != null ">
-                                            <dt>
-                                                @Localizer["Currency Grade"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyGrade)
-                                            </dd>
-                                        </if>
-
-                                        <if include-if="Model.CurrencyDenomination != null">
-                                            <dt>
-                                                @Localizer["Currency Denomination"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyDenomination)
-                                            </dd>
-                                        </if>
-
-                                        <if include-if="Model.CurrencyCountry != null">
-                                            <dt>
-                                                @Localizer["Currency Country"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyCountry)
-                                            </dd>
-                                        </if>
-
-                                        <if include-if="Model.CurrencyYear != null ">
-
-                                            <dt>
-                                                @Localizer["Currency Year"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyYear)
-                                            </dd>
-
-                                        </if>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
+            <div class="x_panel">
+                <div class="x_title clearfix">
+                    <h2>@Localizer["Main Info"]</h2>
+                </div>
+                <div class="x_content">
+                    <dl class="dl-horizontal detials">
+                        <dt>
+                            @Localizer["Title"]
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ItemTitle)
+                        </dd>
+                        <dt>
+                            @Localizer["Status"]
+                        </dt>
+                        <dd>
+                            <span class="badge badge-light">
+                                @Html.DisplayFor(model => model.StatusName)
+                            </span>
+                        </dd>
 
 
-                                        <if include-if="Model.CurrencyPickNumber != null">
-                                            <dt>
-                                                @Localizer["Currency PickNumber"]
-                                            </dt>
-                                            <dd>
-                                                @Html.DisplayFor(model => model.CurrencyPickNumber)
-                                            </dd>
-                                        </if>
-                                    </dl>
-                                </div>
-                                <div class="col-md-6">
-                                    <dl class="dl-horizontal detials">
-                                        <dt>
-                                            @Localizer["CreatedDate"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.CreatedDate)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["ModifiedDate"]
-                                        </dt>
-                                        <dd>
-                                            @Model.ModifiedDate
-                                        </dd>
-                                       
-                                        <dt>
-                                            @Localizer["EndDate"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.EndDate)
-                                        </dd>
-                                         
-                                        <dt>
-                                            @Localizer["StartPrice"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.StartPrice)
-                                        </dd>
-                                        <dt>
-                                            @Localizer["PurchasePrice"]
-                                        </dt>
-                                        <dd>
-                                            @Html.DisplayFor(model => model.PurchasePrice)
-                                        </dd>
-                                    </dl>
-                                </div>
+                        <dt>
+                            @Localizer["Category"]
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.CategoryName)
+                        </dd>
+
+
+                    </dl>
+                </div>
 
 
 
 
-                            </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
+            <div class="x_panel">
+                <div class="x_title clearfix">
+                    <h2>@Localizer["Date & Time Info"]</h2>
+                    <ul class="nav navbar-right panel_toolbox">
 
-                        </div>
-                    </div>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-clock-o"></i> Time Zone
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#" onclick="utcTime(true)">UTC Zone</a>
+                                </li>
+                                <li>
+
+                                    <a href="#" onclick="utcTime(false)">Local Zone</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="x_content">
+                    <dl class="dl-horizontal detials">
+                        <dt>
+                            @Localizer["Created Date"]
+                        </dt>
+                        <dd>
+                            <span class="utc"> @Html.DisplayFor(model => model.CreatedDate) <small class="label label-info">UTC</small></span>
+                            <span class="local hidden">@Model.CreatedDate.ToLocalTime()</span>
+                        </dd>
+                        <dt>
+                            @Localizer["Modified Date"]
+                        </dt>
+                        <dd>
+
+                            <span class="utc"> @Model.ModifiedDate <small class="label label-info">UTC</small></span>
+                            <span class="local hidden"> @Model.ModifiedDate.ToLocalTime()</span>
+                        </dd>
+
+                        <dt>
+                            @Localizer["End Date"]
+                        </dt>
+                        <dd>
+
+
+                            <span class="utc">@Model.EndDate <small class="label label-info">UTC</small></span>
+                            <span class="local hidden">@Model.EndDate.ToLocalTime()</span>
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
+            <div class="x_panel" style="min-height:222px">
+                <div class="x_title clearfix">
+                    <h2>@Localizer["Prices Info"]</h2>
+                </div>
+                <div class="x_content">
+                    <dl class="dl-horizontal detials">
+                        <dt>
+                            @Localizer["Price"]
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.StartPrice)
+                        </dd>
+
+                        <dt>
+                            @Localizer["Purchase Price"]
+                        </dt>
+                        <dd>
+                            @if (Model.PurchasePrice > 0)
+                            {
+                                @Html.DisplayFor(model => model.PurchasePrice)
+                            }
+                            else
+                            {
+                                <i class="fa fa-times"></i>
+                            }
+                        </dd>
+
+
+                    </dl>
                 </div>
             </div>
         </div>
 
 
-        <if include-if="Model.ItemImages != null && Model.ItemImages.Count > 0">
-            <div class="x_panel">
-                <div class="x_content p-y-5 ">
 
-                    <div class="row">
-                        @foreach (var item in Model.ItemImages)
-                        {
-                            <div class="col-md-2 col-sm-3">
-                                <div class="gi-card">
-                                    <a href="@item.Original" class="gi-image" data-lightbox="images" data-title="@Model.ItemTitle">
-                                        <img src="@item.Thumb" class="img-responsive">
-                                    </a>
-                                </div>
-                            </div>
-                        }
+        <if include-if="ShowCurrency">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
+                <div class="x_panel">
+                    <div class="x_title clearfix">
+                        <h4>@Localizer["Currency Info"]</h4>
                     </div>
+                    <div class="x_content">
+                        <dl class="dl-horizontal detials">
 
+                            <dt>
+                                @Localizer["Currency Grade"]
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CurrencyGrade)
+                            </dd>
+
+                            <dt>
+                                @Localizer["Currency Denomination"]
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CurrencyDenomination)
+                            </dd>
+
+                            <dt>
+                                @Localizer["Currency Country"]
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CurrencyCountry)
+                            </dd>
+
+
+                            <dt>
+                                @Localizer["Currency Year"]
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CurrencyYear)
+                            </dd>
+
+
+                            <dt>
+                                @Localizer["Currency PickNumber"]
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CurrencyPickNumber)
+                            </dd>
+
+
+                        </dl>
+                    </div>
                 </div>
             </div>
         </if>
 
 
 
-    <if include-if="Model.StepsHistory != null ">
-        <div class="x_panel">
-            <div class="x_content">
-                <h4 class="m-b1">@Localizer["History"]</h4>
-                <div class=" p-y-5" id="StepsHistory">
 
+        @{ 
+            string classes = ShowCurrency ? "col-md-6 col-sm-6 col-lg-8" : "col-md-12 col-sm-12";
 
+            string styles = ShowCurrency ? "style=min-height:225px" : "";
+        }
+        <div class=" @classes col-xs-12">
+            <div class="x_panel">
+                <div class="x_title clearfix">
+                    <h4> @Localizer["Other Info"]</h4>
+                </div>
+                <div class="x_content"  @styles>
+                    <dl class="dl-horizontal detials">
 
-                    <table class="table table-striped table-bordered">
-                        <tr>
-                            <th>@Localizer["Current status"]</th>
-                            <th>@Localizer["Previous status"]</th>
-                            <th>@Localizer["Created date"]</th>
-                            <th>@Localizer["Notes"]</th>
-                        </tr>
-                        <if include-if="Model.StepsHistory.Count > 0">
-                            @foreach (var step in Model.StepsHistory)
-                            {
-                                <tr>
-                                    <td>@step.CurrentStatusName</td>
-                                    <td>@step.PreviousStatusName</td>
-                                    <td>@step.CreatedDate</td>
-                                    <td>@step.Notes</td>
-                                </tr>
-                            }
-                        </if>
-                    </table>
+                        <dt>
+                            @Localizer["Description"]
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ItemDescription)
+                        </dd>
 
+                    </dl>
                 </div>
             </div>
         </div>
-                </if>
+    </div>
 
 
 
 
+    <div class="row">
         <if include-if="Model.SellerProfile != null">
             @{
                 var Seller = Model.SellerProfile;
             }
-            <div class="x_panel">
-                <div class="x_content p-y-5 ">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
+                <div class="well profile_view clearfix">
+                    <div class="col-sm-12">
 
-                    <div class="col-md-12 col-sm-12 " id="@Seller.Id">
-                        <div class="gi-card">
-                            <a href="@Seller.Photo" class="gi-image" data-lightbox="images" data-title="@Seller.FullName">
-                                <img src="@Seller.Photo">
-                            </a>
-                            <div class="gi-info">
+                        <div class="left col-xs-6">
+                            <h4> @Localizer["Seller"]</h4>
+                            <strong>@Seller.FullName</strong>
+                        </div>
+                        <div class="right col-xs-6 text-right">
+                            <img src="@(string.IsNullOrEmpty(Seller.Photo)   ? avater : Seller.Photo)" alt="" class=" img-responsive img-thumbnail" style="height:125px">
+                        </div>
+                    </div>
 
-                                <header class="gi-header">
-                                    <h3>@Seller.FullName</h3>
-                                </header>
+                </div>
 
 
-                                <div class="gi-suumary">
-                                    @Html.Raw(Seller.FullName)
-                                </div>
+            </div>
+        </if>
+        <if include-if="Model.BuyerProfile != null">
+            @{
+                var Buyer = Model.BuyerProfile;
+            }
+            <div class="col-md-6 col-sm-6 col-xs-12 col-lg-4">
+                <div class="well profile_view clearfix" style="box-shadow: 0 0 0 2px green">
+                    <div class="col-sm-12">
 
+                        <div class="left col-xs-6">
+                            <h4 style="color:green"> @Localizer["Buyer"]</h4>
+                            <strong>@Buyer.FullName</strong>
+                            <strong>@ViewBag.buyer?.UserName</strong>
+                             
+                        </div>
+
+                        <div class="right col-xs-6 text-right">
+                            <img src="@(string.IsNullOrEmpty(Buyer.Photo)   ? avater : Buyer.Photo)" alt="" class=" img-responsive img-thumbnail" style="height:125px">
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </if>
+
+    </div>
+
+  
+
+
+
+    <if include-if="Model.ItemImages != null && Model.ItemImages.Count > 0">
+        <div class="x_panel">
+            <div class="x_title clearfix">
+                <h2>@Localizer["Photos List"]</h2>
+            </div>
+            <div class="x_content p-y-5 ">
+
+                <div class="row">
+                    @foreach (var item in Model.ItemImages)
+                    {
+                        <div class="col-md-3 col-sm-4 col-lg-2">
+                            <div class="gi-card">
+                                <a href="@item.Original" class="gi-image" data-lightbox="images" data-title="@Model.ItemTitle">
+                                    <img src="@item.Thumb" class="img-responsive">
+                                </a>
                             </div>
                         </div>
-                    </div>
-
+                    }
                 </div>
+
             </div>
+        </div>
+    </if>
 
 
-        </if>
 
-        <if include-if="Model.ProcessActions != null && Model.ProcessActions.Count > 0">
-            <div class="x_panel">
-                <div class="x_content p-y-5 ">
-                    <div class="" id="form">
-                        @{
-                            List<ProcessActionModel> Actions = Model.ProcessActions;
-                        }
-                        <div class="pos-actions ">
-                            <form asp-action="setAction" method="post" class="form m-y-5" id="takenAction">
-                                <input type="hidden" name="ReqId" value="@Model.Id" />
-                                <div class="form-group clearfix">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["l_status"] </label>
-                                    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
-                                        @foreach (ProcessActionModel act in Actions)
-                                        {
-                                            <span class="m-x-3">
-                                                <label for="Action-@act.ActionId">
-                                                    <input type="radio" name="ActionId" id="Action-@act.ActionId" value="@act.ActionId" class="check" data-note='@(act.NoteMandatory ? "true" : "false" )' required @(Model.StatusName)>
-                                                    <span class="check-txt">@act.Name</span>
-                                                </label>
-                                            </span>
-                                        }
-                                        <div class="actionId-errors"></div>
-                                    </div>
-                                </div>
+    <div class="x_panel">
+        <div class="x_content">
 
-                                <div class="form-group clearfix">
-                                    <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["l_notes"] </label>
-                                    <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
-                                        <textarea rows="5" class="form-control action_note" name="Notes"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-6 col-md-offset-2 col-sm-offset-3 col-sm-6 col-xs-12 ">
-                                        <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@Localizer["send"]">
+            <div class=" ">
+                <h4 class="m-b3">@Localizer["More Details"]</h4>
+                <ul class="nav nav-tabs sub-tabs" role="tablist">
 
-                                    </div>
-                                </div>
-                            </form>
+
+                    <if include-if="Model.StepsHistory != null">
+                        <li role="presentation" class="active">
+                            <a href="#StepsHistory" aria-controls="StepsHistory" role="tab" data-toggle="tab">@Localizer["History"]</a>
+                        </li>
+                    </if>
+
+
+
+                </ul>
+
+
+                <div class="tab-content">
+
+
+                    <if include-if="Model.StepsHistory != null ">
+                        <div role="tabpanel" class="tab-pane fade in active p-y-5" id="StepsHistory">
+
+
+
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <th>@Localizer["Current status"]</th>
+                                    <th>@Localizer["Previous status"]</th>
+                                    <th>@Localizer["Created date"]</th>
+                                    <th>@Localizer["Notes"]</th>
+                                </tr>
+                                <if include-if="Model.StepsHistory.Count > 0">
+                                    @foreach (var step in Model.StepsHistory)
+                                    {
+                                        <tr>
+                                            <td>@step.CurrentStatusName</td>
+                                            <td>@step.PreviousStatusName</td>
+                                            <td>@step.CreatedDate</td>
+                                            <td>@step.Notes</td>
+                                        </tr>
+                                    }
+                                </if>
+                            </table>
 
                         </div>
+                    </if>
 
-                    </div>
+
                 </div>
             </div>
 
 
+        </div>
+    </div>
 
+    <if include-if="Model.ProcessActions != null && Model.ProcessActions.Count > 0">
+        <div class="x_panel">
+            <div class="x_content p-y-5 ">
+                <div class="" id="form">
+                    @{
+                        List<ProcessActionModel> Actions = Model.ProcessActions;
+                    }
+                    <div class="pos-actions ">
+                        <form asp-action="setAction" method="post" class="form m-y-5" id="takenAction">
+                            <input type="hidden" name="ReqId" value="@Model.Id" />
+                            <div class="form-group clearfix">
+                                <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["l_status"] </label>
+                                <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+                                    @foreach (ProcessActionModel act in Actions)
+                                    {
+                                        <span class="m-x-3">
+                                            <label for="Action-@act.ActionId">
+                                                <input type="radio" name="ActionId" id="Action-@act.ActionId" value="@act.ActionId" class="check" data-note='@(act.NoteMandatory ? "true" : "false" )' required @(Model.StatusName)>
+                                                <span class="check-txt">@act.Name</span>
+                                            </label>
+                                        </span>
+                                    }
+                                    <div class="actionId-errors"></div>
+                                </div>
+                            </div>
 
-        </if>
+                            <div class="form-group clearfix">
+                                <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["l_notes"] </label>
+                                <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+                                    <textarea rows="5" class="form-control action_note" name="Notes"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-2 col-sm-offset-3 col-sm-6 col-xs-12 ">
+                                    <input type="submit" class="btn btn-success p-x-5 ut-save-btn" name="save" value="@Localizer["send"]">
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
 
 
     </if>
+
+
+
+
+</if>
 <if exclude-if="Model != null">
     <partial name="~/Areas/Admin/Views/Shared/_empty.cshtml" />
 </if>
 
+<if include-if="Model.StatusId == ActiveId">
+    <partial name="_modal.cshtml" model="Model" />
+</if>
 
 
 
 
 @section Scripts {
 
+
+
+
+
+
+
+
+
+
     <partial name="_ValidationScriptsPartial" />
 
     <script src="~/Admin/js/auctions.min.js"></script>
 
 
+    
+
     <script src="~/Admin/js/lightbox.min.js"></script>
     <script>
 
 
+
+        function utcTime(utc) {
+            if (utc) {
+                $('.utc').removeClass('hidden');
+                $('.local').addClass('hidden');
+            } else {
+                $('.local').removeClass('hidden');
+                $('.utc').addClass('hidden');
+            }
+        }
         lightbox.option({
             'resizeDuration': 400,
             'wrapAround': true,
@@ -341,3 +522,4 @@
     </script>
 
 }
+

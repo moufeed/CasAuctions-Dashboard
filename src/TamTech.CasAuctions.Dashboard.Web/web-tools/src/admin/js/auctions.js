@@ -15,21 +15,21 @@ $(document).ready(()=>{
         },
         submitHandler:function(form){
             let action = $(form).attr("action");
-             
+
             $.ajax({
-                url: action , 
-                type: "POST",             
+                url: action ,
+                type: "POST",
                 data: $(form).serialize(),
-                cache: false,             
-                processData: false,       
+                cache: false,
+                processData: false,
                 success: function(data) {
                     console.log(data)
                     if(data.success){
                         let _data = data.result.data;
-                        $('#takenAction').trigger("reset"); 
+                        $('#takenAction').trigger("reset");
                         $notification.success("",window.localization.processed_successfully, 2000, "fa fa-check");
                         setTimeout(()=>window.location.reload() ,1500)
-    /* 
+    /*
                          $('#request_status').text(_data.status_name);
                          $('#request_status').removeClass().addClass(`badge badge-${_data.status_options}`);
                           if(_data.histories){
@@ -39,7 +39,7 @@ $(document).ready(()=>{
                             $('a[href="#history"]').click();
                             $('#history').addClass('active in');
                             $('a[href="#form"]').parent().remove();
-                            $('#form').remove();  
+                            $('#form').remove();
                         },500)  */
                     }else{
                         var errors = data.errors;
@@ -49,9 +49,9 @@ $(document).ready(()=>{
                         }
                     }
                 }
-            }); 
+            });
             return false;
         }
     })
-    
+
     })

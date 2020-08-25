@@ -17,6 +17,7 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.Identity.Settings
         string LogoutCallback { get; }
         string GetUsersEndpoint { get; }
         string GetUserByUserNameEndpoint { get; }
+        string GetUserByIdEndpoint { get; }
         string RegisterUserAsyncEndpoint { get; }
         string BlockUserAsyncEndpoint { get; }
         string UnblockUserAsyncEndpoint { get; }

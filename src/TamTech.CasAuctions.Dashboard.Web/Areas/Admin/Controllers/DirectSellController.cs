@@ -8,12 +8,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Constants;
+using TamTech.CasAuctions.Dashboard.SDK.Core.Providers.Requests.Models;
 using TamTech.CasAuctions.Dashboard.SDK.Core.Telemetry;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.Filter;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Dtos.SelectList;
 using TamTech.CasAuctions.Dashboard.SDK.Models.Shared;
 using TamTech.CasAuctions.Dashboard.SDK.Models.VMs.Shared.Filters;
-using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.DirectSellItems;  
+using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.DirectSellItems;
+using TamTech.CasAuctions.Dashboard.SDK.Services.AuctionService.DirectSellItems.Models;
+using TamTech.CasAuctions.Dashboard.SDK.Services.Identity;
+using TamTech.CasAuctions.Dashboard.SDK.Services.Identity.Models;
 using TamTech.CasAuctions.Dashboard.Web.Areas.Shared.Controllers;
 
 namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
@@ -25,11 +29,13 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
 
         private readonly IDsItemsService _dsService;
         private readonly IStringLocalizer<BaseController> _localizer;
+        private readonly IUsersManagerService _userServices;
         public DirectSellController(ITelemetryService telemetryClientService, ILogger<AdminBaseController> logger,
-            IStringLocalizer<BaseController> localizer, IDsItemsService acutionsservice) : base(telemetryClientService, logger, localizer)
+            IStringLocalizer<BaseController> localizer, IDsItemsService acutionsservice , IUsersManagerService userServices) : base(telemetryClientService, logger, localizer)
         {
             _dsService = acutionsservice;
             _localizer = localizer;
+            _userServices = userServices;
         }
          
     
@@ -119,8 +125,22 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
         {
             try
             {
-                var result = await _dsService.GetDsItemDetailsAsync(id);
-                return View(VerifySucceed(result) ? result.Data : null);
+                IRequestProviderResult<DsItemDetails> result = await _dsService.GetDsItemDetailsAsync(id);
+
+                if (VerifySucceed(result))
+                {
+                    if( result.Data.BuyerProfile != null)
+                    {
+
+                        IRequestProviderResult<UserModel> buyer = await _userServices.GetUserByIdAsync(result.Data.BuyerProfile.Id.ToString());
+
+                        ViewBag.buyer = VerifySucceed(buyer) ? buyer.Data : null;
+                        //BuyerId
+                    }
+                    return View(result.Data);
+                }
+
+                return View(null);
             }
             catch (Exception ex)
             {

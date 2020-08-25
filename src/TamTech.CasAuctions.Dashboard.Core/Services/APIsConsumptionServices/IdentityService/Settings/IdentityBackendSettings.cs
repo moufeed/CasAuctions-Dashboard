@@ -38,6 +38,8 @@ namespace TamTech.CasAuctions.Dashboard.SDK.Services.Identity.Settings
 
         public string GetUserByUserNameEndpoint => $"{_identityServiceUrl}/api/0.1/usersmanager/GetByUserName";
 
+        public string GetUserByIdEndpoint => $"{_identityServiceUrl}/api/Management/User/Id";
+
         public string RegisterUserAsyncEndpoint => $"{_identityServiceUrl}/api/0.1/usersmanager/RegisterAsync";
 
         public string BlockUserAsyncEndpoint => $"{_identityServiceUrl}/api/0.1/usersmanager/BlockAsync";
