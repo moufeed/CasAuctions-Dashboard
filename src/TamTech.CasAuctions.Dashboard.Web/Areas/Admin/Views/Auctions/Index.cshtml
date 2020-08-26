@@ -30,39 +30,39 @@
     </div>
 </div>
 
- 
-    <if include-if="Model != null">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
-                <div class="x_panel p-x-0">
-                    <div class="x_content">
-                        <partial name="_Filters.cshtml" model="ViewBag.FilterModel" />
-                        <div class="table-responsive datatable drag">
-                            <table class="table table-middle table-striped  table-hover  padding-10" id="pagesTable" style="table-layout: fixed;user-select: none;">
-                                <thead>
-                                    <tr>
 
-                                        <th width="250">@Localizer["t_title"] </th>
-                                        <th width="200">@Localizer["t_status"]</th> 
-                                        <th width="200">@Localizer["SellerName"]</th>
-                                        <th width="150">@Localizer["t_category"]</th>
-                                        <th width="100">@Localizer["t_type"]</th>
-                                        <th width="100">@Localizer["Outbids"]</th>
-                                        <th width="100">@Localizer["Participants"]</th>
-                                        <th width="175">@Localizer["starting_date"]</th>
-                                        <th width="175">@Localizer["end_date"]</th>
-                                        <th width="175">@Localizer["ActualEndDate"]</th>
-                                        <th width="300">@Localizer["t_description"]</th>
+<if include-if="Model != null">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/partials/_LanguageTabs.cshtml")
+            <div class="x_panel p-x-0">
+                <div class="x_content">
+                    <partial name="_Filters.cshtml" model="ViewBag.FilterModel" />
+                    <div class="table-responsive datatable drag">
+                        <table class="table table-middle table-striped  table-hover  padding-10" id="pagesTable" style="table-layout: fixed;user-select: none;">
+                            <thead>
+                                <tr>
+
+                                    <th width="250">@Localizer["t_title"] </th>
+                                    <th width="200">@Localizer["t_status"]</th>
+                                    <th width="200">@Localizer["SellerName"]</th>
+                                    <th width="150">@Localizer["t_category"]</th>
+                                    <th width="100">@Localizer["t_type"]</th>
+                                    <th width="100">@Localizer["Outbids"]</th>
+                                    <th width="100">@Localizer["Participants"]</th>
+                                    <th width="175">@Localizer["starting_date"]</th>
+                                    <th width="175">@Localizer["end_date"]</th>
+                                    <th width="175">@Localizer["ActualEndDate"]</th>
+                                    <th width="300">@Localizer["t_description"]</th>
 
 
-                                        <th width="75" class="text-center">@Localizer["t_actions"]</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <if include-if="Model.Data != null && Model.Data.Count > 0">
-                                        @foreach (Auction item in Model.Data)
-                                        {
+                                    <th width="150" class="text-center">@Localizer["t_details"]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <if include-if="Model.Data != null && Model.Data.Count > 0">
+                                    @foreach (Auction item in Model.Data)
+                                    {
                                         <tr>
                                             <td>
                                                 <a data-toggle="tooltip"
@@ -71,8 +71,8 @@
                                                    href="@Url.AdminUrl("Details" , "Auctions",new { id = item.Id })">
                                                     @item.ItemTitle
                                                 </a>
-
                                             </td>
+                                           
                                             <td>@item.StatusName</td>
                                             <td>@item.SellerProfile.FullName</td>
                                             <td>@item.CategoryName</td>
@@ -82,7 +82,7 @@
                                             <td>@item.StartDate</td>
                                             <td>@item.EndDate</td>
                                             <td>@item.ActualEndDate</td>
-                                            <td> 
+                                            <td>
                                                 <a tabindex="0"
                                                    class="link"
                                                    role="button" data-toggle="popover"
@@ -100,32 +100,45 @@
                                                    class="btn btn-view btn-round ">
                                                     <i class="fa fa-bolt" aria-hidden="true"></i>
                                                 </a>
+
+                                                <if include-if='item.StatusId == 1 '>
+                                                    <a data-toggle="modal"
+                                                       data-target="#cancelModal"
+                                                       data-id="@item.Id"
+                                                       class="btn btn-remove btn-round ">
+                                                        <i class="fa fa-times"
+                                                           title="@Localizer["cancel"]"
+                                                           aria-hidden="true"
+                                                           data-toggle="tooltip"
+                                                           data-placement="left"></i>
+                                                    </a>
+                                                </if>
                                             </td>
                                         </tr>
 
-                                        }
-                                    </if>
-                                    <if exclude-if="Model.Data != null && Model.Data.Count > 0">
-                                        <tr>
-                                            <td colspan="10" class="text-center">
-                                                <p class="empty_row">
-                                                    <i class='fa fa fa-exclamation-circle'></i>
-                                                    @Localizer["no_data_table"]
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </if>
+                                    }
+                                </if>
+                                <if exclude-if="Model.Data != null && Model.Data.Count > 0">
+                                    <tr>
+                                        <td colspan="10" class="text-center">
+                                            <p class="empty_row">
+                                                <i class='fa fa fa-exclamation-circle'></i>
+                                                @Localizer["no_data_table"]
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </if>
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <hr class="m-y-2" />
-                        <pagination controller-name="Auctions" filter-model="ViewBag.FilterModel" pagniation-model="Model.Pagination" total="true"></pagination>
+                            </tbody>
+                        </table>
                     </div>
+                    <hr class="m-y-2" />
+                    <pagination controller-name="Auctions" filter-model="ViewBag.FilterModel" pagniation-model="Model.Pagination" total="true"></pagination>
                 </div>
             </div>
         </div>
-    </if>
+    </div>
+</if>
 
 
 <if exclude-if="Model != null">
@@ -134,7 +147,98 @@
 
 
 <style>
-    .popover{
+    .popover {
         max-width: 450px;
     }
 </style>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-action="setAction" method="post" class="form m-y-5" id="takenAction">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="cancelModal">
+                        @Localizer["Cancel Auction"]
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="ReqId" id="reqId" value="" />
+                    <input type="hidden" name="ActionId" value="2" />
+                    <div class="form-group clearfix">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12 ">@Localizer["l_notes"] </label>
+                        <div class="col-md-10 col-lg-9 col-sm-9 col-xs-12">
+                            <textarea rows="5" class="form-control action_note" name="Notes" style="resize:vertical" id="notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@Localizer["Close"]</button>
+                    <button type="submit" class="btn btn-danger">@Localizer["cancel Auction"]</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+
+
+        $('#cancelModal').on('show.bs.modal', function (e) {
+            var id = $(e.relatedTarget).data('id');
+            var modal = $(e.target);
+            modal.find("#reqId").val(id);
+
+        });
+
+        $('#cancelModal').on('hidden.bs.modal', function (e) {
+            $(e.target).find('#takenAction').trigger("reset");
+        });
+
+
+        $(document).ready(() => {
+
+            $('#takenAction').validate({
+                errorClass: "invalid_field",
+                validClass: "valid_field",
+                ignore: ".ignore",
+                submitHandler: function (form) {
+                    let action = $(form).attr("action");
+                    $.ajax({
+                        url: action,
+                        type: "POST",
+                        data: $(form).serialize(),
+                        cache: false,
+                        processData: false,
+                        success: function (data) {
+                            $('#cancelModal').modal('hide');
+                            if (data.success) {
+                                let _data = data.result.data;
+                                $('#takenAction').trigger("reset");
+                                $notification.success("", window.localization.processed_successfully, 2000, "fa fa-check");
+                                setTimeout(() => window.location.reload(), 1000);
+                            } else {
+                                var errors = data.errors;
+                                if (errors.length > 0) {
+                                    let txt = MakeErrorsMsg(errors);
+                                    $notification.error("", txt, 3500, "fa fa-exclamation-circle");
+                                }
+                            }
+                        }
+                    });
+                    return false;
+                }
+            })
+
+        })
+    </script>
+}
+
