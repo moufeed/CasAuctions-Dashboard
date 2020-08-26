@@ -230,9 +230,9 @@ namespace TamTech.CasAuctions.Dashboard.Web.Areas.Admin.Controllers
                 new SelectListItem
                 { Text = _localizer["title_z_to_a"], Value = $"{sortKeyName}_desc" , Selected = model.SortBy == $"{sortKeyName}_desc" && model.Desc },
                 new SelectListItem
-                { Text = _localizer["newst_first"] ,Value = "date_desc" ,Selected =  model.SortBy == "date" && !model.Desc },
+                { Text = _localizer["newst_first"] ,Value = "date_desc" ,Selected =  string.IsNullOrWhiteSpace(model.SortBy) ||(  model.SortBy == "date" && model.Desc )},
                 new SelectListItem
-                { Text = _localizer["oldest_first"] ,Value = "date" ,Selected =  model.SortBy == "date" && model.Desc },
+                { Text = _localizer["oldest_first"] ,Value = "date" ,Selected =  model.SortBy == "date" && !model.Desc },
 
             };
             ViewBag.sortList = SortItems;
